@@ -9,6 +9,7 @@ class fplData:
         raw_data = response.json()
         self.id_and_team_dict = self._get_teams(raw_data)
         self.team_and_player_dict = self._populate_team_dict(raw_data)
+        self.position_and_player_dict = self._populate_position_dict(raw_data)
 
     def _populate_team_dict(self, raw_data):
         player_data = raw_data['elements']
@@ -30,9 +31,41 @@ class fplData:
             team_dict[id_number] = team_name
         return team_dict
 
+    def _populate_position_dict(self, raw_data):
+        element_types = raw_data["element_types"]
+        player_data = raw_data["elements"]
+        position_dict, id_position_dict = self._set_up_prerequisites(
+            element_types)
+        for player in player_data:
+            player_position = id_position_dict[player["element_type"]]
+            position_dict[player_position].append(player)
+        return position_dict
 
-# for player in fplData().team_and_player_dict["Arsenal"]:
-#     print(f"Player: {player}")
+    def _set_up_prerequisites(self, element_types):
+        position_dict = {}
+        id_position_dict = {}
+        for position in element_types:
+            id_position_dict[position["id"]] = position["plural_name"]
+            position_dict[position["plural_name"]] = []
+        return position_dict, id_position_dict
+
+    def _print_debugger(self, printed):
+        print("*" * 50)
+        print(printed)
+        print("*" * 50)
+
+
+fpl = fplData()
+for goalie in fpl.position_and_player_dict["Goalkeepers"]:
+    print(
+        f"{goalie['web_name']} plays for: {fpl.id_and_team_dict[goalie['team']]}")
+
+
+# for team, players in fplData().team_and_player_dict.items():
+#     for player in players:
+#         print(f"Player: {player['web_name']} plays for {team}")
+#         print(' ')
+
 #     print(50 * '*')
 
-print(fplData().team_and_player_dict.keys())
+# print(fplData().team_and_player_dict.keys())
