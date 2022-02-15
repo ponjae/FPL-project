@@ -1,7 +1,7 @@
 import requests
 
 
-class fplData:
+class playerData:
 
     def __init__(self):
         self.load_fpl_data()
@@ -268,4 +268,4 @@ class fplData:
         print("*" * 50)
 
 
-fpl = fplData()
+fpl = playerData()
