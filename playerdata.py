@@ -58,7 +58,7 @@ class fplData:
         return position_dict, id_position_dict
 
     def _filter_player_data(self, player, fdr_dict, next_gw_number):
-        wanted_data = {"first_name", "web_name", "form", "id", "points_per_game", "selected_by_percent", "team", "now_cost", "total_points", "transfers_in",
+        wanted_data = {"first_name", "web_name", "form", "id", "points_per_game", "element_type", "selected_by_percent", "team", "now_cost", "total_points", "transfers_in",
                        "transfers_out", "minutes", "goals_scored", "assists", "clean_sheets", "penalties_saved", "penalties_missed", "saves", "bonus"}
         filtered_data = {}
         for data_key in player.keys():
@@ -74,13 +74,38 @@ class fplData:
         player_team = filtered_data["team"]
         fdr1, fdr5, fdrRemaining = self._calculate_player_fdr(
             player_team, fdr_dict, next_gw_number)
-        # games_next, games_next_five, total_games_remaning = self._get_remaining_games(
-        #     player_team)
         filtered_data["fdr1"] = fdr1
         filtered_data["fdr5"] = fdr5
         filtered_data["fdrRemaining"] = fdrRemaining
         filtered_data["points_per_million"]
+
+        games_next_gw, games_next_five, total_games_remaning = self._get_remaining_games(
+            player_team, fdr_dict, next_gw_number)
+        filtered_data["games_next_gw"] = games_next_gw
+        filtered_data["games_next_five"] = games_next_five
+        filtered_data["total_games_remaning"] = total_games_remaning
+
         return filtered_data
+
+    def _get_remaining_games(self, team, remaining_gws, next_gw_number):
+        next_gw_games = 0
+        next_five_gws = 0
+        remaining_games = 0
+        gw_remaining = len(remaining_gws)
+
+        if gw_remaining >= 1:
+            next_gw = remaining_gws[next_gw_number]
+            if team in next_gw.keys():
+                next_gw_games = len(next_gw[team])
+
+        if gw_remaining > 4:
+            next_five_gws = sum([len(remaining_gws[gw][team]) for gw in range(
+                next_gw_number, next_gw_number + 5) if team in remaining_gws[gw].keys()])
+
+        remaining_games = sum([len(remaining_gws[gw][team]) for gw in range(
+            next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
+
+        return next_gw_games, next_five_gws, remaining_games
 
     def _calculate_player_fdr(self, team, remaining_gws, next_gw_number):
         next_gw_fdr = None
@@ -89,7 +114,8 @@ class fplData:
         games_remaining = len(remaining_gws)
         if games_remaining >= 1:
             next_gw = remaining_gws[next_gw_number]
-            next_gw_fdr = sum(next_gw[team])
+            if team in next_gw.keys():
+                next_gw_fdr = sum(next_gw[team])
 
         if games_remaining > 4:
             next_five_fdr = sum([sum(remaining_gws[gw][team]) for gw in range(
@@ -98,10 +124,11 @@ class fplData:
         remaining_fdr = sum([sum(remaining_gws[gw][team]) for gw in range(
             next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
 
-        self._print_debugger(
-            f"Remaining fdr for team: {team} = {remaining_fdr}")
-
         return next_gw_fdr, next_five_fdr, remaining_fdr
+
+    def calculate_player_values(self, player):
+        # TODO
+        pass
 
     def _get_fdr_dict(self):
         game_week_fdr_dict = {}
@@ -140,6 +167,3 @@ class fplData:
 
 
 fpl = fplData()
-
-
-# Refactor, from the constructor. add indication of how many matches the current player has. If blank or dgw etc. Some kind of multiplication?
