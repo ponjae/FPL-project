@@ -4,6 +4,12 @@ import requests
 class fplData:
 
     def __init__(self):
+        self.load_fpl_data()
+
+    def load_fpl_data(self):
+        """
+        Function for fetching and loading the data from the api and store it in the class
+        """
         response = requests.get(
             'https://fantasy.premierleague.com/api/bootstrap-static/')
         raw_data = response.json()
@@ -13,6 +19,73 @@ class fplData:
             raw_data, fdr_dict, next_gw_number)
         self.position_and_player_dict = self._populate_position_dict(
             raw_data, fdr_dict, next_gw_number)
+
+    def _get_fdr_dict(self):
+        """ Function for fetching the Fixture Difficulty Data and converting it to a dict containing a dict with 
+        every upcomming gameweek fdr for each team in that specific gameweek. Ex)
+
+        {28:
+            {
+                1: [3, 4],
+                2: [2, 5],
+                ...
+            }
+        29: ..
+        }
+
+        Gameweek number is the first key, then the team id is the second key with the value of their opponents 
+        fdr rating for that specific gameweek. 
+
+        Returns:
+            dict : The remaning gameweeks with each teams upcomming fdr rating collected. 
+        """
+        game_week_fdr_dict = {}
+        response = requests.get(
+            f"https://fantasy.premierleague.com/api/fixtures?future=1")
+        game_data = response.json()
+        for game in game_data:
+            game_week = game["event"]
+
+            # Add the gw number as the key for all fixtures within it
+            if game_week not in game_week_fdr_dict:
+                game_week_fdr_dict[game_week] = {}
+            home_team = game["team_h"]
+            away_team = game["team_a"]
+            home_difficulty = game["team_h_difficulty"]
+            away_difficulty = game["team_a_difficulty"]
+
+            # In case of a dgw this needs to be checked
+            if home_team in game_week_fdr_dict[game_week].keys():
+                game_week_fdr_dict[game_week][home_team].append(
+                    home_difficulty)
+            else:
+                game_week_fdr_dict[game_week][home_team] = [home_difficulty]
+            if away_team in game_week_fdr_dict[game_week].keys():
+                game_week_fdr_dict[game_week][away_team].append(
+                    away_difficulty)
+            else:
+                game_week_fdr_dict[game_week][away_team] = [away_difficulty]
+
+        return game_week_fdr_dict
+
+    def _set_up_prerequisites(self, element_types):
+        """ Helper method for setting up helper dicts for converting to a more 
+        user friendly state.
+
+        Args:
+            element_types (list): containing a dict for each available position
+
+        Returns:
+            (dict, dict): a dict with positions as keys and empty list to be filled with players as values,
+            a dict with id for each position as keys.
+        """
+
+        position_dict = {}
+        id_position_dict = {}
+        for position in element_types:
+            id_position_dict[position["id"]] = position["plural_name"]
+            position_dict[position["plural_name"]] = []
+        return position_dict, id_position_dict
 
     def _get_teams(self, raw_data):
         """ Helper method for mapping a teams id with their normal name
@@ -79,25 +152,6 @@ class fplData:
                 player, fdr_dict, next_gw_number)
             position_dict[player_position].append(filtered_player)
         return position_dict
-
-    def _set_up_prerequisites(self, element_types):
-        """ Helper method for setting up helper dicts for converting to a more 
-        user friendly state.
-
-        Args:
-            element_types (list): containing a dict for each available position
-
-        Returns:
-            (dict, dict): a dict with positions as keys and empty list to be filled with players as values,
-            a dict with id for each position as keys.
-        """
-
-        position_dict = {}
-        id_position_dict = {}
-        for position in element_types:
-            id_position_dict[position["id"]] = position["plural_name"]
-            position_dict[position["plural_name"]] = []
-        return position_dict, id_position_dict
 
     def _filter_player_data(self, player, fdr_dict, next_gw_number):
         """ Filters out any unrelevant data that will not be used in a later stage. 
@@ -207,54 +261,6 @@ class fplData:
 
     def _calculate_player_value(self, player):
         pass
-
-    def _get_fdr_dict(self):
-        """ Function for fetching the Fixture Difficulty Data and converting it to a dict containing a dict with 
-        every upcomming gameweek fdr for each team in that specific gameweek. Ex)
-
-        {28:
-            {
-                1: [3, 4],
-                2: [2, 5],
-                ...
-            }
-        29: ..
-        }
-
-        Gameweek number is the first key, then the team id is the second key with the value of their opponents 
-        fdr rating for that specific gameweek. 
-
-        Returns:
-            dict : The remaning gameweeks with each teams upcomming fdr rating collected. 
-        """
-        game_week_fdr_dict = {}
-        response = requests.get(
-            f"https://fantasy.premierleague.com/api/fixtures?future=1")
-        game_data = response.json()
-        for game in game_data:
-            game_week = game["event"]
-
-            # Add the gw number as the key for all fixtures within it
-            if game_week not in game_week_fdr_dict:
-                game_week_fdr_dict[game_week] = {}
-            home_team = game["team_h"]
-            away_team = game["team_a"]
-            home_difficulty = game["team_h_difficulty"]
-            away_difficulty = game["team_a_difficulty"]
-
-            # In case of a dgw this needs to be checked
-            if home_team in game_week_fdr_dict[game_week].keys():
-                game_week_fdr_dict[game_week][home_team].append(
-                    home_difficulty)
-            else:
-                game_week_fdr_dict[game_week][home_team] = [home_difficulty]
-            if away_team in game_week_fdr_dict[game_week].keys():
-                game_week_fdr_dict[game_week][away_team].append(
-                    away_difficulty)
-            else:
-                game_week_fdr_dict[game_week][away_team] = [away_difficulty]
-
-        return game_week_fdr_dict
 
     def _print_debugger(self, printed):
         print("*" * 50)
