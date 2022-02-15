@@ -15,6 +15,15 @@ class fplData:
             raw_data, fdr_dict, next_gw_number)
 
     def _get_teams(self, raw_data):
+        """ Helper method for mapping a teams id with their normal name
+
+        Args:
+            raw_data (dict): the data fetched from the api-call
+
+        Returns:
+            [dict]: a dict containing the team id as key and their real names as values
+        """
+
         team_dict = {}
         for team in raw_data["teams"]:
             id_number = team["id"]
@@ -23,6 +32,17 @@ class fplData:
         return team_dict
 
     def _populate_team_dict(self, raw_data, fdr_dict, next_gw_number):
+        """ Function for adding players to their respective team in the team dict.
+
+        Args:
+            raw_data (dict): data fetched from the API
+            fdr_dict (dict): fdr dict to be passed on
+            next_gw_number (int): the upcomming gw number
+
+        Returns:
+            [dict]: A dict containing all the players with their team as the key
+        """
+
         player_data = raw_data['elements']
         id_and_team_dict = self._get_teams(raw_data)
         team_and_player_dict = {}
@@ -38,6 +58,17 @@ class fplData:
         return team_and_player_dict
 
     def _populate_position_dict(self, raw_data, fdr_dict, next_gw_number):
+        """ Function for adding players to their respective position in the position dict.
+
+        Args:
+            raw_data (dict): data fetched from the API
+            fdr_dict (dict): fdr dict to be passed on
+            next_gw_number (int): the upcomming gw number
+
+        Returns:
+            [dict]: A dict containing all the players with their position as the key
+        """
+
         element_types = raw_data["element_types"]
         player_data = raw_data["elements"]
         position_dict, id_position_dict = self._set_up_prerequisites(
@@ -50,6 +81,17 @@ class fplData:
         return position_dict
 
     def _set_up_prerequisites(self, element_types):
+        """ Helper method for setting up helper dicts for converting to a more 
+        user friendly state.
+
+        Args:
+            element_types (list): containing a dict for each available position
+
+        Returns:
+            (dict, dict): a dict with positions as keys and empty list to be filled with players as values,
+            a dict with id for each position as keys.
+        """
+
         position_dict = {}
         id_position_dict = {}
         for position in element_types:
@@ -58,6 +100,17 @@ class fplData:
         return position_dict, id_position_dict
 
     def _filter_player_data(self, player, fdr_dict, next_gw_number):
+        """ Filters out any unrelevant data that will not be used in a later stage. 
+
+         Args:
+            player: the player to be filtered
+            remaining_gws ([dict]): the fdr dict
+            next_gw_number ([int]): the upcomming gw_number (where to start looking)
+
+        Returns:
+            dict: the filtered player data
+        """
+
         wanted_data = {"first_name", "web_name", "form", "id", "points_per_game", "element_type", "selected_by_percent", "team", "now_cost", "total_points", "transfers_in",
                        "transfers_out", "minutes", "goals_scored", "assists", "clean_sheets", "penalties_saved", "penalties_missed", "saves", "bonus"}
         filtered_data = {}
@@ -85,9 +138,23 @@ class fplData:
         filtered_data["games_next_five"] = games_next_five
         filtered_data["total_games_remaning"] = total_games_remaning
 
+        self._calculate_player_value(filtered_data)
+
         return filtered_data
 
     def _get_remaining_games(self, team, remaining_gws, next_gw_number):
+        """ Calculate the games left to play for a certain player beloning to a certain team. 
+
+        Args:
+            team (int): the id of the team that the player belongs to
+            remaining_gws ([dict]): the fdr dict
+            next_gw_number ([int]): the upcomming gw_number (where to start looking)
+
+        Returns:
+            (int, int, int): A tuple containing the games for the next, next-five
+            and total remaining gameweeks if present, else 0
+        """
+
         next_gw_games = 0
         next_five_gws = 0
         remaining_games = 0
@@ -108,6 +175,18 @@ class fplData:
         return next_gw_games, next_five_gws, remaining_games
 
     def _calculate_player_fdr(self, team, remaining_gws, next_gw_number):
+        """ Function for calculating the fdr rating for a specific player beloning to a specific team
+
+        Args:
+            team (int): the id of the team that the player belongs to
+            remaining_gws ([dict]): the fdr dict
+            next_gw_number ([int]): the upcomming gw_number (where to start looking)
+
+        Returns:
+            (Union(int, None), Union(int, None), Union(int, None)): A tuple containing the fdr-sum for the next, next-five
+            total remaining games if present, else None
+        """
+
         next_gw_fdr = None
         next_five_fdr = None
         remaining_fdr = None
@@ -126,11 +205,28 @@ class fplData:
 
         return next_gw_fdr, next_five_fdr, remaining_fdr
 
-    def calculate_player_values(self, player):
-        # TODO
+    def _calculate_player_value(self, player):
         pass
 
     def _get_fdr_dict(self):
+        """ Function for fetching the Fixture Difficulty Data and converting it to a dict containing a dict with 
+        every upcomming gameweek fdr for each team in that specific gameweek. Ex)
+
+        {28:
+            {
+                1: [3, 4],
+                2: [2, 5],
+                ...
+            }
+        29: ..
+        }
+
+        Gameweek number is the first key, then the team id is the second key with the value of their opponents 
+        fdr rating for that specific gameweek. 
+
+        Returns:
+            dict : The remaning gameweeks with each teams upcomming fdr rating collected. 
+        """
         game_week_fdr_dict = {}
         response = requests.get(
             f"https://fantasy.premierleague.com/api/fixtures?future=1")
