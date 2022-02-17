@@ -179,11 +179,11 @@ class playerData:
         filtered_data["points_per_million"]
 
         player_team = filtered_data["team"]
-        fdr1, fdr5, fdrRemaining = self._calculate_player_fdr(
+        fdr1, fdr5, fdr_remaining = self._calculate_player_fdr(
             player_team, fdr_dict, next_gw_number)
         filtered_data["fdr1"] = fdr1
         filtered_data["fdr5"] = fdr5
-        filtered_data["fdrRemaining"] = fdrRemaining
+        filtered_data["fdr_remaining"] = fdr_remaining
         filtered_data["points_per_million"]
 
         games_next_gw, games_next_five, total_games_remaning = self._get_remaining_games(
@@ -258,14 +258,3 @@ class playerData:
             next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
 
         return next_gw_fdr, next_five_fdr, remaining_fdr
-
-    def _calculate_player_value(self, player):
-        pass
-
-    def _print_debugger(self, printed):
-        print("*" * 50)
-        print(printed)
-        print("*" * 50)
-
-
-fpl = playerData()
