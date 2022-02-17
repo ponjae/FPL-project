@@ -191,9 +191,6 @@ class playerData:
         filtered_data["games_next_gw"] = games_next_gw
         filtered_data["games_next_five"] = games_next_five
         filtered_data["total_games_remaning"] = total_games_remaning
-
-        self._calculate_player_value(filtered_data)
-
         return filtered_data
 
     def _get_remaining_games(self, team, remaining_gws, next_gw_number):

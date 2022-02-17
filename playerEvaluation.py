@@ -1,3 +1,4 @@
+from playerData import playerData
 TEST_PLAYERS = {"Arsenal": [{'element_type': 1, 'first_name': 'Bernd', 'form': '0.0', 'id': 1, 'now_cost': 4.5, 'points_per_game': '1.3', 'selected_by_percent': '0.8', 'team': 1, 'total_points': 4, 'transfers_in': 63634, 'transfers_out': 188069, 'web_name': 'Leno', 'minutes': 270, 'goals_scored': 0, 'assists': 0, 'clean_sheets': 0, 'penalties_saved': 0, 'penalties_missed': 0, 'saves': 9, 'bonus': 0, 'points_per_million': 0.8888888888888888, 'fdr1': 5, 'fdr5': 13, 'fdr_remaining': 32, 'games_next_gw': 2, 'games_next_five': 5, 'total_games_remaning': 13},
                 {'element_type': 1, 'first_name': 'Rúnar Alex', 'form': '0.0', 'id': 2, 'now_cost': 4.0, 'points_per_game': '0.0', 'selected_by_percent': '0.6', 'team': 1, 'total_points': 0, 'transfers_in': 19017, 'transfers_out': 76678, 'web_name': 'Rúnarsson', 'minutes': 0,
                     'goals_scored': 0, 'assists': 0, 'clean_sheets': 0, 'penalties_saved': 0, 'penalties_missed': 0, 'saves': 0, 'bonus': 0, 'points_per_million': 0.0, 'fdr1': 5, 'fdr5': 13, 'fdr_remaining': 32, 'games_next_gw': 2, 'games_next_five': 5, 'total_games_remaning': 13},
@@ -8,6 +9,7 @@ class playerEvaluation:
 
     def __init__(self, team_and_players, position_and_players):
         self.team_and_players = self.add_player_values(team_and_players)
+
         # self.position_and_players = self._add_player_value(
         #     position_and_players)
 
@@ -26,24 +28,24 @@ class playerEvaluation:
         player_value_all = 0
 
         for team in player_dict:
-            for player in player_dict[team]:
-                fdr1 = player["fdr1"]
-                fdr5 = player["fdr5"]
-                fdr_remaining = player["fdr_remaining"]
-                games_next_gw = player["games_next_gw"]
-                games_next_five = player["games_next_five"]
-                total_games_remaning = player["total_games_remaning"]
-                minutes = player["minutes"]
+            for player in range(len(player_dict[team])):
+                fdr1 = player_dict[team][player]["fdr1"]
+                fdr5 = player_dict[team][player]["fdr5"]
+                fdr_remaining = player_dict[team][player]["fdr_remaining"]
+                games_next_gw = player_dict[team][player]["games_next_gw"]
+                games_next_five = player_dict[team][player]["games_next_five"]
+                total_games_remaning = player_dict[team][player]["total_games_remaning"]
+                minutes = player_dict[team][player]["minutes"]
                 gameweeks_lapsed = 38 - total_games_remaning  # 38 gw:s in a season
 
-                total_points = player["total_points"]
-                form = player["form"]
-                position = player["element_type"]
-                goals_scored = player["goals_scored"]
-                assists = player["assists"]
-                clean_sheets = player["clean_sheets"]
-                saves = player["saves"]
-                penalties_saved = player["penalties_saved"]
+                total_points = player_dict[team][player]["total_points"]
+                form = player_dict[team][player]["form"]
+                position = player_dict[team][player]["element_type"]
+                goals_scored = player_dict[team][player]["goals_scored"]
+                assists = player_dict[team][player]["assists"]
+                clean_sheets = player_dict[team][player]["clean_sheets"]
+                saves = player_dict[team][player]["saves"]
+                penalties_saved = player_dict[team][player]["penalties_saved"]
 
                 # Goalkeepers
                 if position == 1:
@@ -65,10 +67,9 @@ class playerEvaluation:
                     player_value_1, player_value_5, player_value_all = self._forward_eval(
                         fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), goals_scored, assists)
 
-            player["PLAYER_VALUE"] = player_value_1
-            player["PLAYER_5_VALUE"] = player_value_5
-            player["PLAYER_REMAINING_VALUE"] = player_value_all
-            self._print_debugger(player_dict)
+                player_dict[team][player]["PLAYER_VALUE"] = player_value_1
+                player_dict[team][player]["PLAYER_5_VALUE"] = player_value_5
+                player_dict[team][player]["PLAYER_REMAINING_VALUE"] = player_value_all
         return player_dict
 
     def _goalkeeper_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
@@ -262,4 +263,10 @@ class playerEvaluation:
         print("*" * 50)
 
 
-pe = playerEvaluation(TEST_PLAYERS, {})
+pd = playerData()
+pe = playerEvaluation(pd.team_and_player_dict, {})
+
+# print(pe.team_and_players.keys())
+for player in pe.team_and_players["Man City"]:
+    print(f"Player: {player['web_name']}, gw1: {player['PLAYER_VALUE']}, gw5: {player['PLAYER_5_VALUE']}, gwRem: {player['PLAYER_REMAINING_VALUE']}")
+    print(20 * '--')
