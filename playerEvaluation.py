@@ -45,18 +45,29 @@ class playerEvaluation:
                 saves = player["saves"]
                 penalties_saved = player["penalties_saved"]
 
-                # Goalkeeper
+                # Goalkeepers
                 if position == 1:
                     player_value_1, player_value_5, player_value_all = self._goalkeeper_eval(
                         fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), clean_sheets, saves, penalties_saved, assists, goals_scored)
 
+                # Defenders
                 if position == 2:
                     player_value_1, player_value_5, player_value_all = self._defender_eval(
                         fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), clean_sheets, goals_scored, assists)
 
-                    player["PLAYER_VALUE"] = player_value_1
-                    player["PLAYER_5_VALUE"] = player_value_5
-                    player["PLAYER_REMAINING_VALUE"] = player_value_all
+                # Midfielders
+                if position == 3:
+                    player_value_1, player_value_5, player_value_all = self._midfielder_eval(
+                        fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), clean_sheets, goals_scored, assists)
+
+                # Forward
+                if position == 4:
+                    player_value_1, player_value_5, player_value_all = self._forward_eval(
+                        fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), goals_scored, assists)
+
+            player["PLAYER_VALUE"] = player_value_1
+            player["PLAYER_5_VALUE"] = player_value_5
+            player["PLAYER_REMAINING_VALUE"] = player_value_all
             self._print_debugger(player_dict)
         return player_dict
 
@@ -86,34 +97,26 @@ class playerEvaluation:
             (float, float, float): Tuple containing the value for the goalkeeper for the next, next 5 and all remaining games.
         """
 
-        # Historic data perspective
-        history_value = (minutes * total_points) / (90 * gameweeks_lapsed)
-        gk_value = (saves % 3 + clean_sheets * 4 + penalites_saved *
-                    5 + assists * 3 + goals_scored * 6) / gameweeks_lapsed
+        goalkeeper_value = (saves % 3 + clean_sheets * 4 + penalites_saved *
+                            5 + assists * 3 + goals_scored * 6) / gameweeks_lapsed
 
         # Next gameweek
-        upcomming_value1 = self._calc_form_value(form, games_next_gw, fdr1)
+        upcomming_value1 = self._calc_form_value(
+            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
 
         # Next five
-        upcomming_value5 = self._calc_form_value(form, games_next_five, fdr5)
+        upcomming_value5 = self._calc_form_value(
+            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
 
         # Remaining games
         upcomming_rest = self._calc_form_value(
-            form, total_games_remaning, fdr_remaining)
-
-        # Only add values if games remaining
-        if upcomming_value1 != -1:
-            upcomming_value1 += history_value + gk_value
-        if upcomming_value5 != -1:
-            upcomming_value5 += history_value + gk_value
-        if upcomming_rest != -1:
-            upcomming_rest += history_value + gk_value
+            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
     def _defender_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
                        gameweeks_lapsed, minutes, total_points, form, clean_sheets, goals_scored, assists):
-        """ Helper method for calculating the value of a defender. Return -1 if the player does not have matches
+        """ Helper method for calculating the value of a defender. Returns -1 if the player does not have matches
         left to play given the constraints given. 
 
         Args:
@@ -135,32 +138,104 @@ class playerEvaluation:
             (float, float, float): Tuple containing the value for the defender for the next, next 5 and all remaining games.
         """
 
-        # Historic data perspective
-        history_value = (minutes * total_points) / (90 * gameweeks_lapsed)
         defender_value = (goals_scored * 6 + clean_sheets *
                           4 + assists * 3) / gameweeks_lapsed
 
         # Next gameweek
-        upcomming_value1 = self._calc_form_value(form, games_next_gw, fdr1)
+        upcomming_value1 = self._calc_form_value(
+            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed, defender_value)
 
         # Next five
-        upcomming_value5 = self._calc_form_value(form, games_next_five, fdr5)
+        upcomming_value5 = self._calc_form_value(
+            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed, defender_value)
 
         # Remaining games
         upcomming_rest = self._calc_form_value(
-            form, total_games_remaning, fdr_remaining)
-
-        # Only add values if games remaining
-        if upcomming_value1 != -1:
-            upcomming_value1 += history_value + defender_value
-        if upcomming_value5 != -1:
-            upcomming_value5 += history_value + defender_value
-        if upcomming_rest != -1:
-            upcomming_rest += history_value + defender_value
+            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed, defender_value)
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
-    def _calc_form_value(self, form, games, fdr):
+    def _midfielder_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
+                         gameweeks_lapsed, minutes, total_points, form, clean_sheets, goals_scored, assists):
+        """ Helper method for calculating the value of a midfielder. Returns -1 if the player does not have matches
+        left to play given the constraints given. 
+
+        Args:
+            fdr1 (int): fdr rating for next gw
+            fdr5 (int): fdr rating for next 5 gw:s
+            fdr_remaining (int): fdr rating for remaining gw:s
+            games_next_gw (int): games in next gw
+            games_next_five (int): games in next five gws
+            total_games_remaning (int): remaining games of the season
+            gameweeks_lapsed (int): games played so far
+            minutes (int): minutes played so far
+            total_points (int): points so far
+            form (float): player form
+            clean_sheets (int): number of clean sheets
+            goals_scored (int): number of goals_scored
+            assists (int): number of assists made
+
+        Returns:
+            (float, float, float): Tuple containing the value for the midfielder for the next, next 5 and all remaining games.
+        """
+
+        midfielder_value = (goals_scored * 5 + clean_sheets *
+                            1 + assists * 3) / gameweeks_lapsed
+
+        # Next gameweek
+        upcomming_value1 = self._calc_form_value(
+            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed,  midfielder_value)
+
+        # Next five
+        upcomming_value5 = self._calc_form_value(
+            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed,  midfielder_value)
+
+        # Remaining games
+        upcomming_rest = self._calc_form_value(
+            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed,  midfielder_value)
+
+        return upcomming_value1, upcomming_value5, upcomming_rest
+
+    def _forward_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
+                      gameweeks_lapsed, minutes, total_points, form, goals_scored, assists):
+        """ Helper method for calculating the value of a forward. Returns -1 if the player does not have matches
+        left to play given the constraints given. 
+
+        Args:
+            fdr1 (int): fdr rating for next gw
+            fdr5 (int): fdr rating for next 5 gw:s
+            fdr_remaining (int): fdr rating for remaining gw:s
+            games_next_gw (int): games in next gw
+            games_next_five (int): games in next five gws
+            total_games_remaning (int): remaining games of the season
+            gameweeks_lapsed (int): games played so far
+            minutes (int): minutes played so far
+            total_points (int): points so far
+            form (float): player forms
+            goals_scored (int): number of goals_scored
+            assists (int): number of assists made
+
+        Returns:
+            (float, float, float): Tuple containing the value for the midfielder for the next, next 5 and all remaining games.
+        """
+
+        forward_value = (goals_scored * 4 + assists * 3) / gameweeks_lapsed
+
+        # Next gameweek
+        upcomming_value1 = self._calc_form_value(
+            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed,  forward_value)
+
+        # Next five
+        upcomming_value5 = self._calc_form_value(
+            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed,  forward_value)
+
+        # Remaining games
+        upcomming_rest = self._calc_form_value(
+            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed,  forward_value)
+
+        return upcomming_value1, upcomming_value5, upcomming_rest
+
+    def _calc_form_value(self, form, games, fdr, minutes, total_points, gameweeks_lapsed, position_value):
         """ Helper method for handling the form-value calculation. 
 
         Args:
@@ -171,10 +246,15 @@ class playerEvaluation:
         Returns:
             float: the value
         """
+
+        # Only add values if games remaining
         if games == 0:
             return -1
         else:
-            return (form * games) / fdr
+            # Historic data perspective
+            history_value = (minutes * total_points) / (90 * gameweeks_lapsed)
+
+            return history_value + position_value + (form * games) / fdr
 
     def _print_debugger(self, printed):
         print("*" * 50)
