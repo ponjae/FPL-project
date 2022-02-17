@@ -34,7 +34,7 @@ class playerEvaluation:
                 games_next_five = player["games_next_five"]
                 total_games_remaning = player["total_games_remaning"]
                 minutes = player["minutes"]
-                played_so_far = 38 - total_games_remaning  # 38 gw:s in a season
+                gameweeks_lapsed = 38 - total_games_remaning  # 38 gw:s in a season
 
                 total_points = player["total_points"]
                 form = player["form"]
@@ -43,11 +43,16 @@ class playerEvaluation:
                 assists = player["assists"]
                 clean_sheets = player["clean_sheets"]
                 saves = player["saves"]
+                penalties_saved = player["penalties_saved"]
 
                 # Goalkeeper
                 if position == 1:
                     player_value_1, player_value_5, player_value_all = self._goalkeeper_eval(
-                        fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, played_so_far, minutes, total_points, float(form), clean_sheets, saves)
+                        fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), clean_sheets, saves, penalties_saved, assists, goals_scored)
+
+                if position == 2:
+                    player_value_1, player_value_5, player_value_all = self._defender_eval(
+                        fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, minutes, total_points, float(form), clean_sheets, goals_scored, assists)
 
                     player["PLAYER_VALUE"] = player_value_1
                     player["PLAYER_5_VALUE"] = player_value_5
@@ -56,7 +61,7 @@ class playerEvaluation:
         return player_dict
 
     def _goalkeeper_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
-                         played_so_far, minutes, total_points, form, clean_sheets, saves):
+                         gameweeks_lapsed, minutes, total_points, form, clean_sheets, saves, penalites_saved, assists, goals_scored):
         """ Helper method for calculating the value of a goalkeeper. Return -1 if the player does not have matches
         left to play given the constraints given. 
 
@@ -67,20 +72,24 @@ class playerEvaluation:
             games_next_gw (int): games in next gw
             games_next_five (int): games in next five gws
             total_games_remaning (int): remaining games of the season
-            played_so_far (int): games played so far
+            gameweeks_lapsed (int): games played so far
             minutes (int): minutes played so far
             total_points (int): points so far
             form (float): player form
             clean_sheets (int): number of clean sheets
             saves (int): number of saves made
+            penalties_saved (int): penalties saved made
+            assists (int): assists made
+            goals_scored (int): goals_scored (can actually happen ;) )
 
         Returns:
             (float, float, float): Tuple containing the value for the goalkeeper for the next, next 5 and all remaining games.
         """
 
         # Historic data perspective
-        history_value = (minutes * total_points) / (90 * played_so_far)
-        gk_value = (saves/3 * clean_sheets) / played_so_far
+        history_value = (minutes * total_points) / (90 * gameweeks_lapsed)
+        gk_value = (saves % 3 + clean_sheets * 4 + penalites_saved *
+                    5 + assists * 3 + goals_scored * 6) / gameweeks_lapsed
 
         # Next gameweek
         upcomming_value1 = self._calc_form_value(form, games_next_gw, fdr1)
@@ -99,6 +108,55 @@ class playerEvaluation:
             upcomming_value5 += history_value + gk_value
         if upcomming_rest != -1:
             upcomming_rest += history_value + gk_value
+
+        return upcomming_value1, upcomming_value5, upcomming_rest
+
+    def _defender_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
+                       gameweeks_lapsed, minutes, total_points, form, clean_sheets, goals_scored, assists):
+        """ Helper method for calculating the value of a defender. Return -1 if the player does not have matches
+        left to play given the constraints given. 
+
+        Args:
+            fdr1 (int): fdr rating for next gw
+            fdr5 (int): fdr rating for next 5 gw:s
+            fdr_remaining (int): fdr rating for remaining gw:s
+            games_next_gw (int): games in next gw
+            games_next_five (int): games in next five gws
+            total_games_remaning (int): remaining games of the season
+            gameweeks_lapsed (int): games played so far
+            minutes (int): minutes played so far
+            total_points (int): points so far
+            form (float): player form
+            clean_sheets (int): number of clean sheets
+            goals_scored (int): number of goals_scored
+            assists (int): number of assists made
+
+        Returns:
+            (float, float, float): Tuple containing the value for the defender for the next, next 5 and all remaining games.
+        """
+
+        # Historic data perspective
+        history_value = (minutes * total_points) / (90 * gameweeks_lapsed)
+        defender_value = (goals_scored * 6 + clean_sheets *
+                          4 + assists * 3) / gameweeks_lapsed
+
+        # Next gameweek
+        upcomming_value1 = self._calc_form_value(form, games_next_gw, fdr1)
+
+        # Next five
+        upcomming_value5 = self._calc_form_value(form, games_next_five, fdr5)
+
+        # Remaining games
+        upcomming_rest = self._calc_form_value(
+            form, total_games_remaning, fdr_remaining)
+
+        # Only add values if games remaining
+        if upcomming_value1 != -1:
+            upcomming_value1 += history_value + defender_value
+        if upcomming_value5 != -1:
+            upcomming_value5 += history_value + defender_value
+        if upcomming_rest != -1:
+            upcomming_rest += history_value + defender_value
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
