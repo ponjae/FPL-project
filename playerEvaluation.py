@@ -103,15 +103,15 @@ class playerEvaluation:
 
         # Next gameweek
         upcomming_value1 = self._calc_form_value(
-            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
+            form, games_next_gw, 1, fdr1, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
 
         # Next five
         upcomming_value5 = self._calc_form_value(
-            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
+            form, games_next_five, 5, fdr5, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
 
         # Remaining games
         upcomming_rest = self._calc_form_value(
-            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
+            form, total_games_remaning, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed, goalkeeper_value)
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
@@ -144,15 +144,15 @@ class playerEvaluation:
 
         # Next gameweek
         upcomming_value1 = self._calc_form_value(
-            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed, defender_value)
+            form, games_next_gw, 1, fdr1, minutes, total_points, gameweeks_lapsed, defender_value)
 
         # Next five
         upcomming_value5 = self._calc_form_value(
-            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed, defender_value)
+            form, games_next_five, 5, fdr5, minutes, total_points, gameweeks_lapsed, defender_value)
 
         # Remaining games
         upcomming_rest = self._calc_form_value(
-            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed, defender_value)
+            form, total_games_remaning, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed, defender_value)
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
@@ -185,15 +185,15 @@ class playerEvaluation:
 
         # Next gameweek
         upcomming_value1 = self._calc_form_value(
-            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed,  midfielder_value)
+            form, games_next_gw, 1, fdr1, minutes, total_points, gameweeks_lapsed,  midfielder_value)
 
         # Next five
         upcomming_value5 = self._calc_form_value(
-            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed,  midfielder_value)
+            form, games_next_five, 5, fdr5, minutes, total_points, gameweeks_lapsed,  midfielder_value)
 
         # Remaining games
         upcomming_rest = self._calc_form_value(
-            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed,  midfielder_value)
+            form, total_games_remaning, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed,  midfielder_value)
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
@@ -224,38 +224,53 @@ class playerEvaluation:
 
         # Next gameweek
         upcomming_value1 = self._calc_form_value(
-            form, games_next_gw, fdr1, minutes, total_points, gameweeks_lapsed,  forward_value)
+            form, games_next_gw, 1, fdr1, minutes, total_points, gameweeks_lapsed,  forward_value)
 
         # Next five
         upcomming_value5 = self._calc_form_value(
-            form, games_next_five, fdr5, minutes, total_points, gameweeks_lapsed,  forward_value)
+            form, games_next_five, 5, fdr5, minutes, total_points, gameweeks_lapsed,  forward_value)
 
         # Remaining games
         upcomming_rest = self._calc_form_value(
-            form, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed,  forward_value)
+            form, total_games_remaning, total_games_remaning, fdr_remaining, minutes, total_points, gameweeks_lapsed,  forward_value)
 
         return upcomming_value1, upcomming_value5, upcomming_rest
 
-    def _calc_form_value(self, form, games, fdr, minutes, total_points, gameweeks_lapsed, position_value):
+    def _calc_form_value(self, form, games, should_play, fdr, minutes, total_points, gameweeks_lapsed, position_value):
         """ Helper method for handling the form-value calculation. 
 
         Args:
-            form (float): the player form
+            form (float): player form
             games (int): games to be played
-            fdr (int): fdr for games to be played
+            should_playfdr (int): normally number of games, 1/gw
+            minutes (int): minutes played so far
+            total_points (int): total points so far 
+            gameweeks_lapsed (int): how many gw have passed so far
+            position_value (float): position specific value
 
         Returns:
-            float: the value
+            float: the evaluated number based on in parameters
         """
 
         # Only add values if games remaining
+
+        gw_factor_dict = {
+            0: 1,
+            1: 2,
+            -1: 0.5,
+            2: 3,
+            -2: 0.25
+        }
+
         if games == 0:
             return -1
         else:
             # Historic data perspective
             history_value = (minutes * total_points) / (90 * gameweeks_lapsed)
 
-            return history_value + position_value + (form * games) / fdr
+            gw_factor = games - should_play
+
+            return history_value + position_value + (form * games) * gw_factor_dict[gw_factor] / fdr
 
     def _print_debugger(self, printed):
         print("*" * 50)
@@ -267,6 +282,6 @@ pd = playerData()
 pe = playerEvaluation(pd.team_and_player_dict, {})
 
 # print(pe.team_and_players.keys())
-for player in pe.team_and_players["Man City"]:
+for player in pe.team_and_players["Liverpool"]:
     print(f"Player: {player['web_name']}, gw1: {player['PLAYER_VALUE']}, gw5: {player['PLAYER_5_VALUE']}, gwRem: {player['PLAYER_REMAINING_VALUE']}")
     print(20 * '--')
