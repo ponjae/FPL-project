@@ -3,34 +3,35 @@ from playerData import playerData
 
 class playerEvaluation:
 
-    def add_player_values_to_team_dict(self, player_dict):
+    def add_player_values(self, player_dict):
         """ Method for calculating a players value based on the indvidual data in order to rank them
 
         Args:
             player_dict (dict): A dict where the players are stored as values
 
         Returns:
-            dict: The player_dict but with the player_game_value:s k,v pair added.
+            None: updates the input dict instead
         """
 
-        for team in player_dict:
-            for player in range(len(player_dict[team])):
-                fdr1 = player_dict[team][player]["fdr1"]
-                fdr5 = player_dict[team][player]["fdr5"]
-                fdr_remaining = player_dict[team][player]["fdr_remaining"]
-                games_next_gw = player_dict[team][player]["games_next_gw"]
-                games_next_five = player_dict[team][player]["games_next_five"]
-                total_games_remaning = player_dict[team][player]["total_games_remaning"]
+        # Key will either be a specific team or a position, depending on which dict is given as input
+        for key in player_dict:
+            for player in range(len(player_dict[key])):
+                fdr1 = player_dict[key][player]["fdr1"]
+                fdr5 = player_dict[key][player]["fdr5"]
+                fdr_remaining = player_dict[key][player]["fdr_remaining"]
+                games_next_gw = player_dict[key][player]["games_next_gw"]
+                games_next_five = player_dict[key][player]["games_next_five"]
+                total_games_remaning = player_dict[key][player]["total_games_remaning"]
                 gameweeks_lapsed = 38 - total_games_remaning  # 38 gw:s in a season
 
-                total_points = player_dict[team][player]["total_points"]
-                form = player_dict[team][player]["form"]
-                position = player_dict[team][player]["element_type"]
-                goals_scored = player_dict[team][player]["goals_scored"]
-                assists = player_dict[team][player]["assists"]
-                clean_sheets = player_dict[team][player]["clean_sheets"]
-                saves = player_dict[team][player]["saves"]
-                penalties_saved = player_dict[team][player]["penalties_saved"]
+                total_points = player_dict[key][player]["total_points"]
+                form = player_dict[key][player]["form"]
+                position = player_dict[key][player]["element_type"]
+                goals_scored = player_dict[key][player]["goals_scored"]
+                assists = player_dict[key][player]["assists"]
+                clean_sheets = player_dict[key][player]["clean_sheets"]
+                saves = player_dict[key][player]["saves"]
+                penalties_saved = player_dict[key][player]["penalties_saved"]
 
                 # Goalkeepers
                 if position == 1:
@@ -52,9 +53,9 @@ class playerEvaluation:
                     player_value_1, player_value_5, player_value_all = self._forward_eval(
                         fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning, gameweeks_lapsed, total_points, float(form), goals_scored, assists)
 
-                player_dict[team][player]["PLAYER_VALUE"] = player_value_1
-                player_dict[team][player]["PLAYER_5_VALUE"] = player_value_5
-                player_dict[team][player]["PLAYER_REMAINING_VALUE"] = player_value_all
+                player_dict[key][player]["PLAYER_VALUE"] = player_value_1
+                player_dict[key][player]["PLAYER_5_VALUE"] = player_value_5
+                player_dict[key][player]["PLAYER_REMAINING_VALUE"] = player_value_all
         # return player_dict
 
     def _goalkeeper_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
@@ -251,19 +252,3 @@ class playerEvaluation:
             gw_factor = games - should_play
 
             return history_value + position_value + (form * games) * gw_factor_dict[gw_factor] / fdr
-
-    def _print_debugger(self, printed):
-        print("*" * 50)
-        print(printed)
-        print("*" * 50)
-
-
-pd = playerData()
-team_dict = pd.team_and_player_dict
-pe = playerEvaluation()
-pe.add_player_values_to_team_dict(team_dict)
-
-# print(pe.team_and_players.keys())
-for player in team_dict["Liverpool"]:
-    print(f"Player: {player['web_name']}, gw1: {player['PLAYER_VALUE']}, gw5: {player['PLAYER_5_VALUE']}, gwRem: {player['PLAYER_REMAINING_VALUE']}")
-    print(20 * '--')
