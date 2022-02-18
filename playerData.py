@@ -176,7 +176,6 @@ class playerData:
         points_per_million = filtered_data["total_points"] / \
             filtered_data["now_cost"]
         filtered_data["points_per_million"] = points_per_million
-        filtered_data["points_per_million"]
 
         player_team = filtered_data["team"]
         fdr1, fdr5, fdr_remaining = self._calculate_player_fdr(
