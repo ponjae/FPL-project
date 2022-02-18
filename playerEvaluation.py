@@ -1,6 +1,3 @@
-from playerData import playerData
-
-
 class playerEvaluation:
 
     def add_player_values(self, player_dict):
@@ -56,7 +53,6 @@ class playerEvaluation:
                 player_dict[key][player]["PLAYER_VALUE"] = player_value_1
                 player_dict[key][player]["PLAYER_5_VALUE"] = player_value_5
                 player_dict[key][player]["PLAYER_REMAINING_VALUE"] = player_value_all
-        # return player_dict
 
     def _goalkeeper_eval(self, fdr1, fdr5, fdr_remaining, games_next_gw, games_next_five, total_games_remaning,
                          gameweeks_lapsed, total_points, form, clean_sheets, saves, penalites_saved, assists, goals_scored):
