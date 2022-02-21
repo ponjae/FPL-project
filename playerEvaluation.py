@@ -247,4 +247,5 @@ class playerEvaluation:
 
             gw_factor = games - should_play
 
-            return history_value + position_value + (form * games) * gw_factor_dict[gw_factor] / fdr
+            # return (history_value + position_value + (form * games) / fdr) * gw_factor_dict[gw_factor]
+            return (history_value + (form * games) / fdr) * gw_factor_dict[gw_factor]
