@@ -70,7 +70,7 @@ class playerRanking:
 
         return players[:nbr]
 
-    def select_optimal_team(self, position_dict, budget=100.0, gws_to_consider=10):
+    def get_optimal_team(self, position_dict, budget=100.0, gws_to_consider=5):
         """ An attempt to pick the optimal team for the upcomming gws with a
         linear programming approach. Inspired by this blogpost:
         https://medium.com/@joseph.m.oconnor.88/linearly-optimising-fantasy-premier-league-teams-3b76e9694877
@@ -108,15 +108,22 @@ class playerRanking:
         positions = df["element_type"]
         names = df["web_name"]
 
-        players, best_captain, subs = self._get_optimal_team(
+        best_players, best_captain, best_subs = self._get_optimal_team(
             player_values, prices, teams, positions, budget)
 
-        for i in range(df.shape[0]):
-            if players[i].value() != 0:
-                print(
-                    f"Player: {names[i]}, value: {player_values[i]}, price: {prices[i]}")
+        starting_players = []
+        captain_name = ""
+        benchwarmers = []
 
-        return players, best_captain, subs
+        for i in range(df.shape[0]):
+            if best_players[i].value() != 0:
+                starting_players.append(names[i])
+            if best_captain[i].value() == 1:
+                captain_name = names[i]
+            if best_subs[i].value() != 0:
+                benchwarmers.append(names[i])
+
+        return starting_players, captain_name, benchwarmers
 
     def _get_optimal_team(self, player_values, prices, teams, positions, budget):
         """_summary_
@@ -223,31 +230,5 @@ pe.add_player_values(position_dict)
 pe.add_player_values(team_dict)
 pr = playerRanking()
 
-players, best_captain, subs = pr.select_optimal_team(position_dict)
-
-# print(position_dict.keys())
-
-# all_players = position_dict["Goalkeepers"] + position_dict["Defenders"] + \
-#     position_dict["Midfielders"] + position_dict["Forwards"]
-
-# ten_goalies = pr.get_most_valuable_list(
-#     'PLAYER_REMAINING_VALUE', all_players, 10)
-
-# for player in ten_goalies:
-#     print(20 * '-')
-#     print(
-#         f"Player: {player['web_name']} - next_gw_value: {player['PLAYER_REMAINING_VALUE']}")
-
-# pr._sort_players_on_attribute(
-#     'PLAYER_5_VALUE', position_dict['Goalkeepers'])
-
-
-# pr._sort_players_on_attribute('PLAYER_5_VALUE', team_dict['Aston Villa'])
-
-# print(team_dict.keys())
-
-
-# for player in position_dict['Goalkeepers'][::-1]:
-#     print(20 * '-')
-#     print(
-#         f"Player: {player['web_name']} - next_gw_value: {player['PLAYER_5_VALUE']}")
+players, best_captain, subs = pr.get_optimal_team(
+    position_dict, budget=103.0, gws_to_consider=10)
