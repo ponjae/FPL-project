@@ -4,7 +4,7 @@ from playerEvaluation import playerEvaluation
 
 class playerRanking:
 
-    def sort_players_on_attribute(self, attribute, player_list):
+    def _sort_players_on_attribute(self, attribute, player_list):
         """ Method for merge sorting the players based on a specific attribute
 
         Args:
@@ -18,8 +18,8 @@ class playerRanking:
             left = player_list[:mid]
             right = player_list[mid:]
 
-            self.sort_players_on_attribute(attribute, left)
-            self.sort_players_on_attribute(attribute, right)
+            self._sort_players_on_attribute(attribute, left)
+            self._sort_players_on_attribute(attribute, right)
 
             # Half iterators
             i = 0
@@ -47,6 +47,25 @@ class playerRanking:
                 j += 1
                 m += 1
 
+    def get_most_valuable_list(self, attribute, players, nbr):
+        """ Returns the most valueable players depending on attribute.
+
+        Args:
+            attribute (string): the attribute in which to rank the players
+            players (dict): the players from which the most valueable should be found
+            nbr (_type_): how many players to return
+        Returns:
+            _type_: A list of with the most valueable players
+        """
+
+        self._sort_players_on_attribute(attribute, players)
+        # Desc ordering
+        players = players[::-1]
+
+        assert nbr <= len(players)
+
+        return players[:nbr]
+
 
 pd = playerData()
 team_dict = pd.team_and_player_dict
@@ -55,10 +74,30 @@ pe = playerEvaluation()
 pe.add_player_values(position_dict)
 pe.add_player_values(team_dict)
 pr = playerRanking()
-pr.sort_players_on_attribute('PLAYER_VALUE', position_dict['Midfielders'])
 
+print(position_dict.keys())
 
-for goalie in position_dict['Midfielders'][::-1]:
+all_players = position_dict["Goalkeepers"] + position_dict["Defenders"] + \
+    position_dict["Midfielders"] + position_dict["Forwards"]
+
+ten_goalies = pr.get_most_valuable_list(
+    'PLAYER_REMAINING_VALUE', all_players, 10)
+
+for player in ten_goalies:
     print(20 * '-')
     print(
-        f"Player: {goalie['web_name']} - next_gw_value: {goalie['PLAYER_VALUE']}")
+        f"Player: {player['web_name']} - next_gw_value: {player['PLAYER_REMAINING_VALUE']}")
+
+# pr._sort_players_on_attribute(
+#     'PLAYER_5_VALUE', position_dict['Goalkeepers'])
+
+
+# pr._sort_players_on_attribute('PLAYER_5_VALUE', team_dict['Aston Villa'])
+
+# print(team_dict.keys())
+
+
+# for player in position_dict['Goalkeepers'][::-1]:
+#     print(20 * '-')
+#     print(
+#         f"Player: {player['web_name']} - next_gw_value: {player['PLAYER_5_VALUE']}")
