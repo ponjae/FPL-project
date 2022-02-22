@@ -169,8 +169,8 @@ class playerData:
 
         for team in team_and_player_dict:
             for player in team_and_player_dict[team]:
-                # Players might share name so web_name and id is added even though id would be enough but for reading purposes.
-                player_dict[f"{player['web_name']}_{player['id']}"] = player
+                # Player id is the unique key.
+                player_dict[f"{player['id']}"] = player
         return player_dict
 
     def _filter_player_data(self, player, fdr_dict, next_gw_number):
