@@ -19,6 +19,8 @@ class playerData:
             raw_data, fdr_dict, next_gw_number)
         self.position_and_player_dict = self._populate_position_dict(
             raw_data, fdr_dict, next_gw_number)
+        self.player_and_data_dict = self._populate_player_dict(
+            self.team_and_player_dict)
 
     def _get_fdr_dict(self):
         """ Function for fetching the Fixture Difficulty Data and converting it to a dict containing a dict with 
@@ -153,6 +155,24 @@ class playerData:
             position_dict[player_position].append(filtered_player)
         return position_dict
 
+    def _populate_player_dict(self, team_and_player_dict):
+        """ Method for populating a dict where player_names are the keys 
+        and their corresponding data is the value.
+
+        Args:
+            team_and_player_dict (dict): The input dict containing team and players for now
+
+        Returns:
+            dict: the player dict
+        """
+        player_dict = {}
+
+        for team in team_and_player_dict:
+            for player in team_and_player_dict[team]:
+                # Players might share name so web_name and id is added even though id would be enough but for reading purposes.
+                player_dict[f"{player['web_name']}_{player['id']}"] = player
+        return player_dict
+
     def _filter_player_data(self, player, fdr_dict, next_gw_number):
         """ Filters out any unrelevant data that will not be used in a later stage. 
 
@@ -254,3 +274,6 @@ class playerData:
             next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
 
         return next_gw_fdr, next_five_fdr, remaining_fdr
+
+
+pd = playerData()
