@@ -70,6 +70,66 @@ class playerRanking:
 
         return players[:nbr]
 
+    def under_performers(self, team):
+        """ Given a team return a list of player_values in ascending order in order
+        to get an overview of the worst players in your team.
+
+        Args:
+            team (list): list of players
+        Return:
+            list: sorted list of players from team
+        """
+
+        self._sort_players_on_attribute("PLAYER_VALUE", team)
+        return team
+
+    def transfer_suggestion(self, transfer_out_id, all_players, itb, adjust_transfer_price=0.0):
+        """ Given a player that you want to tranfer out, return a list with the best
+        replacements for that player given your budget.
+
+        Args:
+            transfer_out_id (String): id of the player to transfer out
+            all_players (dict): all players in the game
+            itb (float): money in the bank
+            adjust_transfer_price (float, Optional): adjusting the transfer price is now cost > return cost. Defaults to 0.
+        Returns:
+            (list): Transfer-suggestions for a given player
+        """
+
+        unwanted_player = all_players[transfer_out_id]
+        position = unwanted_player["element_type"]
+        total_budget = itb + \
+            unwanted_player["now_cost"] + adjust_transfer_price
+
+        best_alternatives_ids = [player for player in all_players if all_players[player]["element_type"]
+                                 == position and all_players[player]["now_cost"] <= total_budget]
+
+        # remove unwanted player
+        best_alternatives_ids = list(filter(lambda player: (
+            all_players[player]["id"] != transfer_out_id), best_alternatives_ids))
+        print(best_alternatives_ids[0])
+
+        best_alternatives = []
+
+        for player in all_players.values():
+            # print(
+            #     f"checking if {player['id']} is in {best_alternatives_ids[0:10]}")
+            if str(player["id"]) in best_alternatives_ids:
+                print("success")
+                best_alternatives.append(player)
+
+        print(best_alternatives[0])
+
+        # player for player in all_players.values if player["id"] in best_alternatives_ids]
+
+        self._sort_players_on_attribute(
+            "PLAYER_VALUE", best_alternatives)
+
+        if len(best_alternatives) > 10:
+            return best_alternatives[::-1][:10]
+        else:
+            return best_alternatives[::-1]
+
     def get_optimal_team(self, position_dict, budget=100.0, gws_to_consider=5):
         """ An attempt to pick the optimal team for the upcomming gws with a
         linear programming approach. Inspired by this blogpost:
@@ -217,7 +277,6 @@ class playerRanking:
             model += (decisions[i] + sub_decisions[i]) <= 1
 
         model.solve()
-        print("Total expected score = {}".format(model.objective.value()))
 
         return decisions, captain_decisions, sub_decisions
 
@@ -225,10 +284,26 @@ class playerRanking:
 player_data = playerData()
 team_dict = player_data.team_and_player_dict
 position_dict = player_data.position_and_player_dict
+player_dict = player_data.player_and_data_dict
 pe = playerEvaluation()
 pe.add_player_values(position_dict)
 pe.add_player_values(team_dict)
 pr = playerRanking()
 
-players, best_captain, subs = pr.get_optimal_team(
-    position_dict, budget=103.0, gws_to_consider=10)
+id_p = '57'
+alt = pr.transfer_suggestion(id_p, player_dict, 2.5)
+print(f"Transfer alternatives for {player_dict[id_p]}:")
+for player in alt:
+    print(20 * '-')
+    print(f"{player['web_name']} - value: {player['PLAYER_VALUE']}")
+
+
+# my_team = [team_dict[team][10] for team in team_dict.keys()]
+
+# worst = pr.under_performers(my_team)
+# for player in worst:
+#     print(20 * '-')
+#     print(f"{player['web_name']} - value: {player['PLAYER_VALUE']}")
+
+# players, best_captain, subs = pr.get_optimal_team(
+#     position_dict, budget=103.0, gws_to_consider=10)
