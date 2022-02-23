@@ -109,18 +109,8 @@ class playerRanking:
             all_players[player]["id"] != transfer_out_id), best_alternatives_ids))
         print(best_alternatives_ids[0])
 
-        best_alternatives = []
-
-        for player in all_players.values():
-            # print(
-            #     f"checking if {player['id']} is in {best_alternatives_ids[0:10]}")
-            if str(player["id"]) in best_alternatives_ids:
-                print("success")
-                best_alternatives.append(player)
-
-        print(best_alternatives[0])
-
-        # player for player in all_players.values if player["id"] in best_alternatives_ids]
+        best_alternatives = [player for player in all_players.values() if str(
+            player["id"]) in best_alternatives_ids]
 
         self._sort_players_on_attribute(
             "PLAYER_VALUE", best_alternatives)
