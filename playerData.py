@@ -274,6 +274,3 @@ class playerData:
             next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
 
         return next_gw_fdr, next_five_fdr, remaining_fdr
-
-
-pd = playerData()

@@ -107,7 +107,6 @@ class playerRanking:
         # remove unwanted player
         best_alternatives_ids = list(filter(lambda player: (
             all_players[player]["id"] != transfer_out_id), best_alternatives_ids))
-        print(best_alternatives_ids[0])
 
         best_alternatives = [player for player in all_players.values() if str(
             player["id"]) in best_alternatives_ids]
@@ -269,31 +268,3 @@ class playerRanking:
         model.solve()
 
         return decisions, captain_decisions, sub_decisions
-
-
-player_data = playerData()
-team_dict = player_data.team_and_player_dict
-position_dict = player_data.position_and_player_dict
-player_dict = player_data.player_and_data_dict
-pe = playerEvaluation()
-pe.add_player_values(position_dict)
-pe.add_player_values(team_dict)
-pr = playerRanking()
-
-id_p = '57'
-alt = pr.transfer_suggestion(id_p, player_dict, 2.5)
-print(f"Transfer alternatives for {player_dict[id_p]}:")
-for player in alt:
-    print(20 * '-')
-    print(f"{player['web_name']} - value: {player['PLAYER_VALUE']}")
-
-
-# my_team = [team_dict[team][10] for team in team_dict.keys()]
-
-# worst = pr.under_performers(my_team)
-# for player in worst:
-#     print(20 * '-')
-#     print(f"{player['web_name']} - value: {player['PLAYER_VALUE']}")
-
-# players, best_captain, subs = pr.get_optimal_team(
-#     position_dict, budget=103.0, gws_to_consider=10)
