@@ -1,3 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
 body {
-    background-color: rgb(82, 219, 82);
+    background: #cecece
+}
+
+/* navbar section */
+
+.nav-item {
+    padding: 0px 18px;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    font-family: 'Allerta Stencil', sans-serif;
+    color: #e70505;
+    font-size: 1.8rem;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}
+
+.navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-nav>li>a:hover {
+    color: #e70505;
+}
+
+.navbar-nav>li:hover {
+    border-bottom: 2px solid #e70505;
+}
+
+.dropdown-menu {
+    font-family: 'Allerta Stencil', sans-serif;
+    background: transparent;
+}
+
+.dropdown-item:hover {
+    color: #e70505;
+    background: transparent;
 }
