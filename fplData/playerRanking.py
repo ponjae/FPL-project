@@ -1,7 +1,4 @@
 from distutils.log import error
-from playerData import playerData
-from playerEvaluation import playerEvaluation
-
 import pulp
 import numpy as np
 import pandas as pd
