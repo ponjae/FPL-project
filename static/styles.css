@@ -1,13 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Roboto+Slab:wght@300&display=swap');
+
+/* 
+red: #e70505;
+light-grey: #cecece;
+dark-grey: #8f8f8f;
+white: #fff
+*/
 
 body {
-    background: #cecece
+    background: #cecece;
+    font-family: 'Roboto Slab', serif;
 }
 
 /* navbar section */
 
 .navbar {
-    background: #8f8f8f
+    background: #8f8f8f;
+    font-family: 'Hubballi', sans-serif;
+    font-size: 100%;
 }
 
 .nav-item {
@@ -21,7 +32,7 @@ body {
 .navbar-brand {
     font-family: 'Allerta Stencil', sans-serif;
     color: #e70505;
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
 .navbar-brand:hover {
