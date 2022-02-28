@@ -1,7 +1,11 @@
 from distutils.log import error
+
 import pulp
 import numpy as np
 import pandas as pd
+
+from playerData import playerData
+from playerEvaluation import playerEvaluation
 
 
 class playerRanking:
@@ -265,3 +269,26 @@ class playerRanking:
         model.solve()
 
         return decisions, captain_decisions, sub_decisions
+
+
+player_data = playerData()
+team_dict = player_data.team_and_player_dict
+position_dict = player_data.position_and_player_dict
+pe = playerEvaluation()
+pe.add_player_values(position_dict)
+pe.add_player_values(team_dict)
+pr = playerRanking()
+team_dict = player_data.team_and_player_dict
+position_dict = player_data.position_and_player_dict
+pe.add_player_values(team_dict)
+pe.add_player_values(position_dict)
+decisions, captain_decisions, sub_decisions = pr.get_optimal_team(
+    position_dict, 104, 5)
+
+print("rest-TEAM")
+for player in decisions:
+    print(player)
+print(20 * '-')
+print(f"subs: {sub_decisions}")
+print(20 * '-')
+print(f"suggested captain: {captain_decisions}")
