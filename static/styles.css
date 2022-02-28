@@ -6,6 +6,10 @@ body {
 
 /* navbar section */
 
+.navbar {
+    background: #8f8f8f
+}
+
 .nav-item {
     padding: 0px 18px;
 }
@@ -38,10 +42,16 @@ body {
 
 .dropdown-menu {
     font-family: 'Allerta Stencil', sans-serif;
-    background: transparent;
+    background: #c4c4c4;
+    max-height: 407px;
+    overflow-y: auto;
 }
 
 .dropdown-item:hover {
     color: #e70505;
     background: transparent;
+}
+
+.dropdown-even {
+    background-color: #cecece;
 }
