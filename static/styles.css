@@ -77,3 +77,55 @@ footer {
 .fa-stack {
     color: #be0606;
 }
+
+.fa-stack:hover {
+    color: #fff
+}
+
+
+/* 404 */
+
+.error404 {
+    display: table;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+.fof{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fof h1{
+    font-size: 50px;
+    display: inline-block;
+    padding-right: 12px;
+    animation: type .5s alternate infinite;
+}
+
+@keyframes type{
+    from{box-shadow: inset -3px 0px 0px #be0606;}
+    to{box-shadow: inset -3px 0px 0px transparent;}
+}
+
+.problem-text {
+    color:#be0606;
+}
+
+.button-home {
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+
+  background: #8f8f8f;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #fff;
+}
+
+.button-home:hover{
+    background: #6b6b6b;
+    cursor: pointer;
+}
