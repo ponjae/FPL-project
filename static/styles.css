@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Roboto+Slab:wght@300&display=swap');
 
 /* 
-red: #e70505;
+red: #be0606;
 light-grey: #cecece;
 dark-grey: #8f8f8f;
 white: #fff
@@ -30,7 +30,7 @@ body {
 
 .navbar-brand {
     font-family: 'Allerta Stencil', sans-serif;
-    color: #e70505;
+    color: #be0606;
     font-size: 2rem;
 }
 
@@ -43,11 +43,11 @@ body {
 }
 
 .navbar-nav>li>a:hover {
-    color: #e70505;
+    color: #be0606;
 }
 
 .navbar-nav>li:hover {
-    border-bottom: 2px solid #e70505;
+    border-bottom: 2px solid #be0606;
 }
 
 .dropdown-menu {
@@ -58,10 +58,22 @@ body {
 }
 
 .dropdown-item:hover {
-    color: #e70505;
+    color: #be0606;
     background: transparent;
 }
 
 .dropdown-even {
     background-color: #cecece;
+}
+
+
+/* footer section */
+
+footer {
+    background-color: #8f8f8f;
+    color: #fff;
+}
+
+.fa-stack {
+    color: #be0606;
 }
