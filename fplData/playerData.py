@@ -119,11 +119,11 @@ class playerData:
         """
 
         player_data = raw_data['elements']
-        id_and_team_dict = self._get_teams(raw_data)
+        self.id_and_team_dict = self._get_teams(raw_data)
         team_and_player_dict = {}
         for player in player_data:
             team_id = player["team"]
-            team_name = id_and_team_dict[team_id]
+            team_name = self.id_and_team_dict[team_id]
             filtered_player = self._filter_player_data(
                 player, fdr_dict, next_gw_number)
             if team_name not in team_and_player_dict.keys():
@@ -156,7 +156,7 @@ class playerData:
         return position_dict
 
     def _populate_player_dict(self, team_and_player_dict):
-        """ Method for populating a dict where player_names are the keys 
+        """ Method for populating a dict where player_id are the keys 
         and their corresponding data is the value.
 
         Args:
