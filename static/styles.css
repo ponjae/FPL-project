@@ -10,7 +10,7 @@ white: #fff
 
 body {
     background: #cecece;
-    font-family: 'Roboto Slab', serif;
+    font-family: sans-serif, serif;
 }
 
 /* navbar section */
@@ -130,3 +130,33 @@ footer {
     background: #6b6b6b;
     cursor: pointer;
 }
+
+/* index */
+
+.gw-table {
+    border-collapse: collapse;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    font-size: 1.0rem;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.gw-table th {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background-color: #8f8f8f;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.gw-table td {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+

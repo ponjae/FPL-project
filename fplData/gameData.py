@@ -1,5 +1,4 @@
 import requests
-from playerData import playerData
 
 
 class gameData:
@@ -34,7 +33,7 @@ class gameData:
             storage (dict): the dict to store the data in
         """
         wanted_keys = ["id", "average_entry_score", "finished",
-                       "highest_score", "is_previous", "top_element_info", "most_captained"]
+                       "highest_score", "top_element_info", "most_captained"]
 
         storage[gw_number] = {}
 

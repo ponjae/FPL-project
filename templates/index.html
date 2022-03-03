@@ -1,9 +1,49 @@
 <!-- Header -->
 {% include "header.html" %}
 
+<!-- Gameweek -->
+<div class="gw-data">
+    <table class="gw-table">
+        <tr>
+            <th>Gw</th>
+            <th>Avg Score</th>
+            <th>Highscore</th>
+            <th>Best Gw Player</th>
+            <th>Most Captained</th>
+            <th>WC Played</th>
+            <th>BB Played</th>
+            <th>FH Played</th>
+            <th>TC Played</th>
+        </tr>
+        {% for gw in gw_data %}
+        <tr>
+            {% if gw_data[gw]["finished"] %}
+            <td>{{gw_data[gw]["id"]}}</td>
+            <td>{{gw_data[gw]["average_entry_score"]}}</td>
+            <td>{{gw_data[gw]["highest_score"]}}</td>
+            <td>{{id_player[gw_data[gw]["top_element_info"]["id"]]["web_name"]}} :
+                {{[gw_data[gw]["top_element_info"]["points"]][0]}}p</td>
+            <td>{{id_player[gw_data[gw]["most_captained"]]["web_name"]}}</td>
+            {% if gw_data[gw]["wildcard"] is not none %}
+            <td>{{gw_data[gw]["wildcard"]}}</td>
+            {% endif %}
+            <td>{{gw_data[gw]["bboost"]}}</td>
+            {% if gw_data[gw]["freehit"] is not none %}
+            <td>{{gw_data[gw]["freehit"]}}</td>
+            {% endif %}
+            <td>{{gw_data[gw]["3xc"]}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+
+    </table>
+</div>
+
+
 <!-- Footer -->
 {% include "footer.html" %}
 
 
-
-<!-- export FLASK_RUN=main.py && export FLASK_ENV=development -->
+<!-- export FLASK_APP=main.py
+export FLASK_ENV=DEVELOPMENT -->

@@ -170,7 +170,7 @@ class playerData:
         for team in team_and_player_dict:
             for player in team_and_player_dict[team]:
                 # Player id is the unique key.
-                player_dict[f"{player['id']}"] = player
+                player_dict[player['id']] = player
         return player_dict
 
     def _filter_player_data(self, player, fdr_dict, next_gw_number):
