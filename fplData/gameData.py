@@ -61,8 +61,13 @@ class gameData:
             home_team = game["team_h"]
             away_team = game["team_a"]
             gw_number = game["event"]
+            home_score = game["team_h_score"]
+            away_score = game["team_a_score"]
+            finished = game["finished"]
+            gw = game["event"]
             if gw_number in fixtures:
-                fixtures[gw_number].append((home_team, away_team))
+                fixtures[gw_number].append(
+                    (finished, home_team, away_team, home_score, away_score, gw))
             else:
                 fixtures[gw_number] = []
         return fixtures
@@ -80,9 +85,11 @@ class gameData:
         readable_dict = {}
 
         for gw in self.fixture_data:
-            readable_dict[gw] = []
-            for ht, at in self.fixture_data[gw]:
-                home_team = id_and_team_dict[ht]
-                away_team = id_and_team_dict[at]
-                readable_dict[gw].append((home_team, away_team))
+            if gw is not None:
+                readable_dict[gw] = []
+                for finished, ht, at, h_score, a_score, gw in self.fixture_data[gw]:
+                    home_team = id_and_team_dict[ht]
+                    away_team = id_and_team_dict[at]
+                    readable_dict[gw].append(
+                        (finished, home_team, away_team, h_score, a_score, gw))
         return readable_dict

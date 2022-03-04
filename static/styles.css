@@ -160,3 +160,7 @@ footer {
     border-right: 1px solid #000;
 }
 
+.gw-table tr:nth-child(even) {
+    background-color: rgb(233, 233, 233);
+  }
+

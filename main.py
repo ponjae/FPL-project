@@ -12,13 +12,11 @@ pd = playerData.playerData()
 
 @app.route("/")
 def home():
-    # VAD BEHÖVS HÄR?
-    # gameData --> gw_data, convert_fixtures
-    # playerData --> id_and_team_dict för att kunna convert
     id_player_dict = pd.player_and_data_dict
     gameweek_data = gd.gw_data
-    # gw_games = gd.convert_fixtures(pd.id_and_team_dict) gw_games=gw_games
-    return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=id_player_dict)
+    gw_games = gd.convert_fixtures(pd.id_and_team_dict)
+
+    return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=id_player_dict, gw_games=gw_games)
 
 
 @app.route("/your-team")
