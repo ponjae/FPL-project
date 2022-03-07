@@ -69,7 +69,8 @@ class gameData:
                 fixtures[gw_number].append(
                     (finished, home_team, away_team, home_score, away_score, gw))
             else:
-                fixtures[gw_number] = []
+                fixtures[gw_number] = [
+                    (finished, home_team, away_team, home_score, away_score, gw)]
         return fixtures
 
     def convert_fixtures(self, id_and_team_dict):
