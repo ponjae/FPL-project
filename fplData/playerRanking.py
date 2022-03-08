@@ -117,7 +117,7 @@ class playerRanking:
         else:
             return best_alternatives[::-1]
 
-    def get_optimal_team(self, position_dict, budget=100.0, gws_to_consider=5):
+    def get_optimal_team(self, position_dict, budget=100.0, gws_to_consider=10):
         """ An attempt to pick the optimal team for the upcomming gws with a
         linear programming approach. Inspired by this blogpost:
         https://medium.com/@joseph.m.oconnor.88/linearly-optimising-fantasy-premier-league-teams-3b76e9694877
@@ -266,26 +266,3 @@ class playerRanking:
         model.solve()
 
         return decisions, captain_decisions, sub_decisions
-
-
-# player_data = playerData()
-# team_dict = player_data.team_and_player_dict
-# position_dict = player_data.position_and_player_dict
-# pe = playerEvaluation()
-# pe.add_player_values(position_dict)
-# pe.add_player_values(team_dict)
-# pr = playerRanking()
-# team_dict = player_data.team_and_player_dict
-# position_dict = player_data.position_and_player_dict
-# pe.add_player_values(team_dict)
-# pe.add_player_values(position_dict)
-# decisions, captain_decisions, sub_decisions = pr.get_optimal_team(
-#     position_dict, 104, 5)
-
-# print("rest-TEAM")
-# for player in decisions:
-#     print(player)
-# print(20 * '-')
-# print(f"subs: {sub_decisions}")
-# print(20 * '-')
-# print(f"suggested captain: {captain_decisions}")
