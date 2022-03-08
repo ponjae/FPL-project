@@ -1,0 +1,25 @@
+<!-- Header -->
+{% include "header.html" %}
+<div class="content">
+    <div class="starting-eleven">
+        <h1>Best Starting Eleven</h1>
+        {% for player in starting_eleven %}
+        <p class="player">{{player}}</p>
+        {% endfor %}
+    </div>
+    <div class="bench">
+        <h2>Bench</h2>
+        {% for player in bench %}
+        <p class="player">{{player}}</p>
+        {% endfor %}
+    </div>
+    <h1>Best captain choice: {{captain}}</h1>
+    <form action="{{url_for('best_team_config')}}">
+        <button type="submit">Change prequisites</button>
+    </form>
+</div>
+
+
+
+<!-- Footer -->
+{% include "footer.html" %}

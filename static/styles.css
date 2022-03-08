@@ -11,6 +11,9 @@ white: #fff
 body {
     background: #cecece;
     font-family: sans-serif, serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* navbar section */
@@ -72,6 +75,7 @@ body {
 footer {
     background-color: #8f8f8f;
     color: #fff;
+    margin-top: auto;
 }
 
 .fa-stack {
@@ -163,4 +167,23 @@ footer {
 .gw-table tr:nth-child(even) {
     background-color: rgb(233, 233, 233);
   }
+
+/* config */
+
+.config-content {
+    font-family: 'Allerta Stencil', sans-serif;
+    padding-left: 5rem;
+    margin-top: 3rem;
+    padding-right: 5rem;
+    text-align: center;
+}
+
+.best-team-btn {
+    background-color:#8f8f8f;
+    color: #fff;
+}
+
+.best-team-btn:hover {
+    background-color: #be0606;
+}
 
