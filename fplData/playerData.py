@@ -119,11 +119,11 @@ class playerData:
         """
 
         player_data = raw_data['elements']
-        self.id_and_team_dict = self._get_teams(raw_data)
+        self.id_team_dict = self._get_teams(raw_data)
         team_and_player_dict = {}
         for player in player_data:
             team_id = player["team"]
-            team_name = self.id_and_team_dict[team_id]
+            team_name = self.id_team_dict[team_id]
             filtered_player = self._filter_player_data(
                 player, fdr_dict, next_gw_number)
             if team_name not in team_and_player_dict.keys():
@@ -146,10 +146,10 @@ class playerData:
 
         element_types = raw_data["element_types"]
         player_data = raw_data["elements"]
-        position_dict, id_position_dict = self._set_up_prerequisites(
+        position_dict, self.id_position_dict = self._set_up_prerequisites(
             element_types)
         for player in player_data:
-            player_position = id_position_dict[player["element_type"]]
+            player_position = self.id_position_dict[player["element_type"]]
             filtered_player = self._filter_player_data(
                 player, fdr_dict, next_gw_number)
             position_dict[player_position].append(filtered_player)

@@ -1,5 +1,4 @@
 from distutils.log import error
-
 import pulp
 import numpy as np
 import pandas as pd
@@ -164,11 +163,11 @@ class playerRanking:
 
         for i in range(df.shape[0]):
             if best_players[i].value() != 0:
-                starting_players.append(names[i])
+                starting_players.append((names[i], teams[i], positions[i]))
             if best_captain[i].value() == 1:
                 captain_name = names[i]
             if best_subs[i].value() != 0:
-                benchwarmers.append(names[i])
+                benchwarmers.append((names[i], teams[i], positions[i]))
 
         return starting_players, captain_name, benchwarmers
 
@@ -266,3 +265,62 @@ class playerRanking:
         model.solve()
 
         return decisions, captain_decisions, sub_decisions
+
+    def user_friendly_result(self, starting_eleven, bench, id_team_dict, id_position_dict):
+        """ Method for providing more information about the optimal eleven to the user
+
+        Args:
+            starting_eleven (list): the information about the players in the starting eleven
+            bench (list): the information about the players on the bench
+            id_team_dict (dict): dict containing the string value of the team
+            id_position_dict (dict): dict containing the string value of the position
+
+        Returns:
+            (dict, list): the user friendlier result of the starting eleven and bench players
+        """
+        eleven_dict = {}
+        bench_list = []
+
+        for player_info in starting_eleven:
+            name, team, pos = player_info
+            pos = id_position_dict[pos]
+            team = id_team_dict[team]
+            if pos in eleven_dict:
+                eleven_dict[pos].append((name, team))
+            else:
+                eleven_dict[pos] = [(name, team)]
+
+        for player_info in bench:
+            name, team, pos = player_info
+            pos = id_position_dict[pos]
+            team = id_team_dict[team]
+            bench_list.append((name, pos, team))
+
+        return eleven_dict, bench_list
+
+
+# pr = playerRanking()
+# p_d = playerData()
+# pe = playerEvaluation()
+
+# pe.add_player_values(p_d.position_and_player_dict)
+
+# eleven, captain, bench = pr.get_optimal_team(
+#     p_d.position_and_player_dict, 100, 10)
+
+# print(50 * '*')
+# elv, be = pr.user_friendly_result(
+#     eleven, bench, p_d.id_team_dict, p_d.id_position_dict)
+# print(elv.keys())
+# for position in elv:
+#     for player in elv[position]:
+#         print(10 * '----')
+#         print(player)
+
+# print(30 * '*')
+# for player in be:
+#     print(10 * '----')
+#     print(player)
+
+# print(30 * '*')
+# print(f"Captain: {captain}")

@@ -27,7 +27,7 @@ pr = playerRanking.playerRanking()
 def home():
     id_player_dict = pd.player_and_data_dict
     gameweek_data = gd.gw_data
-    gw_games = gd.convert_fixtures(pd.id_and_team_dict)
+    gw_games = gd.convert_fixtures(pd.id_team_dict)
 
     return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=id_player_dict, gw_games=gw_games)
 
@@ -49,9 +49,15 @@ def best_team():
     # Kolla så att det finns formulärdata annars redirect till config-sidan
     budget = float(request.form["budget"])
     to_consider = int(request.form["to_consider"])
-    starting_eleven, captain, bench = pr.get_optimal_team(
+    eleven, captain, bench = pr.get_optimal_team(
         pd.position_and_player_dict, budget, to_consider)
-    return render_template("optimal.html", starting_eleven=starting_eleven, bench=bench, captain=captain)
+    starting_eleven, bench_info = pr.user_friendly_result(
+        eleven, bench, pd.id_team_dict, pd.id_position_dict)
+    print(50 * '*')
+    print(starting_eleven)
+    print(50 * '*')
+
+    return render_template("optimal.html", starting_eleven=starting_eleven, bench=bench_info, captain=captain)
 
 
 @app.route("/teams/<team>")

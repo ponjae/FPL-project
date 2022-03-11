@@ -178,6 +178,11 @@ footer {
     text-align: center;
 }
 
+img {
+    width:540px;
+    height: auto;
+}
+
 .best-team-btn {
     background-color:#8f8f8f;
     color: #fff;
@@ -187,3 +192,23 @@ footer {
     background-color: #be0606;
 }
 
+/* optimal */
+
+.content {
+    font-family: 'Allerta Stencil', sans-serif;
+    padding-left: 5rem;
+    margin-top: 3rem;
+    padding-right: 5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header {
+    text-decoration: underline;
+    text-decoration-color: #be0606;
+}
+
+.content span {
+    color: #be0606;
+
+}
