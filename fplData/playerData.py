@@ -186,7 +186,7 @@ class playerData:
         """
 
         wanted_data = {"first_name", "web_name", "form", "id", "points_per_game", "element_type", "selected_by_percent", "team", "now_cost", "total_points", "transfers_in",
-                       "transfers_out", "minutes", "goals_scored", "assists", "clean_sheets", "penalties_saved", "penalties_missed", "saves", "bonus"}
+                       "transfers_out", "minutes", "goals_scored", "assists", "clean_sheets", "penalties_saved", "penalties_missed", "saves", "bonus", "status"}
         filtered_data = {}
         for data_key in player.keys():
             if data_key in wanted_data:

@@ -3,51 +3,55 @@
 <!-- Skriv en förklaring, bästa laget för xx m för de kommande xx veckorna,
 Lägg till information om position, lag till namnet, borde gå att lösa.
 -->
-<div class="content">
-    <div class="starting-eleven">
-        <h1 class="header">Best Starting Eleven</h1>
-        <div class="goalkeeper">
-            <h2 class="header">Goalkeeper</h2>
-            <p class="starting-player">{{starting_eleven["Goalkeepers"][0][0]}} -
-                {{starting_eleven["Goalkeepers"][0][1]}}</p>
-        </div>
-        <div class="defenders">
-            <h2 class="header">Defenders</h2>
-            {% for player in starting_eleven["Defenders"] %}
-            <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
-            {% endfor %}
-        </div>
-        <div class="midfielders">
-            <h2 class="header">Midfielders</h2>
-            {% for player in starting_eleven["Midfielders"] %}
-            <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
-            {% endfor %}
-        </div>
-        <div class="forwards">
-            {% if starting_eleven["Forwards"]|length > 1 %}
-            <h2 class="header">Forwards</h2>
-            {% else %}
-            <h2 class="header">Forward</h2>
-            {% endif %}
-            {% for player in starting_eleven["Forwards"] %}
-            <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
-            {% endfor %}
-        </div>
-    </div>
+<h1 class="opti-style">Best possible team for the <span class="highlight">{{heading_text}}</span> with a budget of
+    £<span class="highlight">{{budget}}m</span>.</h1>
 
-    <div class="bench">
-        <h2 class="header">Bench Players</h2>
-        {% for player in bench %}
-        <p class="player">{{player[0]}} - {{player[2]}} - ({{player[1]}})</p>
+<div class="starting-eleven opti-style">
+    <h2 class="header">Best Starting Eleven</h2>
+    <div class="position">
+        <h3 class="pos-header">Goalkeeper</h3>
+        <p class="starting-player">{{starting_eleven["Goalkeepers"][0][0]}} -
+            {{starting_eleven["Goalkeepers"][0][1]}}</p>
+    </div>
+    <div class="position">
+        <h3 class="pos-header">Defenders</h3>
+        {% for player in starting_eleven["Defenders"] %}
+        <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
         {% endfor %}
     </div>
-
-    <h1 class="header">Best captain choice: <span>{{captain}}</span></h1>
-
-    <form action="{{url_for('best_team_config')}}">
-        <button type="submit">Change prequisites</button>
-    </form>
+    <div class="position">
+        <h3 class="pos-header">Midfielders</h3>
+        {% for player in starting_eleven["Midfielders"] %}
+        <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
+        {% endfor %}
+    </div>
+    <div class="position">
+        {% if starting_eleven["Forwards"]|length > 1 %}
+        <h3 class="pos-header">Forwards</h3>
+        {% else %}
+        <h3 class="pos-header">Forward</h3>
+        {% endif %}
+        {% for player in starting_eleven["Forwards"] %}
+        <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
+        {% endfor %}
+    </div>
 </div>
+
+<div class="bench opti-style">
+    <h3 class="header">Bench Players</h3>
+    {% for player in bench %}
+    <p class="player">{{player[0]}} - {{player[2]}} - ({{player[1]}})</p>
+    {% endfor %}
+</div>
+
+<div class="captain opti-style">
+    <h2 class="header">Best captain choice: <span class="highlight">{{captain}}</span></h1>
+</div>
+
+
+<form class="return-btn" action="{{url_for('best_team_config')}}">
+    <button class="fpl-btn" type="submit">Change prequisites</button>
+</form>
 
 
 
