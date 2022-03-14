@@ -146,6 +146,9 @@ class playerRanking:
         all_players = position_dict["Goalkeepers"] + position_dict["Defenders"] + \
             position_dict["Midfielders"] + position_dict["Forwards"]
 
+        # filter out injured players
+        all_players = list(filter(lambda x: x["status"] == "a", all_players))
+
         df = pd.DataFrame(all_players)
 
         player_values = df[attribute]
