@@ -5,7 +5,7 @@ class gameData:
 
     def __init__(self):
         self.gw_data = self.load_gameweek_data()
-        self.fixture_data = self.load_fixture_data()
+        self.fixture_data = self._load_fixture_data()
 
     def load_gameweek_data(self):
         """ Method for fetching the gameweek data to be displayed on the home page
@@ -45,7 +45,7 @@ class gameData:
                 for chip in chip_data:
                     storage[gw_number][chip["chip_name"]] = chip["num_played"]
 
-    def load_fixture_data(self):
+    def _load_fixture_data(self):
         """ Method for adding the games for each gameweek
 
         Returns:
@@ -83,14 +83,34 @@ class gameData:
         Returns:
             dict : dict containing the gw as key then a list with the games as values
         """
-        readable_dict = {}
 
-        for gw in self.fixture_data:
-            if gw is not None:
-                readable_dict[gw] = []
-                for finished, ht, at, h_score, a_score, gw in self.fixture_data[gw]:
-                    home_team = id_and_team_dict[ht]
-                    away_team = id_and_team_dict[at]
-                    readable_dict[gw].append(
-                        (finished, home_team, away_team, h_score, a_score, gw))
+        current_gw = self._current_gw_number(self.fixture_data)
+        readable_dict = {current_gw: []}
+
+        for game in self.fixture_data[current_gw]:
+
+            finished, ht, at, h_score, a_score, gw = game
+            home_team = id_and_team_dict[ht]
+            away_team = id_and_team_dict[at]
+            readable_dict[gw].append(
+                (finished, home_team, away_team, h_score, a_score, gw))
         return readable_dict
+
+    def _current_gw_number(self, all_fixtures):
+
+        # remove unscheduled games
+        all_fixtures.pop(None, None)
+        gws = sorted(all_fixtures.keys())
+
+        current_gw = -1
+
+        for gw in gws:
+            for game in all_fixtures[gw]:
+                if not game[0]:
+                    current_gw = gw
+                    break
+            else:
+                continue
+            break
+
+        return current_gw

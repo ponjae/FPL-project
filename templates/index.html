@@ -37,7 +37,8 @@
         {% endfor %}
     </table>
 </div>
-<!-- Gameweek Games -->
+<!-- Current Gameweek Games -->
+
 <div class="gw-games">
     <table class="gw-table">
         <tr>
@@ -48,14 +49,17 @@
         </tr>
         {% for gw in gw_games %}
         {% for game in gw_games[gw] %}
-        {% if game[0] %}
+
         <tr>
             <td>{{game[5]}}</td>
             <td>{{game[1]}}</td>
+            {% if game[0] %}
             <td>{{game[3]}}-{{game[4]}}</td>
+            {% else %}
+            <td>?-?</td>
+            {% endif %}
             <td>{{game[2]}}</td>
         </tr>
-        {% endif %}
         {% endfor %}
         {% endfor %}
     </table>
