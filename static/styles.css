@@ -195,14 +195,10 @@ footer {
 
 /* optimal */
 
-
-.header {
-    text-decoration: underline;
-    text-decoration-color: #be0606;
-}
-
 .highlight {
     color: #be0606;
+    font-weight: bolder;
+    font-style: italic;
 }
 
 .position {
@@ -216,6 +212,19 @@ footer {
     font-family: 'Allerta Stencil', sans-serif;
     text-align: center;
     margin-top: 3rem;
+}
+
+.pos-header {
+    text-decoration: underline;
+    text-decoration-color: #be0606;
+}
+
+.player-container {
+    font-style: italic;
+}
+
+.bench {
+    margin-top: 2rem;
 }
 
 .return-btn {

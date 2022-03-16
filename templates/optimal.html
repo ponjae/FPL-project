@@ -4,7 +4,7 @@
     £<span class="highlight">{{budget}}m</span>.</h1>
 
 <div class="starting-eleven opti-style">
-    <h2 class="header">Best Starting Eleven</h2>
+    <h2 class="player-container">Best Starting Eleven</h2>
     <div class="position">
         <h3 class="pos-header">Goalkeeper</h3>
         <p class="starting-player">{{starting_eleven["Goalkeepers"][0][0]}} -
@@ -34,15 +34,17 @@
     </div>
 </div>
 
-<div class="bench opti-style">
-    <h3 class="header">Bench Players</h3>
-    {% for player in bench %}
-    <p class="player">{{player[0]}} - {{player[2]}} - ({{player[1]}})</p>
-    {% endfor %}
+<div class="opti-style">
+    <h3 class="player-container">Bench Players</h3>
+    <div class="bench">
+        {% for player in bench %}
+        <p class="player">{{player[0]}} - {{player[2]}} - ({{player[1]}})</p>
+        {% endfor %}
+    </div>
 </div>
 
 <div class="captain opti-style">
-    <h2 class="header">Best captain choice: <span class="highlight">{{captain}}</span></h1>
+    <h2>Best captain choice: <span class="highlight">{{captain}}</span></h1>
 </div>
 
 
