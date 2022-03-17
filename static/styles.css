@@ -8,18 +8,45 @@ dark-grey: #8f8f8f;
 white: #fff
 */
 
+/*
+purp: #E73725
+gre: #E1E1E1
+blu: #FFF
+yel: #010000
+*/
+
 body {
-    background: #cecece;
-    font-family: sans-serif, serif;
+    /* font-family: sans-serif, serif; */
+    font-family: 'Allerta Stencil', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* Containers */
+.container-fluid {
+    padding: 7% 15%;
+}
+
+/* sections */
+
+.white-section {
+    background-color: #fff;
+}
+
+.grey-section {
+    background-color: #E1E1E1;
+}
+
+.parag-text {
+    font-family: 'Hubballi', sans-serif;
+    font-size: 1.5rem;
+}
+
 /* navbar section */
 
 .navbar {
-    background: #8f8f8f;
+    background: #E73725;
     font-family: 'Hubballi', sans-serif;
 }
 
@@ -33,59 +60,116 @@ body {
 
 .navbar-brand {
     font-family: 'Allerta Stencil', sans-serif;
-    color: #be0606;
+    color: #fff;
     font-size: 2rem;
 }
 
 .navbar-brand:hover {
-    color: #fff;
+    color: #010000;
 }
 
 .navbar-nav>li>a {
     color: #fff;
 }
 
-.navbar-nav>li>a:hover {
-    color: #be0606;
-}
-
 .navbar-nav>li:hover {
-    border-bottom: 2px solid #be0606;
+    border-bottom: 2px solid #fff;
 }
 
 .dropdown-menu {
     font-family: 'Allerta Stencil', sans-serif;
-    background: #c4c4c4;
+    background: #e1e1e1;
     max-height: 407px;
     overflow-y: auto;
+}
+.dropdown-even {
+    background-color: #fff;
 }
 
 .dropdown-item:hover {
     color: #be0606;
-    background: transparent;
+    text-decoration: underline;
+    background-color: transparent;
 }
 
-.dropdown-even {
-    background-color: #cecece;
+.dropdown-even:hover {
+    background-color: #fff;
 }
-
 
 /* footer section */
 
 footer {
-    background-color: #8f8f8f;
+    background-color: #010000;
     color: #fff;
     margin-top: auto;
 }
 
 .fa-stack {
-    color: #be0606;
+    color: #fff;
 }
 
 .fa-stack:hover {
-    color: #fff
+    color: #be0606;
 }
 
+/* index */
+
+.row {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-title {
+    font-size: 2rem;
+}
+
+.fa-icon {
+    margin-bottom: 1rem;
+    color: #be0606;
+}
+
+.fa-icon:hover {
+    color:#E73725;
+}
+
+.highlight2 {
+    color: #be0606;
+    font-weight: bolder;
+}
+
+.gw-table {
+    border-collapse: collapse;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    font-size: 1.0rem;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.gw-table th {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background-color: #8f8f8f;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.gw-table td {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+.gw-table tr:nth-child(even) {
+    background-color: rgb(233, 233, 233);
+  }
 
 /* 404 */
 
@@ -135,43 +219,9 @@ footer {
     cursor: pointer;
 }
 
-/* index */
-
-.gw-table {
-    border-collapse: collapse;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
-    font-size: 1.0rem;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.gw-table th {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    background-color: #8f8f8f;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.gw-table td {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-}
-
-.gw-table tr:nth-child(even) {
-    background-color: rgb(233, 233, 233);
-  }
-
 /* config */
 
 .config-content {
-    font-family: 'Allerta Stencil', sans-serif;
     padding-left: 5rem;
     margin-top: 3rem;
     padding-right: 5rem;
@@ -209,7 +259,6 @@ footer {
 }
 
 .opti-style {
-    font-family: 'Allerta Stencil', sans-serif;
     text-align: center;
     margin-top: 3rem;
 }
@@ -228,7 +277,6 @@ footer {
 }
 
 .return-btn {
-    font-family: 'Allerta Stencil', sans-serif;
     margin-top: 2rem;
     margin-bottom: 2rem;
     margin-left: auto;

@@ -1,70 +1,141 @@
 <!-- Header -->
 {% include "header.html" %}
 
+<section class="grey-section">
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Welcome to REAL-FPL!</h1>
+            <p class="parag-text">The only place you need for improving your game</p>
+        </div>
+
+        <div class="logo-container col-lg-6">
+            <img class="pl-logo" src="../static/images/pl_logo.png" alt="pl-logo">
+        </div>
+
+    </div>
+    </div>
+
+</section>
+
+<section class="white-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="feature-box col-lg-4">
+                <i class="fa-solid fa-star fa-3x fa-icon"></i>
+                <h3 class="feature-title">All player data collected</h3>
+                <p class="parag-text">Find out who the best players of the games are</p>
+            </div>
+
+            <div class="feature-box col-lg-4">
+                <i class="fa-solid fa-timeline fa-3x fa-icon"></i>
+                <h3 class="feature-title">Historical data</h3>
+                <p class="parag-text">Use the history to predict the future</p>
+            </div>
+
+            <div class="feature-box col-lg-4">
+                <i class="fa-solid fa-circle-info fa-3x fa-icon"></i>
+                <h3 class="feature-title">Use the details</h3>
+                <p class="parag-text">Detailed overview of all teams and players</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Gameweek Data -->
-<div class="gw-data">
-    <table class="gw-table">
-        <tr>
-            <th>Gw</th>
-            <th>Avg Score</th>
-            <th>Highscore</th>
-            <th>Best Gw Player</th>
-            <th>Most Captained</th>
-            <th>WC Played</th>
-            <th>BB Played</th>
-            <th>FH Played</th>
-            <th>TC Played</th>
-        </tr>
-        {% for gw in gw_data %}
-        <tr>
-            {% if gw_data[gw]["finished"] %}
-            <td>{{gw_data[gw]["id"]}}</td>
-            <td>{{gw_data[gw]["average_entry_score"]}}</td>
-            <td>{{gw_data[gw]["highest_score"]}}</td>
-            <td>{{id_player[gw_data[gw]["top_element_info"]["id"]]["web_name"]}} :
-                {{[gw_data[gw]["top_element_info"]["points"]][0]}}p</td>
-            <td>{{id_player[gw_data[gw]["most_captained"]]["web_name"]}}</td>
-            {% if gw_data[gw]["wildcard"] is not none %}
-            <td>{{gw_data[gw]["wildcard"]}}</td>
-            {% endif %}
-            <td>{{gw_data[gw]["bboost"]}}</td>
-            {% if gw_data[gw]["freehit"] is not none %}
-            <td>{{gw_data[gw]["freehit"]}}</td>
-            {% endif %}
-            <td>{{gw_data[gw]["3xc"]}}</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+<section class="grey-section">
+
+    <div class="row">
+
+
+
+        <div class="col-lg-12">
+
+            <div class="intro-text">
+                <h1>Overview: Fantasy Premier League Data</h1>
+                <p class="parag-text">
+                    The table below presents data from the game for <span class="highlight2">all</span> of the past
+                    gameweeks.
+                </p>
+            </div>
+
+            <div class="gw-data">
+                <table class="gw-table">
+                    <tr>
+                        <th>Gw</th>
+                        <th>Avg Score</th>
+                        <th>Highscore</th>
+                        <th>Best Gw Player</th>
+                        <th>Most Captained</th>
+                        <th>WC Played</th>
+                        <th>BB Played</th>
+                        <th>FH Played</th>
+                        <th>TC Played</th>
+                    </tr>
+                    {% for gw in gw_data %}
+                    <tr>
+                        {% if gw_data[gw]["finished"] %}
+                        <td>{{gw_data[gw]["id"]}}</td>
+                        <td>{{gw_data[gw]["average_entry_score"]}}</td>
+                        <td>{{gw_data[gw]["highest_score"]}}</td>
+                        <td>{{id_player[gw_data[gw]["top_element_info"]["id"]]["web_name"]}} :
+                            {{[gw_data[gw]["top_element_info"]["points"]][0]}}p</td>
+                        <td>{{id_player[gw_data[gw]["most_captained"]]["web_name"]}}</td>
+                        {% if gw_data[gw]["wildcard"] is not none %}
+                        <td>{{gw_data[gw]["wildcard"]}}</td>
+                        {% endif %}
+                        <td>{{gw_data[gw]["bboost"]}}</td>
+                        {% if gw_data[gw]["freehit"] is not none %}
+                        <td>{{gw_data[gw]["freehit"]}}</td>
+                        {% endif %}
+                        <td>{{gw_data[gw]["3xc"]}}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Current Gameweek Games -->
+<section class="white-section">
 
-<div class="gw-games">
-    <table class="gw-table">
-        <tr>
-            <th>Gameweek</th>
-            <th>Home Team</th>
-            <th>Result</th>
-            <th>Away Team</th>
-        </tr>
-        {% for gw in gw_games %}
-        {% for game in gw_games[gw] %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="intro-text">
+                <h1>Results of the Latest Gameweek</h1>
+            </div>
 
-        <tr>
-            <td>{{game[5]}}</td>
-            <td>{{game[1]}}</td>
-            {% if game[0] %}
-            <td>{{game[3]}}-{{game[4]}}</td>
-            {% else %}
-            <td>?-?</td>
-            {% endif %}
-            <td>{{game[2]}}</td>
-        </tr>
-        {% endfor %}
-        {% endfor %}
-    </table>
-</div>
+            <div class="gw-games">
+                <table class="gw-table">
+                    <tr>
+                        <th>Gameweek</th>
+                        <th>Home Team</th>
+                        <th>Result</th>
+                        <th>Away Team</th>
+                    </tr>
+                    {% for gw in gw_games %}
+                    {% for game in gw_games[gw] %}
 
+                    <tr>
+                        <td>{{game[5]}}</td>
+                        <td>{{game[1]}}</td>
+                        {% if game[0] %}
+                        <td>{{game[3]}}-{{game[4]}}</td>
+                        {% else %}
+                        <td>?-?</td>
+                        {% endif %}
+                        <td>{{game[2]}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <!-- Footer -->
 {% include "footer.html" %}
