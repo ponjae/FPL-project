@@ -49,12 +49,9 @@ class gameData:
             draws = team_data["draw"]
             losses = team_data["loss"]
             points = team_data["points"]
-
             position = team_data["code"]
-
-            print(f"{club}: {wins} {draws} {losses}")
-
             table_dict[position] = (club, played, wins, draws, losses, points)
+
         return table_dict
 
     def _populate_gw_dict(self, gw_number, gw, storage):
