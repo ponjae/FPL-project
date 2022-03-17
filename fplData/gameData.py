@@ -4,24 +4,58 @@ import requests
 class gameData:
 
     def __init__(self):
-        self.gw_data = self.load_gameweek_data()
-        self.fixture_data = self._load_fixture_data()
 
-    def load_gameweek_data(self):
-        """ Method for fetching the gameweek data to be displayed on the home page
-
-        Returns:
-            dict: A dict containing information about every gameweek
-        """
-        gw_data_dict = {}
         response = requests.get(
             "https://fantasy.premierleague.com/api/bootstrap-static/")
         data = response.json()
+        self.gw_data = self._load_gameweek_data(data)
+        self.pl_table = self._load_pl_table(data)
+        self.fixture_data = self._load_fixture_data()
+
+    def _load_gameweek_data(self, data):
+        """ Method for fetching the gameweek data to be displayed on the home page
+
+        Args:
+            data (dict): the relevant api-data
+
+        Returns:
+            dict: A dict containing information about every gameweek
+
+        """
+
+        gw_data_dict = {}
 
         for gw_nbr, gw_data in enumerate(data["events"]):
             self._populate_gw_dict(gw_nbr + 1, gw_data, gw_data_dict)
 
         return gw_data_dict
+
+    def _load_pl_table(self, data):
+        """ Constructs a table dict of teams from the league (seems to not be working)
+
+        Args:
+            data (dict): the relevant api-data
+
+        Returns:
+            dict: a dict containing the table position as keys and team data as values
+        """
+
+        table_dict = {}
+
+        for team_data in data["teams"]:
+            club = team_data["name"]
+            played = team_data["played"]
+            wins = team_data["win"]
+            draws = team_data["draw"]
+            losses = team_data["loss"]
+            points = team_data["points"]
+
+            position = team_data["code"]
+
+            print(f"{club}: {wins} {draws} {losses}")
+
+            table_dict[position] = (club, played, wins, draws, losses, points)
+        return table_dict
 
     def _populate_gw_dict(self, gw_number, gw, storage):
         """ Helper method for filtering out the relevant information from the gw and storing it
