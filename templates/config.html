@@ -2,27 +2,33 @@
 {% include "header.html" %}
 <section class="white-section">
 
-    <div class="config-content">
-        <div class="explaination">
-            <p>In order to calculate the best possible team. You have to provide the budget of the team as well as how
-                many
-                gameweeks to consider. Do that and find out the ultimate team!
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Best Team Input</h1>
+            <p class="parag-text">In order to calculate the best possible team. You have to provide the <span
+                    class="highlight2">budget</span> of
+                the
+                team as well as how many <span class="highlight2">gameweeks to consider</span>. Do that and find out the
+                ultimate team!
             </p>
+
+            <form method="post" action="{{url_for('best_team')}}">
+                <input type="number" step="0.1" min="95" max="110" name="budget" placeholder="100.0" required />
+                <select name="to_consider" id="budget" required>
+                    <option value="1">Next GW</option>
+                    <option value="5">Next 5 GWs</option>
+                    <option value="10">Remaning GWs</option>
+                </select>
+                <button type="submit" class="fpl-btn" name="submitcheck" id="submit_check">Let's Go!</button>
+            </form>
         </div>
 
-        <form method="post" action="{{url_for('best_team')}}">
-            <input type="number" step="0.1" min="95" max="110" name="budget" placeholder="100.0" required />
-            <select name="to_consider" id="budget" required>
-                <option value="1">Next GW</option>
-                <option value="5">Next 5 GWs</option>
-                <option value="10">Remaning GWs</option>
-            </select>
-            <button type="submit" class="fpl-btn" name="submitcheck" id="submit_check">Let's Go</button>
-        </form>
-    </div>
+        <div class="col-lg-6">
+            <div class="image-div">
+                <img class="pl-logo" src="../static/images/pl_logo.png" alt="Pl-logo">
+            </div>
+        </div>
 
-    <div class="image-div">
-        <img class="pl-logo" src="../static/images/pl_logo.png" alt="Pl-logo">
     </div>
 
 </section>
