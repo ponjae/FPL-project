@@ -46,7 +46,7 @@ body {
 /* navbar section */
 
 .navbar {
-    background: #E73725;
+    background: #be0606;
     font-family: 'Hubballi', sans-serif;
 }
 
@@ -87,7 +87,7 @@ body {
 }
 
 .dropdown-item:hover {
-    color: #be0606;
+    color: #E73725;
     text-decoration: underline;
     background-color: transparent;
 }
@@ -122,6 +122,26 @@ footer {
     margin-right: auto;
 }
 
+.box1:hover .fa-icon {
+    color:#E73725;
+}
+
+.box2:hover .fa-icon {
+    color:#E73725;
+}
+
+.box3:hover .fa-icon {
+    color:#E73725;
+}
+
+.row a {
+    color: #010000;
+}
+
+.row:hover a{
+    color: #010000;
+}
+
 .feature-title {
     font-size: 2rem;
 }
@@ -129,10 +149,6 @@ footer {
 .fa-icon {
     margin-bottom: 1rem;
     color: #be0606;
-}
-
-.fa-icon:hover {
-    color:#E73725;
 }
 
 .highlight2 {

@@ -39,6 +39,12 @@ def your_team():
     # playerRanking --> get_most_valuable, under_performers, transfer_suggestion
 
 
+@app.route("/player-ranking")
+def player_ranking():
+
+    return render_template("ranking.html")
+
+
 @app.route("/best-team-configurations")
 def best_team_config():
     return render_template("config.html")
