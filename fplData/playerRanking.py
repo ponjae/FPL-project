@@ -1,3 +1,5 @@
+from playerEvaluation import playerEvaluation
+from playerData import playerData
 from distutils.log import error
 import pulp
 import numpy as np
@@ -301,29 +303,62 @@ class playerRanking:
 
         return eleven_dict, bench_list
 
+    def readable_ranking_list(self, player_list, attribute, id_team_dict):
+        """ Makes the ranking result more user friendly.
 
-# pr = playerRanking()
-# p_d = playerData()
-# pe = playerEvaluation()
+        Args:
+            player_list (list): List of the best players
+            attribute (String): The sorting attribute
+            id_team_dict (dict): The dict containing team names as values
 
-# pe.add_player_values(p_d.position_and_player_dict)
+        Returns:
+            list: list of tuples containing readable info
+        """
 
-# eleven, captain, bench = pr.get_optimal_team(
-#     p_d.position_and_player_dict, 100, 10)
+        readable_list = []
 
-# print(50 * '*')
-# elv, be = pr.user_friendly_result(
-#     eleven, bench, p_d.id_team_dict, p_d.id_position_dict)
-# print(elv.keys())
-# for position in elv:
-#     for player in elv[position]:
-#         print(10 * '----')
-#         print(player)
+        for rank, player in enumerate(player_list):
+            readable_list.append(
+                (rank+1, player["web_name"], player[attribute], id_team_dict[player["team"]]))
 
-# print(30 * '*')
-# for player in be:
-#     print(10 * '----')
-#     print(player)
+        return readable_list
 
-# print(30 * '*')
-# print(f"Captain: {captain}")
+
+pr = playerRanking()
+p_d = playerData()
+pe = playerEvaluation()
+
+pe.add_player_values(p_d.position_and_player_dict)
+
+all_players = p_d.position_and_player_dict["Goalkeepers"] + p_d.position_and_player_dict["Defenders"] + \
+    p_d.position_and_player_dict["Midfielders"] + \
+    p_d.position_and_player_dict["Forwards"]
+
+
+ranking = pr.get_most_valuable_list("goals_scored", all_players, 10)
+li = pr.readable_ranking_list(ranking, "goals_scored", p_d.id_team_dict)
+ranking = pr.get_most_valuable_list("goals_scored", all_players, 10)
+li = pr.readable_ranking_list(ranking, "goals_scored", p_d.id_team_dict)
+for player in li:
+    rank, name, total, team = player
+    print(rank, name, total, team)
+print(40 * '*')
+
+
+# form
+# now_cost
+# points_per_game
+# selected_by_percent
+# total_points
+# transfers_in
+# transfers_out
+# minutes
+# goals_scored
+# assists
+# penalties_saved
+# saves
+# points_per_million
+
+# PLAYER_VALUE
+# PLAYER_5_VALUE
+# PLAYER_REMAINING_VALUE
