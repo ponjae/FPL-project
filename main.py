@@ -34,7 +34,7 @@ def your_team():
 def player_ranking():
     ranking_dict = get_ranking_lists(all_players, pd.id_team_dict)
 
-    return render_template("ranking.html", round=round, form=ranking_dict["form"], now_cost=ranking_dict["now_cost"],
+    return render_template("ranking.html", secret=secret["font_awesome"], round=round, form=ranking_dict["form"], now_cost=ranking_dict["now_cost"],
                            points_per_game=ranking_dict["points_per_game"], selected_by_percent=ranking_dict["selected_by_percent"],
                            total_points=ranking_dict["total_points"], transfers_in=ranking_dict["transfers_in"],
                            transfers_out=ranking_dict["transfers_out"], minutes=ranking_dict[
@@ -47,7 +47,7 @@ def player_ranking():
 
 @app.route("/best-team-configurations")
 def best_team_config():
-    return render_template("config.html")
+    return render_template("config.html", secret=secret["font_awesome"])
 
 
 @app.route("/best-team", methods=["POST"])
@@ -64,7 +64,7 @@ def best_team():
         pd.position_and_player_dict, budget, to_consider)
     starting_eleven, bench_info = pr.user_friendly_result(
         eleven, bench, pd.id_team_dict, pd.id_position_dict)
-    return render_template("optimal.html", starting_eleven=starting_eleven, bench=bench_info, captain=captain, heading_text=heading_text_dict[to_consider], budget=budget)
+    return render_template("optimal.html", secret=secret["font_awesome"],  starting_eleven=starting_eleven, bench=bench_info, captain=captain, heading_text=heading_text_dict[to_consider], budget=budget)
 
 
 @app.route("/teams/<team>")
