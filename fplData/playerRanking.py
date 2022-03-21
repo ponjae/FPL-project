@@ -1,5 +1,3 @@
-from playerEvaluation import playerEvaluation
-from playerData import playerData
 from distutils.log import error
 import pulp
 import numpy as np
@@ -51,7 +49,7 @@ class playerRanking:
                 j += 1
                 m += 1
 
-    def get_most_valuable_list(self, attribute, players, nbr):
+    def get_most_valuable_list(self, attribute, players, nbr, desc=True):
         """ Returns the most valueable players depending on attribute.
 
         Args:
@@ -64,7 +62,8 @@ class playerRanking:
 
         self._sort_players_on_attribute(attribute, players)
         # Desc ordering
-        players = players[::-1]
+        if desc:
+            players = players[::-1]
         assert nbr <= len(players)
 
         return players[:nbr]
@@ -324,41 +323,9 @@ class playerRanking:
         return readable_list
 
 
-pr = playerRanking()
-p_d = playerData()
-pe = playerEvaluation()
-
-pe.add_player_values(p_d.position_and_player_dict)
-
-all_players = p_d.position_and_player_dict["Goalkeepers"] + p_d.position_and_player_dict["Defenders"] + \
-    p_d.position_and_player_dict["Midfielders"] + \
-    p_d.position_and_player_dict["Forwards"]
-
-
-ranking = pr.get_most_valuable_list("goals_scored", all_players, 10)
-li = pr.readable_ranking_list(ranking, "goals_scored", p_d.id_team_dict)
-ranking = pr.get_most_valuable_list("goals_scored", all_players, 10)
-li = pr.readable_ranking_list(ranking, "goals_scored", p_d.id_team_dict)
-for player in li:
-    rank, name, total, team = player
-    print(rank, name, total, team)
-print(40 * '*')
-
-
-# form
-# now_cost
-# points_per_game
-# selected_by_percent
-# total_points
-# transfers_in
-# transfers_out
-# minutes
-# goals_scored
-# assists
-# penalties_saved
-# saves
-# points_per_million
-
-# PLAYER_VALUE
-# PLAYER_5_VALUE
-# PLAYER_REMAINING_VALUE
+# ranking = pr.get_most_valuable_list("goals_scored", all_players, 10)
+# li = pr.readable_ranking_list(ranking, "goals_scored", p_d.id_team_dict)
+# for player in li:
+#     rank, name, total, team = player
+#     print(rank, name, total, team)
+# print(40 * '*')

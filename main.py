@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
 from fplData import playerData, playerEvaluation, playerRanking, gameData
 from secrets import secret
-import sys
-# sys.setrecursionlimit(1000000)
 
 app = Flask(__name__)
 gd = gameData.gameData()
@@ -11,16 +9,9 @@ pe = playerEvaluation.playerEvaluation()
 pe.add_player_values(pd.position_and_player_dict)
 pe.add_player_values(pd.team_and_player_dict)
 pr = playerRanking.playerRanking()
-
-
-# starting_eleven, captain, bench = pr.get_optimal_team(
-#     pd.position_and_player_dict, 90, 1)
-# starting_eleven, captain, bench = pr.get_optimal_team(
-#     pd.position_and_player_dict, 95, 1)
-# starting_eleven, captain, bench = pr.get_optimal_team(
-#     pd.position_and_player_dict, 105, 1)
-# starting_eleven, captain, bench = pr.get_optimal_team(
-#     pd.position_and_player_dict, 110, 1)
+all_players = pd.position_and_player_dict["Goalkeepers"] + pd.position_and_player_dict["Defenders"] + \
+    pd.position_and_player_dict["Midfielders"] + \
+    pd.position_and_player_dict["Forwards"]
 
 
 @app.route("/")
@@ -41,8 +32,17 @@ def your_team():
 
 @app.route("/player-ranking")
 def player_ranking():
+    ranking_dict = get_ranking_lists(all_players, pd.id_team_dict)
 
-    return render_template("ranking.html")
+    return render_template("ranking.html", round=round, form=ranking_dict["form"], now_cost=ranking_dict["now_cost"],
+                           points_per_game=ranking_dict["points_per_game"], selected_by_percent=ranking_dict["selected_by_percent"],
+                           total_points=ranking_dict["total_points"], transfers_in=ranking_dict["transfers_in"],
+                           transfers_out=ranking_dict["transfers_out"], minutes=ranking_dict[
+                               "minutes"], goals_scored=ranking_dict["goals_scored"],
+                           cheapest=ranking_dict["cheapest"], assists=ranking_dict["assists"], penalties_saved=ranking_dict[
+                               "penalties_saved"], saves=ranking_dict["saves"],
+                           points_per_million=ranking_dict["points_per_million"], PLAYER_VALUE=ranking_dict["PLAYER_VALUE"],
+                           PLAYER_5_VALUE=ranking_dict["PLAYER_5_VALUE"], PLAYER_REMAINING_VALUE=ranking_dict["PLAYER_REMAINING_VALUE"])
 
 
 @app.route("/best-team-configurations")
@@ -89,3 +89,29 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     app.run()
+
+
+def get_ranking_lists(players, id_team_dict):
+    """ Method for generating the rankinglists to be displayed at ranking.html
+
+    Args:
+        players (list): all players available
+        id_team_dict (dict): dict of teams
+
+    Returns:
+        dict: dict of ranking lists
+    """
+    attributes = ["form", "now_cost", "points_per_game", "selected_by_percent", "total_points", "transfers_in", "transfers_out", "minutes",
+                  "goals_scored", "assists", "penalties_saved", "saves", "points_per_million", "PLAYER_VALUE", "PLAYER_5_VALUE", "PLAYER_REMAINING_VALUE"]
+
+    ranking_dict = {}
+
+    for attribute in attributes:
+        temp = pr.get_most_valuable_list(attribute, players, 10)
+        ranking_dict[attribute] = pr.readable_ranking_list(
+            temp, attribute, id_team_dict)
+
+    ranking_dict["cheapest"] = pr.readable_ranking_list(
+        pr.get_most_valuable_list("now_cost", players, 10, False), "now_cost", id_team_dict)
+
+    return ranking_dict

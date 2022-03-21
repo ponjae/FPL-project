@@ -1,1 +1,135 @@
-<h1>PLAYER RANKING</h1>
+<!-- Header -->
+{% include "header.html" %}
+
+<!-- Body -->
+
+<div class="row">
+    <h1 class="points-data">Points Data</h1>
+    <div class="player-data col-lg-3">
+        <h3 class="pos-header">Player Form</h3>
+        {% for player in form %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}p - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-3">
+        <h3 class="pos-header">Points per Game</h3>
+        {% for player in points_per_game %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}p - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-3">
+        <h3 class="pos-header">Points per Million</h3>
+        {% for player in points_per_million %}
+        <p>{{player[0]}}. {{player[1]}} - {{round(player[2],2)}}p - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-3">
+        <h3 class="pos-header">Total Points</h3>
+        {% for player in total_points %}
+        <p>{{player[0]}}. {{player[1]}} - {{round(player[2], 2)}}p - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <h1 class="points-data">Budget Data</h1>
+    <div class="player-data col-lg-6">
+        <h3 class="pos-header">Most Expensive Players</h3>
+        {% for player in now_cost %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}m - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-6">
+        <h3 class="pos-header">Cheapest Players</h3>
+        {% for player in cheapest %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}m - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <h1 class="points-data">Player Detailed Data</h1>
+    <div class="player-data col-lg-4">
+        <h3 class="pos-header">Top Scorers</h3>
+        {% for player in goals_scored %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}<i class="fa-solid fa-futbol"></i> - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-4">
+        <h3 class="pos-header">Most Assists</h3>
+        {% for player in assists %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}<i class="fa-solid fa-bullseye-arrow"></i> - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-4">
+        <h3 class="pos-header">Minutes Played</h3>
+        {% for player in minutes %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}m - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <h1 class="points-data">More Detailed Data</h1>
+    <div class="player-data col-lg-4">
+        <h3 class="pos-header">Most Chosen</h3>
+        {% for player in selected_by_percent %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}}% - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-4">
+        <h3 class="pos-header">Most Transfered In</h3>
+        {% for player in transfers_in %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}} - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-4">
+        <h3 class="pos-header">Most Transfered Out</h3>
+        {% for player in transfers_out %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}} - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <h1 class="points-data">Goalkeeper Data</h1>
+    <div class="player-data col-lg-6">
+        <h3 class="pos-header">Saves</h3>
+        {% for player in saves %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}} - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="player-data col-lg-6">
+        <h3 class="pos-header">Saved Penalites</h3>
+        {% for player in penalties_saved[:8] %}
+        <p>{{player[0]}}. {{player[1]}} - {{player[2]}} - ({{player[3]}})</p>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <h1 class="points-data">Algorithm Data</h1>
+        <div class="player-data col-lg-4">
+            <h3 class="pos-header">Most Valuable Next Gw</h3>
+            {% for player in PLAYER_VALUE %}
+            <p>{{player[0]}}. {{player[1]}} - {{round(player[2], 3)}} - ({{player[3]}})</p>
+            {% endfor %}
+        </div>
+        <div class="player-data col-lg-4">
+            <h3 class="pos-header">Most Valuable Next 5 Gw:s</h3>
+            {% for player in PLAYER_5_VALUE %}
+            <p>{{player[0]}}. {{player[1]}} - {{round(player[2], 3)}} - ({{player[3]}})</p>
+            {% endfor %}
+        </div>
+        <div class="player-data col-lg-4">
+            <h3 class="pos-header">Most Valuable Remaining Gw:s</h3>
+            {% for player in PLAYER_REMAINING_VALUE %}
+            <p>{{player[0]}}. {{player[1]}} - {{round(player[2], 3)}} - ({{player[3]}})</p>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Footer -->
+{% include "footer.html" %}
