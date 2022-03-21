@@ -56,9 +56,9 @@ def best_team():
     budget = float(request.form["budget"])
     to_consider = int(request.form["to_consider"])
     heading_text_dict = {
-        1: "next GW",
-        5: "next 5 GWs",
-        10: "remaining GWs"
+        1: "next Gw",
+        5: "next 5 Gw:s",
+        10: "remaining Gw:s"
     }
     eleven, captain, bench = pr.get_optimal_team(
         pd.position_and_player_dict, budget, to_consider)
