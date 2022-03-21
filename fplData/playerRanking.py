@@ -60,7 +60,11 @@ class playerRanking:
             list: A list of with the most valueable players
         """
 
-        self._sort_players_on_attribute(attribute, players)
+        if attribute == "selected_by_percent":
+            players = sorted(players, key=lambda x: float(x[attribute]))
+        else:
+            self._sort_players_on_attribute(attribute, players)
+
         # Desc ordering
         if desc:
             players = players[::-1]
@@ -321,11 +325,3 @@ class playerRanking:
                 (rank+1, player["web_name"], player[attribute], id_team_dict[player["team"]]))
 
         return readable_list
-
-
-# ranking = pr.get_most_valuable_list("goals_scored", all_players, 10)
-# li = pr.readable_ranking_list(ranking, "goals_scored", p_d.id_team_dict)
-# for player in li:
-#     rank, name, total, team = player
-#     print(rank, name, total, team)
-# print(40 * '*')

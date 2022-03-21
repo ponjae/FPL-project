@@ -256,6 +256,15 @@ footer {
     background-color: #be0606;
 }
 
+/* Ranking */
+.points-data {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 /* optimal */
 
 .highlight {
