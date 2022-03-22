@@ -304,3 +304,85 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* Team */
+
+.Arsenal {
+    color: #EF0107;
+}
+
+.AstonVilla {
+    color: #670E36;
+}
+
+.Brentford {
+    color: #e30613;
+}
+
+.Brighton {
+    color: #0057B8;
+}
+
+.Burnley {
+    color: #6C1D45;
+}
+
+.Chelsea {
+    color: #034694;
+}
+
+.CrystalPalace {
+    color: #1B458F;
+}
+
+.Everton {
+    color: #003399;
+}
+
+.Leicester {
+    color: #003090;
+}
+
+.Leeds {
+    color: #FFCD00;
+}
+
+.Liverpool {
+    color: #C8102E;
+}
+
+.ManCity {
+    color: #6CABDD;
+}
+
+.ManUtd {
+    color: #DA291C;
+}
+
+.Newcastle {
+    color: #241F20;
+}
+
+.Norwich {
+    color: #FFF200;
+}
+
+.Southampton {
+    color: #D71920;
+}
+
+.Spurs {
+    color: #132257;
+}
+
+.Watford {
+    color: #FBEE23;
+}
+
+.WestHam {
+    color: #7A263A;
+}
+
+.Wolves {
+    color: #FDB913;
+}

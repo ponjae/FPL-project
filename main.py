@@ -68,17 +68,23 @@ def best_team():
 
 
 @app.route("/teams/<team>")
-def team(team):
+def team_page(team):
     # VAD BEHÖVS HÄR?
-    # playerData --> team and player dict
-    pass
+    team_data = pd.team_and_player_dict[team]
+    color_scheme = ''.join(team.split(" "))
+    # print(40 * '*')
+    # print(team_data[0])
+    # print(40 * '-')
+    # print(color_scheme)
+    # print(40 * '*')
+    return render_template("team.html",  secret=secret["font_awesome"], scheme=color_scheme)
 
 
 @app.route("/about")
 def about():
     # Nada, bara information om upplägget och algorithmen som använts
     # Länkar som varit bra etc
-    pass
+    return render_template("about.html")
 
 
 @app.errorhandler(404)
