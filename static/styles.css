@@ -307,9 +307,14 @@ footer {
 
 /* Team */
 
+.pl-badge {
+    width:240px;
+    height: auto;
+}
+
 .Arsenal {
-    color: #EF0107;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #EF0107;
 }
 
 .AstonVilla {
@@ -318,13 +323,13 @@ footer {
 }
 
 .Brentford {
-    color: #e30613;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #e30613;
 }
 
 .Brighton {
-    color: #0057B8;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #0057B8;
 }
 
 .Burnley {
@@ -333,33 +338,33 @@ footer {
 }
 
 .Chelsea {
-    color: #034694;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #034694;
 }
 
 .CrystalPalace {
-    color: #1B458F;
-    background-color: #C4122E;
+    color: #C4122E;
+    background-color: #1B458F;
 }
 
 .Everton {
-    color: #003399;
-    background-color: #FFFFFF;;
+    color: #FFF;
+    background-color: #003399;;
 }
 
 .Leicester {
-    color: #003090;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #003090;
 }
 
 .Leeds {
-    color: #FFCD00;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #FFCD00;
 }
 
 .Liverpool {
-    color: #C8102E;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #C8102E;
 }
 
 .ManCity {
@@ -368,13 +373,13 @@ footer {
 }
 
 .ManUtd {
-    color: #DA291C;
-    background-color: #000;
+    color: #000;
+    background-color: #DA291C;
 }
 
 .Newcastle {
-    color: #241F20;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #241F20;
 
 }
 
@@ -384,26 +389,26 @@ footer {
 }
 
 .Southampton {
-    color: #D71920;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #D71920;
 }
 
 .Spurs {
-    color: #132257;
-    background-color: #FFFFFF;
+    color: #FFF;
+    background-color: #132257;
 }
 
 .Watford {
-    color: #FBEE23;
-    background-color: #11210C;
+    color: #000;
+    background-color: #FBEE23;
 }
 
 .WestHam {
-    color: #7A263A;
-    background-color: #1BB1E7;
+    color: #1BB1E7;
+    background-color: #7A263A;
 }
 
 .Wolves {
-    color: #FDB913;
-    background-color: #231F20;
+    color: #000;
+    background-color: #FDB913;
 }

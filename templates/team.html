@@ -2,7 +2,20 @@
 {% include "header.html" %}
 
 <!-- Body -->
-<h1 class="{{ scheme }}">{{ scheme }}</h1>
+<div>
+
+    <div class="team-header row {{ scheme }}">
+        <div class="col-lg-6">
+            <h1>{{ scheme }}</h1>
+        </div>
+        <div class="col-lg-6">
+            <img class="pl-badge" src="../static/images/badges/{{ scheme }}.png" alt="TEAM-BADGE">
+        </div>
+
+    </div>
+
+
+</div>
 
 <!-- Footer -->
 {% include "footer.html" %}
