@@ -308,8 +308,16 @@ footer {
 /* Team */
 
 .pl-badge {
-    width:240px;
-    height: auto;
+    width:200px;
+    height: 200px;
+    object-fit:contain;
+}
+
+.team-head h1{
+    font-size: 100px;
+    /* text-align: center;
+    margin-left: auto;
+    margin-right: auto; */
 }
 
 .Arsenal {
@@ -343,7 +351,7 @@ footer {
 }
 
 .CrystalPalace {
-    color: #C4122E;
+    color: #FFF;
     background-color: #1B458F;
 }
 
@@ -358,7 +366,7 @@ footer {
 }
 
 .Leeds {
-    color: #FFF;
+    color: #1D428A;
     background-color: #FFCD00;
 }
 
@@ -394,8 +402,8 @@ footer {
 }
 
 .Spurs {
-    color: #FFF;
-    background-color: #132257;
+    color: #132257;
+    background-color: #FFF;
 }
 
 .Watford {

@@ -2,20 +2,82 @@
 {% include "header.html" %}
 
 <!-- Body -->
-<div>
+<div class="{{ scheme }}">
 
-    <div class="team-header row {{ scheme }}">
-        <div class="col-lg-6">
+    <div class="row col-lg-12">
+        <div class="col-lg-6 team-head">
             <h1>{{ scheme }}</h1>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 team-head">
             <img class="pl-badge" src="../static/images/badges/{{ scheme }}.png" alt="TEAM-BADGE">
         </div>
+    </div>
+</div>
+<section class="grey-section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="intro-text">
+                <h1 id="pl-history-table">Overview: {{ scheme }} Data</h1>
+                <p class="parag-text">
+                    The table below presents data from the game for <span class="highlight2">all</span> of the past
+                    gameweeks.
+                </p>
+            </div>
 
+            <div class="gw-data">
+                <!-- 1{'element_type': 1, 'form': '1.2', 'id': 1,
+    'now_cost': 4.5, 'points_per_game': '2.5', 'selected_by_percent': '0.9',
+    'status': 'a', 'team': 1, 'total_points': 10, 'transfers_in': 68982,
+    'transfers_out': 190962, , 'minutes': 360, 'goals_scored': 0,
+    'assists': 0, 'clean_sheets': 1, 'penalties_saved': 0, 'penalties_missed': 0,
+    'saves': 10, 'bonus': 0, 'points_per_million': 2.2222222222222223, 'fdr1': 2,
+    'fdr5': 18, 'fdr_remaining': 24, 'games_next_gw': 1, 'games_next_five': 6,
+    'total_games_remaning': 9, 'PLAYER_VALUE': 0.9448275862068966,
+    'PLAYER_5_VALUE': 1.489655172413793, 'PLAYER_REMAINING_VALUE': 0.7948275862068965}-->
+
+                <table class="gw-table">
+                    <tr>
+                        <th>Player</th>
+                        <th>Position</th>
+                        <th>Price</th>
+                        <th>Total Points</th>
+                        <th>Form</th>
+                        <th>Minutes Played</th>
+                        <th>Goals Scored</th>
+                        <th>Assists</th>
+                        <th>Saves</th>
+                        <th>Bonus Points</th>
+                        <th>Points per Million</th>
+                        <th>1 Gw Value</th>
+                        <th>5 Gw:s Value</th>
+                        <th>Remaining Gw:s Value</th>
+
+                    </tr>
+                    {% for player in team_data %}
+                    <tr>
+                        <td>{{player["web_name"]}}</td>
+                        <td>{{position_dict[player["element_type"]]}}</td>
+                        <td>{{player["now_cost"]}}</td>
+                        <td>{{player["total_points"]}}</td>
+                        <td>{{player["form"]}}</td>
+                        <td>{{player["minutes"]}}</td>
+                        <td>{{player["goals_scored"]}}</td>
+                        <td>{{player["assists"]}}</td>
+                        <td>{{player["saves"]}}</td>
+                        <td>{{player["bonus"]}}</td>
+                        <td>{{round(player["points_per_million"], 2)}}</td>
+                        <td>{{round(player["PLAYER_VALUE"], 2)}}</td>
+                        <td>{{round(player["PLAYER_5_VALUE"], 2)}}</td>
+                        <td>{{round(player["PLAYER_REMAINING_VALUE"], 2)}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
 
 
-</div>
+</section>
 
 <!-- Footer -->
 {% include "footer.html" %}

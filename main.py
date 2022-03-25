@@ -72,12 +72,8 @@ def team_page(team):
     # VAD BEHÖVS HÄR?
     team_data = pd.team_and_player_dict[team]
     color_scheme = ''.join(team.split(" "))
-    # print(40 * '*')
-    # print(team_data[0])
-    # print(40 * '-')
-    # print(color_scheme)
-    # print(40 * '*')
-    return render_template("team.html",  secret=secret["font_awesome"], scheme=color_scheme)
+    position_dict = pd.id_position_dict
+    return render_template("team.html",  secret=secret["font_awesome"], scheme=color_scheme, team_data=team_data, position_dict=position_dict, round=round)
 
 
 @app.route("/about")

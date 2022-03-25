@@ -261,16 +261,21 @@ class playerData:
         next_five_fdr = None
         remaining_fdr = None
         games_remaining = len(remaining_gws)
+
+        remaining_fdr = sum([sum(remaining_gws[gw][team]) for gw in range(
+            next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
+
         if games_remaining >= 1:
             next_gw = remaining_gws[next_gw_number]
             if team in next_gw.keys():
                 next_gw_fdr = sum(next_gw[team])
+        else:
+            next_gw_fdr = -1  # No games left
 
         if games_remaining > 4:
             next_five_fdr = sum([sum(remaining_gws[gw][team]) for gw in range(
                 next_gw_number, next_gw_number + 5) if team in remaining_gws[gw].keys()])
-
-        remaining_fdr = sum([sum(remaining_gws[gw][team]) for gw in range(
-            next_gw_number, next_gw_number + len(remaining_gws)) if team in remaining_gws[gw].keys()])
+        else:
+            next_five_fdr = next_gw_fdr
 
         return next_gw_fdr, next_five_fdr, remaining_fdr
