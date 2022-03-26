@@ -19,22 +19,12 @@
             <div class="intro-text">
                 <h1 id="pl-history-table">Overview: {{ scheme }} Data</h1>
                 <p class="parag-text">
-                    The table below presents data from the game for <span class="highlight2">all</span> of the past
+                    The tables below presents data from the game for <span class="highlight2">all</span> of the past
                     gameweeks.
                 </p>
             </div>
 
             <div class="gw-data">
-                <!-- 1{'element_type': 1, 'form': '1.2', 'id': 1,
-    'now_cost': 4.5, 'points_per_game': '2.5', 'selected_by_percent': '0.9',
-    'status': 'a', 'team': 1, 'total_points': 10, 'transfers_in': 68982,
-    'transfers_out': 190962, , 'minutes': 360, 'goals_scored': 0,
-    'assists': 0, 'clean_sheets': 1, 'penalties_saved': 0, 'penalties_missed': 0,
-    'saves': 10, 'bonus': 0, 'points_per_million': 2.2222222222222223, 'fdr1': 2,
-    'fdr5': 18, 'fdr_remaining': 24, 'games_next_gw': 1, 'games_next_five': 6,
-    'total_games_remaning': 9, 'PLAYER_VALUE': 0.9448275862068966,
-    'PLAYER_5_VALUE': 1.489655172413793, 'PLAYER_REMAINING_VALUE': 0.7948275862068965}-->
-
                 <table class="gw-table">
                     <tr>
                         <th>Player</th>
@@ -42,16 +32,9 @@
                         <th>Price</th>
                         <th>Total Points</th>
                         <th>Form</th>
-                        <th>Minutes Played</th>
-                        <th>Goals Scored</th>
-                        <th>Assists</th>
-                        <th>Saves</th>
-                        <th>Bonus Points</th>
                         <th>Points per Million</th>
-                        <th>1 Gw Value</th>
-                        <th>5 Gw:s Value</th>
-                        <th>Remaining Gw:s Value</th>
-
+                        <th>Minutes Played</th>
+                        <th>Selected by</th>
                     </tr>
                     {% for player in team_data %}
                     <tr>
@@ -60,12 +43,31 @@
                         <td>{{player["now_cost"]}}</td>
                         <td>{{player["total_points"]}}</td>
                         <td>{{player["form"]}}</td>
+                        <td>{{round(player["points_per_million"], 2)}}</td>
                         <td>{{player["minutes"]}}</td>
+                        <td>{{player["selected_by_percent"]}}%</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table class="gw-table">
+                    <tr>
+                        <th>Player</th>
+                        <th>Goals Scored</th>
+                        <th>Assists</th>
+                        <th>Saves</th>
+                        <th>Bonus Points</th>
+                        <th>1 Gw Value</th>
+                        <th>5 Gw:s Value</th>
+                        <th>Remaining Gw:s Value</th>
+
+                    </tr>
+                    {% for player in team_data %}
+                    <tr>
+                        <td>{{player["web_name"]}}</td>
                         <td>{{player["goals_scored"]}}</td>
                         <td>{{player["assists"]}}</td>
                         <td>{{player["saves"]}}</td>
                         <td>{{player["bonus"]}}</td>
-                        <td>{{round(player["points_per_million"], 2)}}</td>
                         <td>{{round(player["PLAYER_VALUE"], 2)}}</td>
                         <td>{{round(player["PLAYER_5_VALUE"], 2)}}</td>
                         <td>{{round(player["PLAYER_REMAINING_VALUE"], 2)}}</td>

@@ -420,3 +420,14 @@ footer {
     color: #000;
     background-color: #FDB913;
 }
+
+/* about */
+
+.about-p {
+    font-family: 'Hubballi', sans-serif;
+    font-size: 1.4rem;
+}
+
+.about-c h1{
+    text-align: center;
+}

@@ -78,9 +78,8 @@ def team_page(team):
 
 @app.route("/about")
 def about():
-    # Nada, bara information om upplägget och algorithmen som använts
     # Länkar som varit bra etc
-    return render_template("about.html")
+    return render_template("about.html", secret=secret["font_awesome"])
 
 
 @app.errorhandler(404)
