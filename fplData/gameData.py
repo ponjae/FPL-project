@@ -11,6 +11,7 @@ class gameData:
         self.gw_data = self._load_gameweek_data(data)
         self.pl_table = self._load_pl_table(data)
         self.fixture_data = self._load_fixture_data()
+        self.team_data_dict = self._load_team_data()
 
     def _load_gameweek_data(self, data):
         """ Method for fetching the gameweek data to be displayed on the home page
@@ -145,3 +146,176 @@ class gameData:
             break
 
         return current_gw
+
+    def _load_team_data(self):
+        """
+        Metod for providing information about each team in the league. Will be used in the team-page.
+
+        Returns:
+            dict: dict containing all teams and their respective information
+        """
+
+        team_data_dict = {
+            "Arsenal": {
+                "name": "The Arsenal Football Club",
+                "nickname": "The Gunners",
+                "city": "London",
+                "arena": "Emirates Stadium",
+                "coach": "Mikel Arteta",
+                "pl-titles": "13"
+            },
+            "AstonVilla": {
+                "name": "Aston Villa Football Club",
+                "nickname": "The Villans",
+                "city": "Birmingham",
+                "arena": "Villa Park",
+                "coach": "Steven Gerrard",
+                "pl-titles": "7"
+            },
+            "Brentford": {
+                "name": "Brentford Football Club",
+                "nickname": "The Bees",
+                "city": "London",
+                "arena": "Brentford Community Stadium",
+                "coach": "Thomas Frank",
+                "pl-titles": "0"
+            },
+            "Brighton": {
+                "name": "Brighton & Hove Albion Football Club",
+                "nickname": "The Seagulls",
+                "city": "Brighton",
+                "arena": "Falmer Stadium",
+                "coach": "Graham Potter",
+                "pl-titles": "0"
+            },
+            "Burnley": {
+                "name": "Burnley Football Club",
+                "nickname": "The Clarets",
+                "city": "Burnley",
+                "arena": "Turf Moor",
+                "coach": "Sean Dyche",
+                "pl-titles": "2"
+            },
+            "Chelsea": {
+                "name": "Chelsea Football Club",
+                "nickname": "The Blues",
+                "city": "London",
+                "arena": "Stamford Bridge",
+                "coach": "Thomas Tuchel",
+                "pl-titles": "6"
+            },
+            "CrystalPalace": {
+                "name": "Crystal Palace Football Club",
+                "nickname": "The Eagles",
+                "city": "London",
+                "arena": "Selhurst Park",
+                "coach": "Patrick Vieira",
+                "pl-titles": "0"
+            },
+            "Everton": {
+                "name": "Everton Football Club",
+                "nickname": "The Toffees",
+                "city": "Liverpool",
+                "arena": "Goodison Park",
+                "coach": "Frank Lampard",
+                "pl-titles": "9"
+            },
+            "Leicester": {
+                "name": "Leicester City Football Club",
+                "nickname": "The Foxes",
+                "city": "Leicester",
+                "arena": "King Power Stadium",
+                "coach": "Brendan Rodgers",
+                "pl-titles": "1"
+            },
+            "Leeds": {
+                "name": "Leeds United Football Club",
+                "nickname": "The Peacooks",
+                "city": "Leeds",
+                "arena": "Elland Road",
+                "coach": "Jesse Marsch",
+                "pl-titles": "3"
+            },
+            "Liverpool": {
+                "name": "Liverpool Football Club",
+                "nickname": "The Reds",
+                "city": "Liverpool",
+                "arena": "Anfield",
+                "coach": "Jürgen Klopp",
+                "pl-titles": "19"
+            },
+            "ManCity": {
+                "name": "Manchester City Football Club",
+                "nickname": "City",
+                "city": "Manchester",
+                "arena": "Etihad Stadium",
+                "coach": "Pep Guardiola",
+                "pl-titles": "7"
+            },
+            "ManUtd": {
+                "name": "Manchester United Football Club",
+                "nickname": "The Red Devils",
+                "city": "Manchester",
+                "arena": "Old Trafford",
+                "coach": "Ralf Rangnick",
+                "pl-titles": "20"
+            },
+            "Newcastle": {
+                "name": "Newcastle United Football Club",
+                "nickname": "The Magpies",
+                "city": "Newcastle",
+                "arena": "St James' Park",
+                "coach": "Eddie Howe",
+                "pl-titles": "4"
+            },
+            "Norwich": {
+                "name": "Norwich City Football Club",
+                "nickname": "The Canaries",
+                "city": "Norwich",
+                "arena": "Carrow Road",
+                "coach": "Dean Smith",
+                "pl-titles": "0"
+            },
+            "Southampton": {
+                "name": "Southampton Football Club",
+                "nickname": "The Saints",
+                "city": "Southampton",
+                "arena": "St Mary's Stadium",
+                "coach": "Ralph Hasenhüttl",
+                "pl-titles": "0"
+            },
+            "Spurs": {
+                "name": "Tottenham Hotspur Football Club",
+                "nickname": "Spurs",
+                "city": "London",
+                "arena": "Tottenham Hotspur Stadium",
+                "coach": "Antonio Conte",
+                "pl-titles": "2"
+            },
+            "Watford": {
+                "name": "Watford Football Club",
+                "nickname": "The Hornets",
+                "city": "Watford",
+                "arena": "Vicarage Road",
+                "coach": "Roy Hodgson",
+                "pl-titles": "0"
+            },
+            "WestHam": {
+                "name": "West Ham United Football Club",
+                "nickname": "The Irons",
+                "city": "London",
+                "arena": "London Stadium",
+                "coach": "David Moyes",
+                "pl-titles": "0"
+            },
+            "Wolves": {
+                "name": "Wolverhampton Wanderers Football Club",
+                "nickname": "Wolves",
+                "city": "Wolverhampton",
+                "arena": "Molineux Stadium",
+                "coach": "Bruno Lage",
+                "pl-titles": "3"
+            }
+        }
+
+        return team_data_dict

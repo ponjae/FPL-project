@@ -421,11 +421,20 @@ footer {
     background-color: #FDB913;
 }
 
+.team-p {
+    font-family: 'Hubballi', sans-serif;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
 /* about */
 
 .about-p {
     font-family: 'Hubballi', sans-serif;
     font-size: 1.4rem;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 2rem;
 }
 
 .about-c h1{
