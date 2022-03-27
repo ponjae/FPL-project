@@ -1,3 +1,4 @@
+import re
 from flask import Flask, render_template, request
 from fplData import playerData, playerEvaluation, playerRanking, gameData
 from secrets import secret
@@ -50,26 +51,27 @@ def best_team_config():
     return render_template("config.html", secret=secret["font_awesome"])
 
 
-@app.route("/best-team", methods=["POST"])
+@app.route("/best-team", methods=["POST", "GET"])
 def best_team():
-    # Kolla så att det finns formulärdata annars redirect till config-sidan
-    budget = float(request.form["budget"])
-    to_consider = int(request.form["to_consider"])
-    heading_text_dict = {
-        1: "next Gw",
-        5: "next 5 Gw:s",
-        10: "remaining Gw:s"
-    }
-    eleven, captain, bench = pr.get_optimal_team(
-        pd.position_and_player_dict, budget, to_consider)
-    starting_eleven, bench_info = pr.user_friendly_result(
-        eleven, bench, pd.id_team_dict, pd.id_position_dict)
-    return render_template("optimal.html", secret=secret["font_awesome"],  starting_eleven=starting_eleven, bench=bench_info, captain=captain, heading_text=heading_text_dict[to_consider], budget=budget)
+    if request.method == "POST":
+        budget = float(request.form["budget"])
+        to_consider = int(request.form["to_consider"])
+        heading_text_dict = {
+            1: "next Gw",
+            5: "next 5 Gw:s",
+            10: "remaining Gw:s"
+        }
+        eleven, captain, bench = pr.get_optimal_team(
+            pd.position_and_player_dict, budget, to_consider)
+        starting_eleven, bench_info = pr.user_friendly_result(
+            eleven, bench, pd.id_team_dict, pd.id_position_dict)
+        return render_template("optimal.html", secret=secret["font_awesome"],  starting_eleven=starting_eleven, bench=bench_info, captain=captain, heading_text=heading_text_dict[to_consider], budget=budget)
+    else:
+        return render_template("config.html", secret=secret["font_awesome"])
 
 
 @app.route("/teams/<team>")
 def team_page(team):
-    # VAD BEHÖVS HÄR?
     team_data = pd.team_and_player_dict[team]
     color_scheme = ''.join(team.split(" "))
     position_dict = pd.id_position_dict
@@ -79,7 +81,6 @@ def team_page(team):
 
 @app.route("/about")
 def about():
-    # Länkar som varit bra etc
     return render_template("about.html", secret=secret["font_awesome"])
 
 
