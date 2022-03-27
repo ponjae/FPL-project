@@ -1,0 +1,34 @@
+<!-- Header -->
+{% include "header.html" %}
+
+<!-- Body -->
+<section class="grey-section">
+    <label for="goalies">Choose your goalkeeper:</label>
+    <select id="goalies">
+        {% for goalie in goalkeepers %}
+        <option value="{{goalie['id']}}">{{goalie["web_name"]}}</option>
+        {% endfor %}
+    </select>
+    <label for="defenders">Choose your defenders:</label>
+    <select id="defender">
+        {% for defender in defenders %}
+        <option value="{{defender['id']}}">{{defender["web_name"]}}</option>
+        {% endfor %}
+    </select>
+    <label for="midfielders">Choose your midfielders:</label>
+    <select id="midfielders">
+        {% for midfielder in midfielders %}
+        <option value="{{midfielder['id']}}">{{midfielder["web_name"]}}</option>
+        {% endfor %}
+    </select>
+    <label for="forwards">Choose your forwards:</label>
+    <select id="forwards">
+        {% for forward in forwards %}
+        <option value="{{forward['id']}}">{{forward["web_name"]}}</option>
+        {% endfor %}
+    </select>
+</section>
+
+
+<!-- Footer -->
+{% include "footer.html" %}

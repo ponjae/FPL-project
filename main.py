@@ -24,11 +24,14 @@ def home():
     return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=id_player_dict, gw_games=gw_games)
 
 
-@app.route("/your-team")
-def your_team():
-    pass
-    # VAD BEHÖVS HÄR?
-    # playerRanking --> get_most_valuable, under_performers, transfer_suggestion
+@app.route("/your-team-config")
+def your_team_config():
+    goalkeepers = pd.position_and_player_dict["Goalkeepers"]
+    defenders = pd.position_and_player_dict["Defenders"]
+    midfielders = pd.position_and_player_dict["Midfielders"]
+    forwards = pd.position_and_player_dict["Forwards"]
+
+    return render_template("your-config.html", secret=secret["font_awesome"], goalkeepers=goalkeepers, defenders=defenders, midfielders=midfielders, forwards=forwards)
 
 
 @app.route("/player-ranking")
