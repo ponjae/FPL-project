@@ -30,8 +30,9 @@ def your_team_config():
     defenders = pd.position_and_player_dict["Defenders"]
     midfielders = pd.position_and_player_dict["Midfielders"]
     forwards = pd.position_and_player_dict["Forwards"]
+    id_team_dict = pd.id_team_dict
 
-    return render_template("your-config.html", secret=secret["font_awesome"], goalkeepers=goalkeepers, defenders=defenders, midfielders=midfielders, forwards=forwards)
+    return render_template("your-config.html", secret=secret["font_awesome"], goalkeepers=goalkeepers, defenders=defenders, midfielders=midfielders, forwards=forwards, id_team_dict=id_team_dict)
 
 
 @app.route("/player-ranking")
