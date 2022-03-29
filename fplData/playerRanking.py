@@ -72,17 +72,24 @@ class playerRanking:
 
         return players[:nbr]
 
-    def under_performers(self, team):
+    def under_performers(self, team, horizon):
         """ Given a team return a list of player_values in ascending order in order
         to get an overview of the worst players in your team.
 
         Args:
             team (list): list of players
+            horizon (int): how many weeks to consider
         Return:
             list: sorted list of players from team
         """
+        to_consider_dict = {
+            1: "PLAYER_VALUE",
+            2: "total_points",
+            5: "PLAYER_5_VALUE",
+            10: "PLAYER_REMAINING_VALUE"
+        }
 
-        self._sort_players_on_attribute("PLAYER_VALUE", team)
+        self._sort_players_on_attribute(to_consider_dict[horizon], team)
         return team
 
     def transfer_suggestion(self, transfer_out_id, all_players, itb, adjust_transfer_price=0.0):
@@ -97,7 +104,6 @@ class playerRanking:
         Returns:
             (list): Transfer-suggestions for a given player
         """
-
         unwanted_player = all_players[transfer_out_id]
         position = unwanted_player["element_type"]
         total_budget = itb + \
@@ -110,8 +116,8 @@ class playerRanking:
         best_alternatives_ids = list(filter(lambda player: (
             all_players[player]["id"] != transfer_out_id), best_alternatives_ids))
 
-        best_alternatives = [player for player in all_players.values() if str(
-            player["id"]) in best_alternatives_ids]
+        best_alternatives = [player for player in all_players.values() if
+                             player["id"] in best_alternatives_ids]
 
         self._sort_players_on_attribute(
             "PLAYER_VALUE", best_alternatives)

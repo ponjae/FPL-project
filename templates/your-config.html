@@ -3,19 +3,19 @@
 
 <!-- Body -->
 <section class="grey-section">
-    <h1>Select your current team</h1>
+    <h1 class="config-head">Select your current team</h1>
     <div class="row">
-        <form method="post" action="{{url_for('home')}}">
+        <form method="post" action="{{url_for('your_team')}}">
             <div class="goalkeepers col-lg-12">
-                <h3>Goalkeepers</h3>
-                <select id="goalkeeper1" required>
+                <h3 class="pos-head">Goalkeepers</h3>
+                <select class="player-select" name="goalkeeper1" required>
                     <option value="" selected disabled hidden>First Goalkeeper</option>
                     {% for goalie in goalkeepers %}
                     <option value="{{goalie['id']}}">{{goalie["web_name"]}} - {{id_team_dict[goalie["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="goalkeeper2" required>
+                <select class="player-select" name="goalkeeper2" required>
                     <option value="" selected disabled hidden>Second Goalkeeper</option>
                     {% for goalie in goalkeepers %}
                     <option value="{{goalie['id']}}">{{goalie["web_name"]}} - {{id_team_dict[goalie["team"]]}}
@@ -24,36 +24,36 @@
                 </select>
             </div>
             <div class="defenders col-lg-12">
-                <h3>Defenders</h3>
-                <select id="defender1" required>
+                <h3 class="pos-head">Defenders</h3>
+                <select class="player-select" name="defender1" required>
                     <option value="" selected disabled hidden>First Defender</option>
                     {% for defender in defenders %}
                     <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="defender2" required>
+                <select class="player-select" name="defender2" required>
                     <option value="" selected disabled hidden>Second Defender</option>
                     {% for defender in defenders %}
                     <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="defender3" required>
+                <select class="player-select" name="defender3" required>
                     <option value="" selected disabled hidden>Third Defender</option>
                     {% for defender in defenders %}
                     <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="defender4" required>
+                <select class="player-select" name="defender4" required>
                     <option value="" selected disabled hidden>Fourth Defender</option>
                     {% for defender in defenders %}
                     <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="defender5" required>
+                <select class="player-select" name="defender5" required>
                     <option value="" selected disabled hidden>Fifth Defender</option>
                     {% for defender in defenders %}
                     <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
@@ -62,8 +62,8 @@
                 </select>
             </div>
             <div class="midfielders col-lg-12">
-                <h3>Midfielders</h3>
-                <select id="midfielder1" required>
+                <h3 class="pos-head">Midfielders</h3>
+                <select class="player-select" name="midfielder1" required>
                     <option value="" selected disabled hidden>First Midfielder</option>
                     {% for midfielder in midfielders %}
                     <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
@@ -71,7 +71,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <select id="midfielder2" required>
+                <select class="player-select" name="midfielder2" required>
                     <option value="" selected disabled hidden>Second Midfielder</option>
                     {% for midfielder in midfielders %}
                     <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
@@ -79,7 +79,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <select id="midfielder3" required>
+                <select class="player-select" name="midfielder3" required>
                     <option value="" selected disabled hidden>Third Midfielder</option>
                     {% for midfielder in midfielders %}
                     <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
@@ -87,7 +87,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <select id="midfielder4" required>
+                <select class="player-select" name="midfielder4" required>
                     <option value="" selected disabled hidden>Fourth Midfielder</option>
                     {% for midfielder in midfielders %}
                     <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
@@ -95,7 +95,7 @@
                     </option>
                     {% endfor %}
                 </select>
-                <select id="midfielder5" required>
+                <select class="player-select" name="midfielder5" required>
                     <option value="" selected disabled hidden>Fifth Midfielder</option>
                     {% for midfielder in midfielders %}
                     <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
@@ -105,28 +105,32 @@
                 </select>
             </div>
             <div class="forwards col-lg-12">
-                <h3>Forwards</h3>
-                <select id="forward1" required>
+                <h3 class="pos-head">Forwards</h3>
+                <select class="player-select" name="forward1" required>
                     <option value="" selected disabled hidden>First Forward</option>
                     {% for forward in forwards %}
                     <option value="{{forward['id']}}">{{forward["web_name"]}} - {{id_team_dict[forward["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="forward2" required>
+                <select class="player-select" name="forward2" required>
                     <option value="" selected disabled hidden>Second Forward</option>
                     {% for forward in forwards %}
                     <option value="{{forward['id']}}">{{forward["web_name"]}} - {{id_team_dict[forward["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
-                <select id="forward3" required>
+                <select class="player-select" name="forward3" required>
                     <option value="" selected disabled hidden>Third Forward</option>
                     {% for forward in forwards %}
                     <option value="{{forward['id']}}">{{forward["web_name"]}} - {{id_team_dict[forward["team"]]}}
                     </option>
                     {% endfor %}
                 </select>
+            </div>
+            <div class="forwards col-lg-12">
+                <h3>Money in the Bank</h3>
+                <input type="number" step="0.1" min="0" max="10" name="ITB" placeholder="0.0" required />
             </div>
             <button type="submit" class="fpl-btn" name="submitcheck" id="submit_check">Let's Go!</button>
         </form>

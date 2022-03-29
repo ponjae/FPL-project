@@ -250,6 +250,7 @@ footer {
 .fpl-btn {
     background-color:#8f8f8f;
     color: #fff;
+    margin-top: 1rem;
 }
 
 .fpl-btn:hover {
@@ -439,4 +440,16 @@ footer {
 
 .about-c h1{
     text-align: center;
+}
+
+/* your-config */
+
+.config-head {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.row .pos-head {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }

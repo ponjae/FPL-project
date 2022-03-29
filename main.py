@@ -1,4 +1,3 @@
-import re
 from flask import Flask, render_template, request
 from fplData import playerData, playerEvaluation, playerRanking, gameData
 from secrets import secret
@@ -13,15 +12,15 @@ pr = playerRanking.playerRanking()
 all_players = pd.position_and_player_dict["Goalkeepers"] + pd.position_and_player_dict["Defenders"] + \
     pd.position_and_player_dict["Midfielders"] + \
     pd.position_and_player_dict["Forwards"]
+player_id_dict = pd.player_and_data_dict
 
 
 @app.route("/")
 def home():
-    id_player_dict = pd.player_and_data_dict
     gameweek_data = gd.gw_data
     gw_games = gd.convert_fixtures(pd.id_team_dict)
 
-    return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=id_player_dict, gw_games=gw_games)
+    return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=player_id_dict, gw_games=gw_games)
 
 
 @app.route("/your-team-config")
@@ -33,6 +32,55 @@ def your_team_config():
     id_team_dict = pd.id_team_dict
 
     return render_template("your-config.html", secret=secret["font_awesome"], goalkeepers=goalkeepers, defenders=defenders, midfielders=midfielders, forwards=forwards, id_team_dict=id_team_dict)
+
+
+@app.route("/your-team", methods=["POST", "GET"])
+def your_team():
+    if request.method == "POST":
+        g1 = player_id_dict[int(request.form["goalkeeper1"])]
+        g2 = player_id_dict[int(request.form["goalkeeper2"])]
+
+        d1 = player_id_dict[int(request.form["defender1"])]
+        d2 = player_id_dict[int(request.form["defender2"])]
+        d3 = player_id_dict[int(request.form["defender3"])]
+        d4 = player_id_dict[int(request.form["defender4"])]
+        d5 = player_id_dict[int(request.form["defender5"])]
+
+        m1 = player_id_dict[int(request.form["midfielder1"])]
+        m2 = player_id_dict[int(request.form["midfielder2"])]
+        m3 = player_id_dict[int(request.form["midfielder3"])]
+        m4 = player_id_dict[int(request.form["midfielder4"])]
+        m5 = player_id_dict[int(request.form["midfielder5"])]
+
+        f1 = player_id_dict[int(request.form["forward1"])]
+        f2 = player_id_dict[int(request.form["forward2"])]
+        f3 = player_id_dict[int(request.form["forward3"])]
+
+        itb = float(request.form["ITB"])
+
+        team = [g1, g2, d1, d2, d3, d4, d5, m1, m2, m3, m4, m5, f1, f2, f3]
+
+        gw1_team = pr.under_performers(team, 1)
+        t1 = pr.transfer_suggestion(
+            gw1_team[0]["id"], player_id_dict, itb)
+        t1 = [player["web_name"] for player in t1]
+        gw1_team = [player["web_name"] for player in gw1_team]
+
+        gw5_team = pr.under_performers(team, 5)
+        gw5_team = [player["web_name"] for player in gw5_team]
+
+        gw_rem_team = pr.under_performers(team, 10)
+        gw_rem_team = [player["web_name"] for player in gw_rem_team]
+
+        points_team = pr.under_performers(team, 2)
+        points_team = [player["web_name"] for player in points_team]
+
+        # t2 = pr.transfer_suggestion(gw1_team[1], all_players, itb)
+        # t3 = pr.transfer_suggestion(gw1_team[2], all_players, itb)
+
+        return render_template("your-team.html", secret=secret["font_awesome"], gw1_team=gw1_team, gw5_team=gw5_team, gw_rem_team=gw_rem_team, points_team=points_team, t1=t1)
+    else:
+        return render_template('404.html'), 404
 
 
 @app.route("/player-ranking")
