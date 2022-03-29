@@ -57,7 +57,7 @@ def your_team():
         f3 = player_id_dict[int(request.form["forward3"])]
 
         itb = float(request.form["ITB"])
-
+        # test
         team = [g1, g2, d1, d2, d3, d4, d5, m1, m2, m3, m4, m5, f1, f2, f3]
 
         gw1_team = pr.under_performers(team, 1)
