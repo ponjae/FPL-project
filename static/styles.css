@@ -453,3 +453,17 @@ footer {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+
+.form {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* your-team */
+
+.full-team {
+    font-family: 'Hubballi', sans-serif;
+    margin-top: 1rem;
+    font-size: x-large;
+}

@@ -2,7 +2,136 @@
 {% include "header.html" %}
 
 <!-- Body -->
-<h1>{{t1}}</h1>
+<section class="grey-section">
+    <h1 class="points-data">Your Team Overview</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Your Current Team</h3>
+            <div class="full-team">
+                <p>{{current_team[0]}} - {{current_team[1]}}</p>
+                <p>{{current_team[2]}} - {{current_team[3]}} - {{current_team[4]}} - {{current_team[5]}} -
+                    {{current_team[6]}}</p>
+                <p>{{current_team[7]}} - {{current_team[8]}} - {{current_team[9]}} - {{current_team[10]}} -
+                    {{current_team[11]}}</p>
+                <p>{{current_team[12]}} - {{current_team[13]}} - {{current_team[14]}}</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h3>Most Player Points</h3>
+            <div class="full-team">
+                {% for player in range(len(points_team[::-3])) %}
+                <p>{{player * 3 + 1}}.{{points_team[::-1][player * 3]}} - {{player * 3 + 2}}.{{points_team[::-1][player
+                    * 3 + 1]}} -
+                    {{player * 3 + 3}}.{{points_team[::-1][player * 3 + 2]}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="white-section">
+    <h1 class="points-data">Team Ranking Next Gw</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="worst-header">Worst to Best Value</h3>
+            <div class="full-team">
+                <p>{{gw1_team[0]}} - {{gw1_team[1]}} - {{gw1_team[2]}} - {{gw1_team[3]}} - {{gw1_team[4]}} -
+                    {{gw1_team[5]}}
+                    - {{gw1_team[6]}} - {{gw1_team[7]}} - {{gw1_team[8]}} - {{gw1_team[9]}} - {{gw1_team[10]}} -
+                    {{gw1_team[11]}} - {{gw1_team[12]}} - {{gw1_team[13]}} - {{gw1_team[14]}}</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Transfer Suggestion 1</h3>
+            <div class="full-team">
+                <p>Transfer out: <span class="highlight">{{gw1_transfer["player1"]}}</span></p>
+                <p>Best alternatives:</p>
+                {% for player in gw1_transfer["suggestions1"] %}
+                <p>{{player}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Transfer Suggestion 2</h3>
+            <div class="full-team">
+                <p>Transfer out: <span class="highlight">{{gw1_transfer["player2"]}}</span></p>
+                <p>Best alternatives:</p>
+                {% for player in gw1_transfer["suggestions2"] %}
+                <p>{{player}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Transfer Suggestion 3</h3>
+            <div class="full-team">
+                <p>Transfer out: <span class="highlight">{{gw1_transfer["player3"]}}</span></p>
+                <p>Best alternatives:</p>
+                {% for player in gw1_transfer["suggestions3"] %}
+                <p>{{player}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="grey-section">
+    <h1 class="points-data">Team Ranking Next 5 Gw:s</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="worst-header">Worst to Best Value</h3>
+            <div class="full-team">
+                <p>{{gw5_team[0]}} - {{gw5_team[1]}} - {{gw5_team[2]}} - {{gw5_team[3]}} - {{gw5_team[4]}} -
+                    {{gw5_team[5]}}
+                    - {{gw5_team[6]}} - {{gw5_team[7]}} - {{gw5_team[8]}} - {{gw5_team[9]}} - {{gw5_team[10]}} -
+                    {{gw5_team[11]}} - {{gw5_team[12]}} - {{gw5_team[13]}} - {{gw5_team[14]}}</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Transfer Suggestion 1</h3>
+            <div class="full-team">
+                <p>Transfer out: <span class="highlight">{{gw5_transfer["player1"]}}</span></p>
+                <p>Best alternatives:</p>
+                {% for player in gw5_transfer["suggestions1"] %}
+                <p>{{player}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Transfer Suggestion 2</h3>
+            <div class="full-team">
+                <p>Transfer out: <span class="highlight">{{gw5_transfer["player2"]}}</span></p>
+                <p>Best alternatives:</p>
+                {% for player in gw5_transfer["suggestions2"] %}
+                <p>{{player}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Transfer Suggestion 3</h3>
+            <div class="full-team">
+                <p>Transfer out: <span class="highlight">{{gw5_transfer["player3"]}}</span></p>
+                <p>Best alternatives:</p>
+                {% for player in gw5_transfer["suggestions3"] %}
+                <p>{{player}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="white-section">
+    <h1 class="points-data">Team Ranking Remaining Gw:s</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="worst-header">Worst to Best Value</h3>
+            <div class="full-team">
+                <p>{{gw_rem_team[0]}} - {{gw_rem_team[1]}} - {{gw_rem_team[2]}} - {{gw_rem_team[3]}} -
+                    {{gw_rem_team[4]}} -
+                    {{gw_rem_team[5]}}
+                    - {{gw_rem_team[6]}} - {{gw_rem_team[7]}} - {{gw_rem_team[8]}} - {{gw_rem_team[9]}} -
+                    {{gw_rem_team[10]}} -
+                    {{gw_rem_team[11]}} - {{gw_rem_team[12]}} - {{gw_rem_team[13]}} - {{gw_rem_team[14]}}</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 {% include "footer.html" %}

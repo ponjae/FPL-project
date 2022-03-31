@@ -57,17 +57,57 @@ def your_team():
         f3 = player_id_dict[int(request.form["forward3"])]
 
         itb = float(request.form["ITB"])
-        # test
+
         team = [g1, g2, d1, d2, d3, d4, d5, m1, m2, m3, m4, m5, f1, f2, f3]
+        curr_team = [player["web_name"] for player in team]
 
         gw1_team = pr.under_performers(team, 1)
-        t1 = pr.transfer_suggestion(
+        # Three transfer suggestions
+        transfer_sug1 = pr.transfer_suggestion(
             gw1_team[0]["id"], player_id_dict, itb)
-        t1 = [player["web_name"] for player in t1]
+        transfer_sug1 = [player["web_name"] for player in transfer_sug1]
+
+        transfer_sug2 = pr.transfer_suggestion(
+            gw1_team[1]["id"], player_id_dict, itb)
+        transfer_sug2 = [player["web_name"] for player in transfer_sug2]
+
+        transfer_sug3 = pr.transfer_suggestion(
+            gw1_team[2]["id"], player_id_dict, itb)
+        transfer_sug3 = [player["web_name"] for player in transfer_sug3]
+
         gw1_team = [player["web_name"] for player in gw1_team]
+        transfer1gw = {
+            "player1": gw1_team[0],
+            "suggestions1": transfer_sug1,
+            "player2": gw1_team[1],
+            "suggestions2": transfer_sug2,
+            "player3": gw1_team[2],
+            "suggestions3": transfer_sug3,
+        }
 
         gw5_team = pr.under_performers(team, 5)
+        # Three transfer suggestions
+        transfer_sug1 = pr.transfer_suggestion(
+            gw5_team[0]["id"], player_id_dict, itb)
+        transfer_sug1 = [player["web_name"] for player in transfer_sug1]
+
+        transfer_sug2 = pr.transfer_suggestion(
+            gw5_team[1]["id"], player_id_dict, itb)
+        transfer_sug2 = [player["web_name"] for player in transfer_sug2]
+
+        transfer_sug3 = pr.transfer_suggestion(
+            gw5_team[2]["id"], player_id_dict, itb)
+        transfer_sug3 = [player["web_name"] for player in transfer_sug3]
+
         gw5_team = [player["web_name"] for player in gw5_team]
+        transfer5gw = {
+            "player1": gw5_team[0],
+            "suggestions1": transfer_sug1,
+            "player2": gw5_team[1],
+            "suggestions2": transfer_sug2,
+            "player3": gw5_team[2],
+            "suggestions3": transfer_sug3,
+        }
 
         gw_rem_team = pr.under_performers(team, 10)
         gw_rem_team = [player["web_name"] for player in gw_rem_team]
@@ -75,10 +115,7 @@ def your_team():
         points_team = pr.under_performers(team, 2)
         points_team = [player["web_name"] for player in points_team]
 
-        # t2 = pr.transfer_suggestion(gw1_team[1], all_players, itb)
-        # t3 = pr.transfer_suggestion(gw1_team[2], all_players, itb)
-
-        return render_template("your-team.html", secret=secret["font_awesome"], gw1_team=gw1_team, gw5_team=gw5_team, gw_rem_team=gw_rem_team, points_team=points_team, t1=t1)
+        return render_template("your-team.html", secret=secret["font_awesome"], current_team=curr_team, gw1_team=gw1_team, gw5_team=gw5_team, gw_rem_team=gw_rem_team, points_team=points_team, gw1_transfer=transfer1gw, gw5_transfer=transfer5gw, len=len)
     else:
         return render_template('404.html'), 404
 

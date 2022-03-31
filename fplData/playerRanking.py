@@ -122,8 +122,8 @@ class playerRanking:
         self._sort_players_on_attribute(
             "PLAYER_VALUE", best_alternatives)
 
-        if len(best_alternatives) > 10:
-            return best_alternatives[::-1][:10]
+        if len(best_alternatives) > 5:
+            return best_alternatives[::-1][:5]
         else:
             return best_alternatives[::-1]
 
