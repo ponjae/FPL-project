@@ -8,61 +8,65 @@
 </section>
 
 <section class="white-section">
-
-    <div class="starting-eleven opti-style">
-        <h2 class="player-container">Best Starting Eleven</h2>
-        <div class="position">
-            <h3 class="pos-header">Goalkeeper</h3>
-            <p class="starting-player">{{starting_eleven["Goalkeepers"][0][0]}} -
-                {{starting_eleven["Goalkeepers"][0][1]}}</p>
-        </div>
-        <div class="position">
-            <h3 class="pos-header">Defenders</h3>
-            {% for player in starting_eleven["Defenders"] %}
-            <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
-            {% endfor %}
-        </div>
-        <div class="position">
-            <h3 class="pos-header">Midfielders</h3>
-            {% for player in starting_eleven["Midfielders"] %}
-            <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
-            {% endfor %}
-        </div>
-        <div class="position">
-            {% if starting_eleven["Forwards"]|length > 1 %}
-            <h3 class="pos-header">Forwards</h3>
-            {% else %}
-            <h3 class="pos-header">Forward</h3>
-            {% endif %}
-            {% for player in starting_eleven["Forwards"] %}
-            <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
-            {% endfor %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="starting-eleven opti-style">
+                <h2 class="player-container">Best Starting Eleven</h2>
+                <div class="position col-lg-3">
+                    <h3 class="pos-header">Goalkeeper</h3>
+                    <p class="starting-player">{{starting_eleven["Goalkeepers"][0][0]}} -
+                        {{starting_eleven["Goalkeepers"][0][1]}}</p>
+                </div>
+                <div class="position col-lg-3">
+                    <h3 class="pos-header">Defenders</h3>
+                    {% for player in starting_eleven["Defenders"] %}
+                    <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
+                    {% endfor %}
+                </div>
+                <div class="position col-lg-3">
+                    <h3 class="pos-header">Midfielders</h3>
+                    {% for player in starting_eleven["Midfielders"] %}
+                    <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
+                    {% endfor %}
+                </div>
+                <div class="position col-lg-3">
+                    {% if starting_eleven["Forwards"]|length > 1 %}
+                    <h3 class="pos-header">Forwards</h3>
+                    {% else %}
+                    <h3 class="pos-header">Forward</h3>
+                    {% endif %}
+                    {% for player in starting_eleven["Forwards"] %}
+                    <p class="starting-player">{{player[0]}} - {{player[1]}}</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <section class="grey-section">
-
-    <div class="opti-style">
-        <h3 class="player-container">Bench Players</h3>
-        <div class="bench">
-            {% for player in bench %}
-            <p class="player">{{player[0]}} - {{player[2]}} - ({{player[1]}})</p>
-            {% endfor %}
+    <div class="row">
+        <div class="opti-style col-lg-12">
+            <h3 class="player-container">Bench Players</h3>
+            <div class="bench">
+                {% for player in bench %}
+                <p class="player">{{player[0]}} - {{player[2]}} - ({{player[1]}})</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </section>
 
 <section class="white-section">
+    <div class="row">
+        <div class="captain opti-style col-lg-12">
+            <h2>Best captain choice: <span class="highlight">{{captain}}</span></h1>
+        </div>
 
-    <div class="captain opti-style">
-        <h2>Best captain choice: <span class="highlight">{{captain}}</span></h1>
+        <form class="return-btn" action="{{url_for('best_team_config')}}">
+            <button class="fpl-btn" type="submit">Change prequisites</button>
+        </form>
     </div>
-
-    <form class="return-btn" action="{{url_for('best_team_config')}}">
-        <button class="fpl-btn" type="submit">Change prequisites</button>
-    </form>
-
 </section>
 
 
