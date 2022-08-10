@@ -172,6 +172,14 @@ class gameData:
                 "coach": "Steven Gerrard",
                 "pl-titles": "7"
             },
+            "Bournemouth": {
+                "name": "AFC Bournemouth",
+                "nickname": "The Cherries",
+                "city": "Bournemouth",
+                "arena": "Dean Court",
+                "coach": "Scott Parker",
+                "pl-titles": "0"
+            },
             "Brentford": {
                 "name": "Brentford Football Club",
                 "nickname": "The Bees",
@@ -187,14 +195,6 @@ class gameData:
                 "arena": "Falmer Stadium",
                 "coach": "Graham Potter",
                 "pl-titles": "0"
-            },
-            "Burnley": {
-                "name": "Burnley Football Club",
-                "nickname": "The Clarets",
-                "city": "Burnley",
-                "arena": "Turf Moor",
-                "coach": "Sean Dyche",
-                "pl-titles": "2"
             },
             "Chelsea": {
                 "name": "Chelsea Football Club",
@@ -219,6 +219,14 @@ class gameData:
                 "arena": "Goodison Park",
                 "coach": "Frank Lampard",
                 "pl-titles": "9"
+            },
+            "Fulham": {
+                "name": "Fulham Football Club",
+                "nickname": "The Cottagers",
+                "city": "London",
+                "arena": "Craven Cottage",
+                "coach": "Marco Silva",
+                "pl-titles": "0"
             },
             "Leicester": {
                 "name": "Leicester City Football Club",
@@ -268,12 +276,12 @@ class gameData:
                 "coach": "Eddie Howe",
                 "pl-titles": "4"
             },
-            "Norwich": {
-                "name": "Norwich City Football Club",
-                "nickname": "The Canaries",
-                "city": "Norwich",
-                "arena": "Carrow Road",
-                "coach": "Dean Smith",
+            "Nott'm Forest": {
+                "name": "Nottingham Forest Football Club",
+                "nickname": "The Tricky Trees",
+                "city": "Nottingham",
+                "arena": "City Ground",
+                "coach": "Steve Cooper",
                 "pl-titles": "0"
             },
             "Southampton": {
@@ -291,14 +299,6 @@ class gameData:
                 "arena": "Tottenham Hotspur Stadium",
                 "coach": "Antonio Conte",
                 "pl-titles": "2"
-            },
-            "Watford": {
-                "name": "Watford Football Club",
-                "nickname": "The Hornets",
-                "city": "Watford",
-                "arena": "Vicarage Road",
-                "coach": "Roy Hodgson",
-                "pl-titles": "0"
             },
             "WestHam": {
                 "name": "West Ham United Football Club",

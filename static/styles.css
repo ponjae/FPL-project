@@ -331,6 +331,11 @@ footer {
     background-color: #95BFE5;
 }
 
+.Bournemouth {
+    color: #DA291C;
+    background-color: #000000;
+}
+
 .Brentford {
     color: #FFF;
     background-color: #e30613;
@@ -339,11 +344,6 @@ footer {
 .Brighton {
     color: #FFF;
     background-color: #0057B8;
-}
-
-.Burnley {
-    color: #6C1D45;
-    background-color: #99D6EA;
 }
 
 .Chelsea {
@@ -359,6 +359,11 @@ footer {
 .Everton {
     color: #FFF;
     background-color: #003399;;
+}
+
+.Fulham {
+    color: #FFF;
+    background-color: #000000;
 }
 
 .Leicester {
@@ -392,9 +397,9 @@ footer {
 
 }
 
-.Norwich {
-    color: #FFF200;
-    background-color: #00A650;
+.Nottingham {
+    color: #DD0000;
+    background-color: #FFFFFF;
 }
 
 .Southampton {
@@ -405,11 +410,6 @@ footer {
 .Spurs {
     color: #132257;
     background-color: #FFF;
-}
-
-.Watford {
-    color: #000;
-    background-color: #FBEE23;
 }
 
 .WestHam {
