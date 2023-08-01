@@ -346,6 +346,11 @@ footer {
     background-color: #0057B8;
 }
 
+.Burnley {
+    color: #6C1D45;
+    background-color: #99D6EA;
+}
+
 .Chelsea {
     color: #FFF;
     background-color: #034694;
@@ -366,19 +371,15 @@ footer {
     background-color: #000000;
 }
 
-.Leicester {
-    color: #FFF;
-    background-color: #003090;
-}
-
-.Leeds {
-    color: #1D428A;
-    background-color: #FFCD00;
-}
-
 .Liverpool {
     color: #FFF;
     background-color: #C8102E;
+}
+
+.Luton {
+    color: #F78F1E;
+    background-color: #002D62;
+
 }
 
 .ManCity {
@@ -402,9 +403,9 @@ footer {
     background-color: #FFFFFF;
 }
 
-.Southampton {
-    color: #FFF;
-    background-color: #D71920;
+.Sheffield {
+    color: #EE2737;
+    background-color: #000000;
 }
 
 .Spurs {

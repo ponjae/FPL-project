@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from fplData import playerData, playerEvaluation, playerRanking, gameData
-from secrets import secret
+from secrets_private import secret
 
 app = Flask(__name__)
 gd = gameData.gameData()
@@ -165,12 +165,12 @@ def team_page(team):
     color_scheme = ''.join(team.split(" "))
     if color_scheme == "Nott'mForest":
         color_scheme = "Nott'm Forest"
+    elif color_scheme == 'SheffieldUtd':
+        color_scheme = 'Sheffield'
     position_dict = pd.id_position_dict
     team_data_dict = gd.team_data_dict
 
-    print(50 * '*')
-    print(color_scheme)
-    print(50 * '*')
+
     return render_template("team.html",  secret=secret["font_awesome"], scheme=color_scheme, team_data=team_data, position_dict=position_dict, round=round, team_data_dict=team_data_dict[color_scheme])
 
 

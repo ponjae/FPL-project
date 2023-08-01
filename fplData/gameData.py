@@ -169,22 +169,22 @@ class gameData:
                 "nickname": "The Villans",
                 "city": "Birmingham",
                 "arena": "Villa Park",
-                "coach": "Steven Gerrard",
+                "coach": "Unai Emery",
                 "pl-titles": "7"
             },
             "Bournemouth": {
                 "name": "AFC Bournemouth",
                 "nickname": "The Cherries",
                 "city": "Bournemouth",
-                "arena": "Dean Court",
-                "coach": "Scott Parker",
+                "arena": "Vitality Stadium",
+                "coach": "Andoni Iraola",
                 "pl-titles": "0"
             },
             "Brentford": {
                 "name": "Brentford Football Club",
                 "nickname": "The Bees",
                 "city": "London",
-                "arena": "Brentford Community Stadium",
+                "arena": "Gtech Community Stadium",
                 "coach": "Thomas Frank",
                 "pl-titles": "0"
             },
@@ -193,7 +193,15 @@ class gameData:
                 "nickname": "The Seagulls",
                 "city": "Brighton",
                 "arena": "Falmer Stadium",
-                "coach": "Graham Potter",
+                "coach": "Roberto De Zerbi",
+                "pl-titles": "0"
+            },
+            "Burnley": {
+                "name": "Burnley Football Club",
+                "nickname": "The Clarets",
+                "city": "Burnley",
+                "arena": "Turf Moor",
+                "coach": "Vincent Kompany",
                 "pl-titles": "0"
             },
             "Chelsea": {
@@ -201,7 +209,7 @@ class gameData:
                 "nickname": "The Blues",
                 "city": "London",
                 "arena": "Stamford Bridge",
-                "coach": "Thomas Tuchel",
+                "coach": "Mauricio Pochettino[",
                 "pl-titles": "6"
             },
             "CrystalPalace": {
@@ -209,7 +217,7 @@ class gameData:
                 "nickname": "The Eagles",
                 "city": "London",
                 "arena": "Selhurst Park",
-                "coach": "Patrick Vieira",
+                "coach": "Roy Hodgson",
                 "pl-titles": "0"
             },
             "Everton": {
@@ -217,7 +225,7 @@ class gameData:
                 "nickname": "The Toffees",
                 "city": "Liverpool",
                 "arena": "Goodison Park",
-                "coach": "Frank Lampard",
+                "coach": "Sean Dyche",
                 "pl-titles": "9"
             },
             "Fulham": {
@@ -228,22 +236,6 @@ class gameData:
                 "coach": "Marco Silva",
                 "pl-titles": "0"
             },
-            "Leicester": {
-                "name": "Leicester City Football Club",
-                "nickname": "The Foxes",
-                "city": "Leicester",
-                "arena": "King Power Stadium",
-                "coach": "Brendan Rodgers",
-                "pl-titles": "1"
-            },
-            "Leeds": {
-                "name": "Leeds United Football Club",
-                "nickname": "The Peacooks",
-                "city": "Leeds",
-                "arena": "Elland Road",
-                "coach": "Jesse Marsch",
-                "pl-titles": "3"
-            },
             "Liverpool": {
                 "name": "Liverpool Football Club",
                 "nickname": "The Reds",
@@ -252,20 +244,28 @@ class gameData:
                 "coach": "Jürgen Klopp",
                 "pl-titles": "19"
             },
+            "Luton": {
+                "name": "Luton Town Football Club",
+                "nickname": "The Hatters",
+                "city": "Luton",
+                "arena": "Kenilworth Road",
+                "coach": "Rob Edwards",
+                "pl-titles": "0"
+            },
             "ManCity": {
                 "name": "Manchester City Football Club",
                 "nickname": "City",
                 "city": "Manchester",
                 "arena": "Etihad Stadium",
                 "coach": "Pep Guardiola",
-                "pl-titles": "7"
+                "pl-titles": "9"
             },
             "ManUtd": {
                 "name": "Manchester United Football Club",
                 "nickname": "The Red Devils",
                 "city": "Manchester",
                 "arena": "Old Trafford",
-                "coach": "Ralf Rangnick",
+                "coach": "Eric Ten Haag",
                 "pl-titles": "20"
             },
             "Newcastle": {
@@ -284,12 +284,12 @@ class gameData:
                 "coach": "Steve Cooper",
                 "pl-titles": "0"
             },
-            "Southampton": {
-                "name": "Southampton Football Club",
-                "nickname": "The Saints",
-                "city": "Southampton",
-                "arena": "St Mary's Stadium",
-                "coach": "Ralph Hasenhüttl",
+            "Sheffield": {
+                "name": "Sheffield United Football Club",
+                "nickname": "The Blades",
+                "city": "Sheffield",
+                "arena": "Bramall Lane",
+                "coach": "Paul Heckingbottom",
                 "pl-titles": "0"
             },
             "Spurs": {
@@ -297,7 +297,7 @@ class gameData:
                 "nickname": "Spurs",
                 "city": "London",
                 "arena": "Tottenham Hotspur Stadium",
-                "coach": "Antonio Conte",
+                "coach": "Ange Postecoglou",
                 "pl-titles": "2"
             },
             "WestHam": {
@@ -313,7 +313,7 @@ class gameData:
                 "nickname": "Wolves",
                 "city": "Wolverhampton",
                 "arena": "Molineux Stadium",
-                "coach": "Bruno Lage",
+                "coach": "Julen Lopetegui",
                 "pl-titles": "3"
             }
         }

@@ -22,6 +22,7 @@ class playerData:
         self.player_and_data_dict = self._populate_player_dict(
             self.team_and_player_dict)
 
+
     def _get_fdr_dict(self):
         """ Function for fetching the Fixture Difficulty Data and converting it to a dict containing a dict with 
         every upcomming gameweek fdr for each team in that specific gameweek. Ex)

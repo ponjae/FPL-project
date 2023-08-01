@@ -20,6 +20,7 @@ class playerEvaluation:
                 games_next_five = player_dict[key][player]["games_next_five"]
                 total_games_remaning = player_dict[key][player]["total_games_remaning"]
                 gameweeks_lapsed = 38 - total_games_remaning  # 38 gw:s in a season
+                # gameweeks_lapsed = 38 - 37  # 38 gw:s in a season
 
                 total_points = player_dict[key][player]["total_points"]
                 form = player_dict[key][player]["form"]
@@ -29,6 +30,9 @@ class playerEvaluation:
                 clean_sheets = player_dict[key][player]["clean_sheets"]
                 saves = player_dict[key][player]["saves"]
                 penalties_saved = player_dict[key][player]["penalties_saved"]
+
+                if gameweeks_lapsed == 0:
+                    gameweeks_lapsed = 1
 
                 # Goalkeepers
                 if position == 1:

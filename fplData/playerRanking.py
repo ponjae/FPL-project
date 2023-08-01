@@ -1,6 +1,5 @@
 from distutils.log import error
 import pulp
-import numpy as np
 import pandas as pd
 
 
@@ -262,7 +261,7 @@ class playerRanking:
                      for i in range(num_players) if positions[i] == 4) == 3
 
         # club constraint
-        for club_id in np.unique(teams):
+        for club_id in set(teams):
             model += sum(decisions[i] + sub_decisions[i] for i in range(
                 num_players) if teams[i] == club_id) <= 3  # max 3 players
 
