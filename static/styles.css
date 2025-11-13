@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Roboto+Slab:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&family=Roboto+Slab:wght@300&display=swap");
 
 /* 
 red: #be0606;
@@ -16,210 +16,214 @@ yel: #010000
 */
 
 body {
-    /* font-family: sans-serif, serif; */
-    font-family: 'Allerta Stencil', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  /* font-family: sans-serif, serif; */
+  font-family: "Allerta Stencil", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Containers */
 .container-fluid {
-    padding: 7% 15%;
+  padding: 7% 15%;
 }
 
 /* sections */
 
 .white-section {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .grey-section {
-    background-color: #E1E1E1;
+  background-color: #e1e1e1;
 }
 
 .parag-text {
-    font-family: 'Hubballi', sans-serif;
-    font-size: 1.5rem;
+  font-family: "Hubballi", sans-serif;
+  font-size: 1.5rem;
 }
 
 /* navbar section */
 
 .navbar {
-    background: #be0606;
-    font-family: 'Hubballi', sans-serif;
+  background: #be0606;
+  font-family: "Hubballi", sans-serif;
 }
 
 .nav-item {
-    padding: 0px 18px;
+  padding: 0px 18px;
 }
 
 .nav-link {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
 .navbar-brand {
-    font-family: 'Allerta Stencil', sans-serif;
-    color: #fff;
-    font-size: 2rem;
+  font-family: "Allerta Stencil", sans-serif;
+  color: #fff;
+  font-size: 2rem;
 }
 
 .navbar-brand:hover {
-    color: #010000;
+  color: #010000;
 }
 
-.navbar-nav>li>a {
-    color: #fff;
+.navbar-nav > li > a {
+  color: #fff;
 }
 
-.navbar-nav>li:hover {
-    border-bottom: 2px solid #fff;
+.navbar-nav > li:hover {
+  border-bottom: 2px solid #fff;
 }
 
 .dropdown-menu {
-    font-family: 'Allerta Stencil', sans-serif;
-    background: #e1e1e1;
-    max-height: 407px;
-    overflow-y: auto;
+  font-family: "Allerta Stencil", sans-serif;
+  background: #e1e1e1;
+  max-height: 407px;
+  overflow-y: auto;
 }
 .dropdown-even {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .dropdown-item:hover {
-    color: #E73725;
-    text-decoration: underline;
-    background-color: transparent;
+  color: #e73725;
+  text-decoration: underline;
+  background-color: transparent;
 }
 
 .dropdown-even:hover {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 /* footer section */
 
 footer {
-    background-color: #010000;
-    color: #fff;
-    margin-top: auto;
+  background-color: #010000;
+  color: #fff;
+  margin-top: auto;
 }
 
 .fa-stack {
-    color: #fff;
+  color: #fff;
 }
 
 .fa-stack:hover {
-    color: #be0606;
+  color: #be0606;
 }
 
 /* index */
 
 .row {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .box1:hover .fa-icon {
-    color:#E73725;
+  color: #e73725;
 }
 
 .box2:hover .fa-icon {
-    color:#E73725;
+  color: #e73725;
 }
 
 .box3:hover .fa-icon {
-    color:#E73725;
+  color: #e73725;
 }
 
 .row a {
-    color: #010000;
+  color: #010000;
 }
 
-.row:hover a{
-    color: #010000;
+.row:hover a {
+  color: #010000;
 }
 
 .feature-title {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .fa-icon {
-    margin-bottom: 1rem;
-    color: #be0606;
+  margin-bottom: 1rem;
+  color: #be0606;
 }
 
 .highlight2 {
-    color: #be0606;
-    font-weight: bolder;
+  color: #be0606;
+  font-weight: bolder;
 }
 
 .gw-table {
-    border-collapse: collapse;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
-    font-size: 1.0rem;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+  border-collapse: collapse;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  font-size: 1rem;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .gw-table th {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    background-color: #010000;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: #fff;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  background-color: #010000;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #fff;
 }
 
 .gw-table td {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
 .gw-table tr:nth-child(even) {
-    background-color: #fff;
-  }
+  background-color: #fff;
+}
 
-  .gw-table tr:nth-child(odd) {
-    background-color: #E1E1E1;
-  }
+.gw-table tr:nth-child(odd) {
+  background-color: #e1e1e1;
+}
 
 /* 404 */
 
 .error404 {
-    display: table;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
+  display: table;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
 }
 
-.fof{
-    display: table-cell;
-    vertical-align: middle;
+.fof {
+  display: table-cell;
+  vertical-align: middle;
 }
 
-.fof h1{
-    font-size: 50px;
-    display: inline-block;
-    padding-right: 12px;
-    animation: type .5s alternate infinite;
+.fof h1 {
+  font-size: 50px;
+  display: inline-block;
+  padding-right: 12px;
+  animation: type 0.5s alternate infinite;
 }
 
-@keyframes type{
-    from{box-shadow: inset -3px 0px 0px #be0606;}
-    to{box-shadow: inset -3px 0px 0px transparent;}
+@keyframes type {
+  from {
+    box-shadow: inset -3px 0px 0px #be0606;
+  }
+  to {
+    box-shadow: inset -3px 0px 0px transparent;
+  }
 }
 
 .problem-text {
-    color:#be0606;
+  color: #be0606;
 }
 
 .button-home {
@@ -231,240 +235,249 @@ footer {
   font-size: 17px;
 
   background: #8f8f8f;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #fff;
 }
 
-.button-home:hover{
-    background: #6b6b6b;
-    cursor: pointer;
+.button-home:hover {
+  background: #6b6b6b;
+  cursor: pointer;
 }
 
 /* config */
 
 .pl-logo {
-    width:240px;
-    height: auto;
+  width: 240px;
+  height: auto;
 }
 
 .fpl-btn {
-    background-color:#8f8f8f;
-    color: #fff;
-    margin-top: 1rem;
+  background-color: #8f8f8f;
+  color: #fff;
+  margin-top: 1rem;
 }
 
-.fpl-btn:hover {
-    background-color: #be0606;
+.fpl-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.fpl-btn.btn-danger {
+  background-color: #be0606;
+}
+
+.fpl-btn.btn-danger:hover {
+  background-color: #be0606;
 }
 
 /* Ranking */
 .points-data {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* optimal */
 
 .highlight {
-    color: #be0606;
-    font-weight: bolder;
-    font-style: italic;
+  color: #be0606;
+  font-weight: bolder;
+  font-style: italic;
 }
 
 .position {
-    margin-top: 2rem;
-    float: left;
-    width: 25%;
-    padding: 4px;
+  margin-top: 2rem;
+  float: left;
+  width: 25%;
+  padding: 4px;
 }
 
 .opti-style {
-    text-align: center;
-    margin-top: 3rem;
+  text-align: center;
+  margin-top: 3rem;
 }
 
 .pos-header {
-    text-decoration: underline;
-    text-decoration-color: #be0606;
+  text-decoration: underline;
+  text-decoration-color: #be0606;
 }
 
 .player-container {
-    font-style: italic;
+  font-style: italic;
 }
 
 .bench {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .return-btn {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: auto;
-    margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Team */
 
 .pl-badge {
-    width:200px;
-    height: 200px;
-    object-fit:contain;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
 }
 
-.team-head h1{
-    font-size: 100px;
-    /* text-align: center;
+.team-head h1 {
+  font-size: 100px;
+  /* text-align: center;
     margin-left: auto;
     margin-right: auto; */
 }
 
 .Arsenal {
-    color: #FFF;
-    background-color: #EF0107;
+  color: #fff;
+  background-color: #ef0107;
 }
 
 .AstonVilla {
-    color: #670E36;
-    background-color: #95BFE5;
+  color: #670e36;
+  background-color: #95bfe5;
 }
 
 .Bournemouth {
-    color: #DA291C;
-    background-color: #000000;
+  color: #da291c;
+  background-color: #000000;
 }
 
 .Brentford {
-    color: #FFF;
-    background-color: #e30613;
+  color: #fff;
+  background-color: #e30613;
 }
 
 .Brighton {
-    color: #FFF;
-    background-color: #0057B8;
+  color: #fff;
+  background-color: #0057b8;
 }
 
 .Burnley {
-    color: #6C1D45;
-    background-color: #99D6EA;
+  color: #6c1d45;
+  background-color: #99d6ea;
 }
 
 .Chelsea {
-    color: #FFF;
-    background-color: #034694;
+  color: #fff;
+  background-color: #034694;
 }
 
 .CrystalPalace {
-    color: #FFF;
-    background-color: #1B458F;
+  color: #fff;
+  background-color: #1b458f;
 }
 
 .Everton {
-    color: #FFF;
-    background-color: #003399;;
+  color: #fff;
+  background-color: #003399;
 }
 
 .Fulham {
-    color: #FFF;
-    background-color: #000000;
+  color: #fff;
+  background-color: #000000;
 }
 
 .Liverpool {
-    color: #FFF;
-    background-color: #C8102E;
+  color: #fff;
+  background-color: #c8102e;
 }
 
 .Luton {
-    color: #F78F1E;
-    background-color: #002D62;
-
+  color: #f78f1e;
+  background-color: #002d62;
 }
 
 .ManCity {
-    color: #6CABDD;
-    background-color: #1C2C5B;
+  color: #6cabdd;
+  background-color: #1c2c5b;
 }
 
 .ManUtd {
-    color: #000;
-    background-color: #DA291C;
+  color: #000;
+  background-color: #da291c;
 }
 
 .Newcastle {
-    color: #FFF;
-    background-color: #241F20;
-
+  color: #fff;
+  background-color: #241f20;
 }
 
 .Nottingham {
-    color: #DD0000;
-    background-color: #FFFFFF;
+  color: #dd0000;
+  background-color: #ffffff;
 }
 
 .Sheffield {
-    color: #EE2737;
-    background-color: #000000;
+  color: #ee2737;
+  background-color: #000000;
 }
 
 .Spurs {
-    color: #132257;
-    background-color: #FFF;
+  color: #132257;
+  background-color: #fff;
 }
 
 .WestHam {
-    color: #1BB1E7;
-    background-color: #7A263A;
+  color: #1bb1e7;
+  background-color: #7a263a;
 }
 
 .Wolves {
-    color: #000;
-    background-color: #FDB913;
+  color: #000;
+  background-color: #fdb913;
 }
 
 .team-p {
-    font-family: 'Hubballi', sans-serif;
-    font-size: 1.4rem;
-    margin-top: 1rem;
+  font-family: "Hubballi", sans-serif;
+  font-size: 1.4rem;
+  margin-top: 1rem;
 }
 
 /* about */
 
 .about-p {
-    font-family: 'Hubballi', sans-serif;
-    font-size: 1.4rem;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-top: 2rem;
+  font-family: "Hubballi", sans-serif;
+  font-size: 1.4rem;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 2rem;
 }
 
-.about-c h1{
-    text-align: center;
+.about-c h1 {
+  text-align: center;
 }
 
 /* your-config */
 
 .config-head {
-    margin-top: 2rem;
-    text-align: center;
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .row .pos-head {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .form {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* your-team */
 
 .full-team {
-    font-family: 'Hubballi', sans-serif;
-    margin-top: 1rem;
-    font-size: x-large;
+  font-family: "Hubballi", sans-serif;
+  margin-top: 1rem;
+  font-size: x-large;
 }

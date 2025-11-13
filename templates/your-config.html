@@ -3,142 +3,465 @@
 
 <!-- Body -->
 <section class="grey-section">
-    <h1 class="config-head">Select your current team</h1>
-    <div class="row">
-        <div class="form">
-            <form method="post" action="{{url_for('your_team')}}">
-                <div class="goalkeepers col-lg-12">
-                    <h3 class="pos-head">Goalkeepers</h3>
-                    <select class="player-select" name="goalkeeper1" required>
-                        <option value="" selected disabled hidden>First Goalkeeper</option>
-                        {% for goalie in goalkeepers %}
-                        <option value="{{goalie['id']}}">{{goalie["web_name"]}} - {{id_team_dict[goalie["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="goalkeeper2" required>
-                        <option value="" selected disabled hidden>Second Goalkeeper</option>
-                        {% for goalie in goalkeepers %}
-                        <option value="{{goalie['id']}}">{{goalie["web_name"]}} - {{id_team_dict[goalie["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="defenders col-lg-12">
-                    <h3 class="pos-head">Defenders</h3>
-                    <select class="player-select" name="defender1" required>
-                        <option value="" selected disabled hidden>First Defender</option>
-                        {% for defender in defenders %}
-                        <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="defender2" required>
-                        <option value="" selected disabled hidden>Second Defender</option>
-                        {% for defender in defenders %}
-                        <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="defender3" required>
-                        <option value="" selected disabled hidden>Third Defender</option>
-                        {% for defender in defenders %}
-                        <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="defender4" required>
-                        <option value="" selected disabled hidden>Fourth Defender</option>
-                        {% for defender in defenders %}
-                        <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="defender5" required>
-                        <option value="" selected disabled hidden>Fifth Defender</option>
-                        {% for defender in defenders %}
-                        <option value="{{defender['id']}}">{{defender["web_name"]}} - {{id_team_dict[defender["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="midfielders col-lg-12">
-                    <h3 class="pos-head">Midfielders</h3>
-                    <select class="player-select" name="midfielder1" required>
-                        <option value="" selected disabled hidden>First Midfielder</option>
-                        {% for midfielder in midfielders %}
-                        <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
-                            {{id_team_dict[midfielder["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="midfielder2" required>
-                        <option value="" selected disabled hidden>Second Midfielder</option>
-                        {% for midfielder in midfielders %}
-                        <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
-                            {{id_team_dict[midfielder["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="midfielder3" required>
-                        <option value="" selected disabled hidden>Third Midfielder</option>
-                        {% for midfielder in midfielders %}
-                        <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
-                            {{id_team_dict[midfielder["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="midfielder4" required>
-                        <option value="" selected disabled hidden>Fourth Midfielder</option>
-                        {% for midfielder in midfielders %}
-                        <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
-                            {{id_team_dict[midfielder["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="midfielder5" required>
-                        <option value="" selected disabled hidden>Fifth Midfielder</option>
-                        {% for midfielder in midfielders %}
-                        <option value="{{midfielder['id']}}">{{midfielder["web_name"]}} -
-                            {{id_team_dict[midfielder["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="forwards col-lg-12">
-                    <h3 class="pos-head">Forwards</h3>
-                    <select class="player-select" name="forward1" required>
-                        <option value="" selected disabled hidden>First Forward</option>
-                        {% for forward in forwards %}
-                        <option value="{{forward['id']}}">{{forward["web_name"]}} - {{id_team_dict[forward["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="forward2" required>
-                        <option value="" selected disabled hidden>Second Forward</option>
-                        {% for forward in forwards %}
-                        <option value="{{forward['id']}}">{{forward["web_name"]}} - {{id_team_dict[forward["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <select class="player-select" name="forward3" required>
-                        <option value="" selected disabled hidden>Third Forward</option>
-                        {% for forward in forwards %}
-                        <option value="{{forward['id']}}">{{forward["web_name"]}} - {{id_team_dict[forward["team"]]}}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="forwards col-lg-12">
-                    <h3 class="pos-head">Money in the Bank</h3>
-                    <input type="number" step="0.1" min="0" max="10" name="ITB" placeholder="0.0" required />
-                </div>
-                <button type="submit" class="fpl-btn" name="submitcheck" id="submit_check">Let's Go!</button>
-            </form>
-        </div>
-    </div>
-</section>
+  <h1 class="config-head">Select your current team</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <form method="post" action="{{url_for('your_team')}}">
+          <!-- Goalkeepers -->
+          <div class="form-section">
+            <h3 class="pos-head">
+              <i class="bi bi-shield-fill-check"></i> Goalkeepers
+            </h3>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="goalkeeper1" class="form-label"
+                  >First Goalkeeper</label
+                >
+                <select
+                  class="player-select form-control"
+                  name="goalkeeper1"
+                  id="goalkeeper1"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select goalkeeper...
+                  </option>
+                  {% for goalie in goalkeepers %}
+                  <option value="{{goalie['id']}}">
+                    {{goalie["web_name"]}} ({{id_team_dict[goalie["team"]]}}) -
+                    £{{"%0.1f"|format(goalie["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="goalkeeper2" class="form-label"
+                  >Second Goalkeeper</label
+                >
+                <select
+                  class="player-select form-control"
+                  name="goalkeeper2"
+                  id="goalkeeper2"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select goalkeeper...
+                  </option>
+                  {% for goalie in goalkeepers %}
+                  <option value="{{goalie['id']}}">
+                    {{goalie["web_name"]}} ({{id_team_dict[goalie["team"]]}}) -
+                    £{{"%0.1f"|format(goalie["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
 
+          <!-- Defenders -->
+          <div class="form-section">
+            <h3 class="pos-head">
+              <i class="bi bi-shield-fill"></i> Defenders
+            </h3>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="defender1" class="form-label">Defender 1</label>
+                <select
+                  class="player-select form-control"
+                  name="defender1"
+                  id="defender1"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select defender...
+                  </option>
+                  {% for defender in defenders %}
+                  <option value="{{defender['id']}}">
+                    {{defender["web_name"]}}
+                    ({{id_team_dict[defender["team"]]}}) -
+                    £{{"%0.1f"|format(defender["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="defender2" class="form-label">Defender 2</label>
+                <select
+                  class="player-select form-control"
+                  name="defender2"
+                  id="defender2"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select defender...
+                  </option>
+                  {% for defender in defenders %}
+                  <option value="{{defender['id']}}">
+                    {{defender["web_name"]}}
+                    ({{id_team_dict[defender["team"]]}}) -
+                    £{{"%0.1f"|format(defender["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="defender3" class="form-label">Defender 3</label>
+                <select
+                  class="player-select form-control"
+                  name="defender3"
+                  id="defender3"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select defender...
+                  </option>
+                  {% for defender in defenders %}
+                  <option value="{{defender['id']}}">
+                    {{defender["web_name"]}}
+                    ({{id_team_dict[defender["team"]]}}) -
+                    £{{"%0.1f"|format(defender["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="defender4" class="form-label">Defender 4</label>
+                <select
+                  class="player-select form-control"
+                  name="defender4"
+                  id="defender4"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select defender...
+                  </option>
+                  {% for defender in defenders %}
+                  <option value="{{defender['id']}}">
+                    {{defender["web_name"]}}
+                    ({{id_team_dict[defender["team"]]}}) -
+                    £{{"%0.1f"|format(defender["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="defender5" class="form-label">Defender 5</label>
+                <select
+                  class="player-select form-control"
+                  name="defender5"
+                  id="defender5"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select defender...
+                  </option>
+                  {% for defender in defenders %}
+                  <option value="{{defender['id']}}">
+                    {{defender["web_name"]}}
+                    ({{id_team_dict[defender["team"]]}}) -
+                    £{{"%0.1f"|format(defender["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Midfielders -->
+          <div class="form-section">
+            <h3 class="pos-head">
+              <i class="bi bi-hexagon-fill"></i> Midfielders
+            </h3>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="midfielder1" class="form-label">Midfielder 1</label>
+                <select
+                  class="player-select form-control"
+                  name="midfielder1"
+                  id="midfielder1"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select midfielder...
+                  </option>
+                  {% for midfielder in midfielders %}
+                  <option value="{{midfielder['id']}}">
+                    {{midfielder["web_name"]}}
+                    ({{id_team_dict[midfielder["team"]]}}) -
+                    £{{"%0.1f"|format(midfielder["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="midfielder2" class="form-label">Midfielder 2</label>
+                <select
+                  class="player-select form-control"
+                  name="midfielder2"
+                  id="midfielder2"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select midfielder...
+                  </option>
+                  {% for midfielder in midfielders %}
+                  <option value="{{midfielder['id']}}">
+                    {{midfielder["web_name"]}}
+                    ({{id_team_dict[midfielder["team"]]}}) -
+                    £{{"%0.1f"|format(midfielder["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="midfielder3" class="form-label">Midfielder 3</label>
+                <select
+                  class="player-select form-control"
+                  name="midfielder3"
+                  id="midfielder3"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select midfielder...
+                  </option>
+                  {% for midfielder in midfielders %}
+                  <option value="{{midfielder['id']}}">
+                    {{midfielder["web_name"]}}
+                    ({{id_team_dict[midfielder["team"]]}}) -
+                    £{{"%0.1f"|format(midfielder["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="midfielder4" class="form-label">Midfielder 4</label>
+                <select
+                  class="player-select form-control"
+                  name="midfielder4"
+                  id="midfielder4"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select midfielder...
+                  </option>
+                  {% for midfielder in midfielders %}
+                  <option value="{{midfielder['id']}}">
+                    {{midfielder["web_name"]}}
+                    ({{id_team_dict[midfielder["team"]]}}) -
+                    £{{"%0.1f"|format(midfielder["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="midfielder5" class="form-label">Midfielder 5</label>
+                <select
+                  class="player-select form-control"
+                  name="midfielder5"
+                  id="midfielder5"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select midfielder...
+                  </option>
+                  {% for midfielder in midfielders %}
+                  <option value="{{midfielder['id']}}">
+                    {{midfielder["web_name"]}}
+                    ({{id_team_dict[midfielder["team"]]}}) -
+                    £{{"%0.1f"|format(midfielder["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Forwards -->
+          <div class="form-section">
+            <h3 class="pos-head">
+              <i class="bi bi-lightning-fill"></i> Forwards
+            </h3>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="forward1" class="form-label">Forward 1</label>
+                <select
+                  class="player-select form-control"
+                  name="forward1"
+                  id="forward1"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select forward...
+                  </option>
+                  {% for forward in forwards %}
+                  <option value="{{forward['id']}}">
+                    {{forward["web_name"]}} ({{id_team_dict[forward["team"]]}})
+                    - £{{"%0.1f"|format(forward["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="forward2" class="form-label">Forward 2</label>
+                <select
+                  class="player-select form-control"
+                  name="forward2"
+                  id="forward2"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select forward...
+                  </option>
+                  {% for forward in forwards %}
+                  <option value="{{forward['id']}}">
+                    {{forward["web_name"]}} ({{id_team_dict[forward["team"]]}})
+                    - £{{"%0.1f"|format(forward["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="forward3" class="form-label">Forward 3</label>
+                <select
+                  class="player-select form-control"
+                  name="forward3"
+                  id="forward3"
+                  required
+                >
+                  <option value="" selected disabled hidden>
+                    Select forward...
+                  </option>
+                  {% for forward in forwards %}
+                  <option value="{{forward['id']}}">
+                    {{forward["web_name"]}} ({{id_team_dict[forward["team"]]}})
+                    - £{{"%0.1f"|format(forward["now_cost"])}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Money in the Bank -->
+          <div class="form-section">
+            <h3 class="pos-head">
+              <i class="bi bi-piggy-bank-fill"></i> Money in the Bank
+            </h3>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="ITB" class="form-label"
+                  >Available Budget (£m)</label
+                >
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  name="ITB"
+                  id="ITB"
+                  class="form-control"
+                  placeholder="0.0"
+                  value="0.0"
+                  required
+                />
+                <small class="form-text text-muted"
+                  >Enter the amount of money you have available for
+                  transfers</small
+                >
+              </div>
+            </div>
+          </div>
+
+                    <div class="text-center mt-4 mb-5">
+            <button
+              type="submit"
+              class="fpl-btn btn btn-secondary btn-lg"
+              name="submitcheck"
+              id="submit_check"
+              disabled
+            >
+              <i class="bi bi-check-circle"></i> Analyze My Team
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 {% include "footer.html" %}
+
+<script>
+  $(document).ready(function () {
+    // Initialize Select2 on all player dropdowns
+    $(".player-select").select2({
+      theme: "bootstrap",
+      width: "100%",
+      allowClear: false
+    });
+
+    // Form validation and button color change
+    const form = $('form');
+    const submitBtn = $('#submit_check');
+    
+    // Function to check if all required fields are filled
+    function checkFormValidity() {
+      let allFilled = true;
+      
+      // Check all select dropdowns
+      $('select[required]').each(function() {
+        if (!$(this).val()) {
+          allFilled = false;
+          return false; // break loop
+        }
+      });
+      
+      // Check ITB input
+      if (!$('#ITB').val()) {
+        allFilled = false;
+      }
+      
+      if (allFilled) {
+        submitBtn.removeClass('btn-secondary').addClass('btn-danger');
+        submitBtn.prop('disabled', false);
+      } else {
+        submitBtn.removeClass('btn-danger').addClass('btn-secondary');
+        submitBtn.prop('disabled', true);
+      }
+    }
+    
+    // Check on page load
+    checkFormValidity();
+    
+    // Check when any select changes
+    $('select[required], #ITB').on('change input', function() {
+      checkFormValidity();
+    });
+    
+    // Also check when Select2 changes
+    $('.player-select').on('select2:select', function() {
+      checkFormValidity();
+    });
+  });
+</script>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+<script>
+  $(document).ready(function () {
+    // Initialize Select2 on all player dropdowns
+    $(".player-select").select2({
+      theme: "bootstrap",
+      width: "100%",
+      allowClear: false,
+    });
+  });
+</script>
