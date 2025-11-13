@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from fplData import playerData, playerEvaluation, playerRanking, gameData
-from secrets_private import secret
 
 app = Flask(__name__)
 gd = gameData.gameData()
@@ -20,7 +19,7 @@ def home():
     gameweek_data = gd.gw_data
     gw_games = gd.convert_fixtures(pd.id_team_dict)
 
-    return render_template("index.html", secret=secret["font_awesome"], gw_data=gameweek_data, id_player=player_id_dict, gw_games=gw_games)
+    return render_template("index.html", gw_data=gameweek_data, id_player=player_id_dict, gw_games=gw_games)
 
 
 @app.route("/your-team-config")
@@ -31,7 +30,7 @@ def your_team_config():
     forwards = pd.position_and_player_dict["Forwards"]
     id_team_dict = pd.id_team_dict
 
-    return render_template("your-config.html", secret=secret["font_awesome"], goalkeepers=goalkeepers, defenders=defenders, midfielders=midfielders, forwards=forwards, id_team_dict=id_team_dict)
+    return render_template("your-config.html", goalkeepers=goalkeepers, defenders=defenders, midfielders=midfielders, forwards=forwards, id_team_dict=id_team_dict)
 
 
 @app.route("/your-team", methods=["POST", "GET"])
@@ -115,7 +114,7 @@ def your_team():
         points_team = pr.under_performers(team, 2)
         points_team = [player["web_name"] for player in points_team]
 
-        return render_template("your-team.html", secret=secret["font_awesome"], current_team=curr_team, gw1_team=gw1_team, gw5_team=gw5_team, gw_rem_team=gw_rem_team, points_team=points_team, gw1_transfer=transfer1gw, gw5_transfer=transfer5gw, len=len)
+        return render_template("your-team.html", current_team=curr_team, gw1_team=gw1_team, gw5_team=gw5_team, gw_rem_team=gw_rem_team, points_team=points_team, gw1_transfer=transfer1gw, gw5_transfer=transfer5gw, len=len)
     else:
         return render_template('404.html'), 404
 
@@ -124,7 +123,7 @@ def your_team():
 def player_ranking():
     ranking_dict = get_ranking_lists(all_players, pd.id_team_dict)
 
-    return render_template("ranking.html", secret=secret["font_awesome"], round=round, form=ranking_dict["form"], now_cost=ranking_dict["now_cost"],
+    return render_template("ranking.html", round=round, form=ranking_dict["form"], now_cost=ranking_dict["now_cost"],
                            points_per_game=ranking_dict["points_per_game"], selected_by_percent=ranking_dict["selected_by_percent"],
                            total_points=ranking_dict["total_points"], transfers_in=ranking_dict["transfers_in"],
                            transfers_out=ranking_dict["transfers_out"], minutes=ranking_dict[
@@ -137,7 +136,7 @@ def player_ranking():
 
 @app.route("/best-team-configurations")
 def best_team_config():
-    return render_template("config.html", secret=secret["font_awesome"])
+    return render_template("config.html")
 
 
 @app.route("/best-team", methods=["POST", "GET"])
@@ -154,9 +153,9 @@ def best_team():
             pd.position_and_player_dict, budget, to_consider)
         starting_eleven, bench_info = pr.user_friendly_result(
             eleven, bench, pd.id_team_dict, pd.id_position_dict)
-        return render_template("optimal.html", secret=secret["font_awesome"],  starting_eleven=starting_eleven, bench=bench_info, captain=captain, heading_text=heading_text_dict[to_consider], budget=budget)
+        return render_template("optimal.html", starting_eleven=starting_eleven, bench=bench_info, captain=captain, heading_text=heading_text_dict[to_consider], budget=budget)
     else:
-        return render_template("config.html", secret=secret["font_awesome"])
+        return render_template("config.html")
 
 
 @app.route("/teams/<team>")
@@ -171,12 +170,12 @@ def team_page(team):
     team_data_dict = gd.team_data_dict
 
 
-    return render_template("team.html",  secret=secret["font_awesome"], scheme=color_scheme, team_data=team_data, position_dict=position_dict, round=round, team_data_dict=team_data_dict[color_scheme])
+    return render_template("team.html", scheme=color_scheme, team_data=team_data, position_dict=position_dict, round=round, team_data_dict=team_data_dict[color_scheme])
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", secret=secret["font_awesome"])
+    return render_template("about.html")
 
 
 @app.errorhandler(404)
