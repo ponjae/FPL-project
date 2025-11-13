@@ -158,14 +158,40 @@ def best_team():
         return render_template("config.html")
 
 
-@app.route("/teams/<team>")
-def team_page(team):
+@app.route("/teams/<team_slug>")
+def team_page(team_slug):
+    # Convert slug to proper team name
+    slug_to_team = {
+        'arsenal': 'Arsenal',
+        'aston-villa': 'Aston Villa',
+        'bournemouth': 'Bournemouth',
+        'brentford': 'Brentford',
+        'brighton': 'Brighton',
+        'burnley': 'Burnley',
+        'chelsea': 'Chelsea',
+        'crystal-palace': 'Crystal Palace',
+        'everton': 'Everton',
+        'fulham': 'Fulham',
+        'liverpool': 'Liverpool',
+        'leeds': 'Leeds',
+        'man-city': 'Man City',
+        'man-utd': 'Man Utd',
+        'newcastle': 'Newcastle',
+        'nottingham': "Nott'm Forest",
+        'sunderland': 'Sunderland',
+        'spurs': 'Spurs',
+        'west-ham': 'West Ham',
+        'wolves': 'Wolves'
+    }
+    
+    team = slug_to_team.get(team_slug.lower())
+    if not team:
+        return page_not_found(404)
+    
     team_data = pd.team_and_player_dict[team]
     color_scheme = ''.join(team.split(" "))
     if color_scheme == "Nott'mForest":
         color_scheme = "Nott'm Forest"
-    elif color_scheme == 'SheffieldUtd':
-        color_scheme = 'Sheffield'
     position_dict = pd.id_position_dict
     team_data_dict = gd.team_data_dict
 

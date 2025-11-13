@@ -76,24 +76,67 @@ body {
   border-bottom: 2px solid #fff;
 }
 
-.dropdown-menu {
-  font-family: "Allerta Stencil", sans-serif;
-  background: #e1e1e1;
-  max-height: 407px;
-  overflow-y: auto;
+.dropdown-toggle::after {
+  vertical-align: 0.15em;
+  margin-left: 0.5em;
 }
+
+.nav-item.dropdown:hover .dropdown-toggle {
+  border-bottom: none;
+}
+
+.dropdown-menu {
+  font-family: "Hubballi", sans-serif;
+  background: #ffffff;
+  max-height: 500px;
+  overflow-y: auto;
+  border: 2px solid #be0606;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  min-width: 200px;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #be0606;
+  border-radius: 4px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #a00505;
+}
+
+.dropdown-item {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  color: #333;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
 .dropdown-even {
-  background-color: #fff;
+  background-color: #f8f8f8;
 }
 
 .dropdown-item:hover {
-  color: #e73725;
-  text-decoration: underline;
-  background-color: transparent;
+  color: #be0606;
+  background-color: #ffe6e6;
+  border-left: 3px solid #be0606;
+  text-decoration: none;
+  padding-left: 1.7rem;
 }
 
 .dropdown-even:hover {
-  background-color: #fff;
+  background-color: #ffe6e6;
 }
 
 /* footer section */
@@ -391,9 +434,9 @@ footer {
   background-color: #c8102e;
 }
 
-.Luton {
-  color: #f78f1e;
-  background-color: #002d62;
+.Leeds {
+  color: #ffffff;
+  background-color: #1d428a;
 }
 
 .ManCity {
@@ -416,9 +459,9 @@ footer {
   background-color: #ffffff;
 }
 
-.Sheffield {
-  color: #ee2737;
-  background-color: #000000;
+.Sunderland {
+  color: #ffffff;
+  background-color: #eb172b;
 }
 
 .Spurs {

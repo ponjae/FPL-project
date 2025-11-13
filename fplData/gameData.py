@@ -185,7 +185,7 @@ class gameData:
                 "nickname": "The Bees",
                 "city": "London",
                 "arena": "Gtech Community Stadium",
-                "coach": "Thomas Frank",
+                "coach": "Keith Andrews",
                 "pl-titles": "0"
             },
             "Brighton": {
@@ -193,7 +193,7 @@ class gameData:
                 "nickname": "The Seagulls",
                 "city": "Brighton",
                 "arena": "Falmer Stadium",
-                "coach": "Roberto De Zerbi",
+                "coach": "Fabian Hürzeler",
                 "pl-titles": "0"
             },
             "Burnley": {
@@ -201,7 +201,7 @@ class gameData:
                 "nickname": "The Clarets",
                 "city": "Burnley",
                 "arena": "Turf Moor",
-                "coach": "Vincent Kompany",
+                "coach": "Scott Parker",
                 "pl-titles": "0"
             },
             "Chelsea": {
@@ -209,7 +209,7 @@ class gameData:
                 "nickname": "The Blues",
                 "city": "London",
                 "arena": "Stamford Bridge",
-                "coach": "Mauricio Pochettino[",
+                "coach": "Enzo Maresca",
                 "pl-titles": "6"
             },
             "CrystalPalace": {
@@ -217,7 +217,7 @@ class gameData:
                 "nickname": "The Eagles",
                 "city": "London",
                 "arena": "Selhurst Park",
-                "coach": "Roy Hodgson",
+                "coach": "Oliver Glasner",
                 "pl-titles": "0"
             },
             "Everton": {
@@ -225,7 +225,7 @@ class gameData:
                 "nickname": "The Toffees",
                 "city": "Liverpool",
                 "arena": "Goodison Park",
-                "coach": "Sean Dyche",
+                "coach": "David Moyes",
                 "pl-titles": "9"
             },
             "Fulham": {
@@ -241,16 +241,16 @@ class gameData:
                 "nickname": "The Reds",
                 "city": "Liverpool",
                 "arena": "Anfield",
-                "coach": "Jürgen Klopp",
-                "pl-titles": "19"
+                "coach": "Arne Slot",
+                "pl-titles": "20"
             },
-            "Luton": {
-                "name": "Luton Town Football Club",
-                "nickname": "The Hatters",
-                "city": "Luton",
-                "arena": "Kenilworth Road",
-                "coach": "Rob Edwards",
-                "pl-titles": "0"
+            "Leeds": {
+                "name": "Leeds United Football Club",
+                "nickname": "The Whites",
+                "city": "Leeds",
+                "arena": "Elland Road",
+                "coach": "Daniel Farke",
+                "pl-titles": "3"
             },
             "ManCity": {
                 "name": "Manchester City Football Club",
@@ -265,7 +265,7 @@ class gameData:
                 "nickname": "The Red Devils",
                 "city": "Manchester",
                 "arena": "Old Trafford",
-                "coach": "Eric Ten Haag",
+                "coach": "Ruben Amorim",
                 "pl-titles": "20"
             },
             "Newcastle": {
@@ -281,15 +281,7 @@ class gameData:
                 "nickname": "The Tricky Trees",
                 "city": "Nottingham",
                 "arena": "City Ground",
-                "coach": "Steve Cooper",
-                "pl-titles": "0"
-            },
-            "Sheffield": {
-                "name": "Sheffield United Football Club",
-                "nickname": "The Blades",
-                "city": "Sheffield",
-                "arena": "Bramall Lane",
-                "coach": "Paul Heckingbottom",
+                "coach": "Sean Dyche",
                 "pl-titles": "0"
             },
             "Spurs": {
@@ -297,15 +289,23 @@ class gameData:
                 "nickname": "Spurs",
                 "city": "London",
                 "arena": "Tottenham Hotspur Stadium",
-                "coach": "Ange Postecoglou",
+                "coach": "Thomas Frank",
                 "pl-titles": "2"
+            },
+            "Sunderland": {
+                "name": "Sunderland Association Football Club",
+                "nickname": "The Black Cats",
+                "city": "Sunderland",
+                "arena": "Stadium of Light",
+                "coach": "Régis Le Bris",
+                "pl-titles": "6"
             },
             "WestHam": {
                 "name": "West Ham United Football Club",
                 "nickname": "The Irons",
                 "city": "London",
                 "arena": "London Stadium",
-                "coach": "David Moyes",
+                "coach": "Nuno Espirito Santo",
                 "pl-titles": "0"
             },
             "Wolves": {
@@ -313,7 +313,7 @@ class gameData:
                 "nickname": "Wolves",
                 "city": "Wolverhampton",
                 "arena": "Molineux Stadium",
-                "coach": "Julen Lopetegui",
+                "coach": "Vitor Pereira",
                 "pl-titles": "3"
             }
         }
